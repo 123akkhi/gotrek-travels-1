@@ -1,0 +1,6 @@
+{
+  "name": "GoTrek Travels - Adi Kailash Yatra & Sacred Himalayan Pilgrimages",
+  "description": "Government authorized local pilgrimage operator for Adi Kailash, Om Parvat, and Kailash Mansarovar with direct SDM permit clearance and 24x7 AI Yatra Guru.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

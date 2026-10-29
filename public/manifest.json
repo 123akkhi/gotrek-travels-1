@@ -1,0 +1,22 @@
+{
+  "short_name": "GoTrek Travels",
+  "name": "GoTrek Travels & Yatra DMC",
+  "icons": [
+    {
+      "src": "/logo.jpg",
+      "type": "image/jpeg",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/logo.jpg",
+      "type": "image/jpeg",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0f172a",
+  "theme_color": "#1e293b",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "description": "Registered local DMC for Adi Kailash, Om Parvat, Darma Valley and Char Dham Yatra."
+}

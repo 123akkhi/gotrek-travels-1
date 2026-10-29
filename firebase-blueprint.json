@@ -1,0 +1,91 @@
+{
+  "entities": {
+    "leads": {
+      "title": "Leads",
+      "description": "Yatri registration inquiries, inner line permits, and booking status.",
+      "properties": {
+        "id": { "type": "string" },
+        "fullName": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "destination": { "type": "string" },
+        "travellers": { "type": "number" },
+        "month": { "type": "string" },
+        "vehiclePreference": { "type": "string" },
+        "status": { "type": "string" },
+        "tripStatus": { "type": "string" },
+        "ilpStatus": { "type": "object" },
+        "totalAmount": { "type": "number" },
+        "advancePaid": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["fullName", "phone"]
+    },
+    "handlers": {
+      "title": "Handlers",
+      "description": "Authorized GoTrek operations staff members and guides.",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "role": { "type": "string" },
+        "badgeId": { "type": "string" },
+        "station": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["name", "email", "role"]
+    },
+    "pilgrims": {
+      "title": "Pilgrims",
+      "description": "Registered Yatri accounts, contact info, badge ID, and pilgrimage preferences.",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "password": { "type": "string" },
+        "gender": { "type": "string" },
+        "age": { "type": "string" },
+        "city": { "type": "string" },
+        "state": { "type": "string" },
+        "preferredYatra": { "type": "string" },
+        "emergencyContactName": { "type": "string" },
+        "emergencyContactPhone": { "type": "string" },
+        "yatriBadgeId": { "type": "string" },
+        "registeredAt": { "type": "string" }
+      },
+      "required": ["name", "email", "phone"]
+    }
+  },
+  "securityRules": [
+    {
+      "collection": "leads",
+      "operations": {
+        "read": "true",
+        "create": "true",
+        "update": "true",
+        "delete": "request.auth != null"
+      }
+    },
+    {
+      "collection": "handlers",
+      "operations": {
+        "read": "true",
+        "create": "true",
+        "update": "true",
+        "delete": "request.auth != null"
+      }
+    },
+    {
+      "collection": "pilgrims",
+      "operations": {
+        "read": "true",
+        "create": "true",
+        "update": "true",
+        "delete": "request.auth != null"
+      }
+    }
+  ]
+}

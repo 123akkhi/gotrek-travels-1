@@ -1,0 +1,27 @@
+# User-agent directives for search engine crawlers & social media scrapers
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+# Canonical XML Sitemap Location for Google India Indexing
+Sitemap: https://gotrek.in/sitemap.xml
+
