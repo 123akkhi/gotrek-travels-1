@@ -41,22 +41,25 @@ export const ContactSection = memo(({ onOpenInquiry }: ContactSectionProps) => {
       return;
     }
 
+    const leadPayload = {
+      fullName: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      destination: formData.yatra,
+      pickupLocation: resolvedPickup,
+      travellers: Number(formData.travelers) || 1,
+      month: formData.travelDate,
+      travelDate: formData.travelDate,
+      notes: `${activeInquiryType.toUpperCase()} Inquiry: ${formData.message}`,
+    };
+
     try {
+      // Post lead data through the API route.
       await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fullName: formData.name,
-          phone: formData.phone,
-          email: formData.email,
-          destination: formData.yatra,
-          pickupLocation: resolvedPickup,
-          travellers: Number(formData.travelers) || 1,
-          month: formData.travelDate,
-          travelDate: formData.travelDate,
-          notes: `${activeInquiryType.toUpperCase()} Inquiry: ${formData.message}`,
-        }),
-      });
+        body: JSON.stringify(leadPayload),
+      }).catch((apiErr) => console.warn("API write notice:", apiErr));
     } catch (err) {
       console.error("Failed to record lead", err);
     }

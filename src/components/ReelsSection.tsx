@@ -124,7 +124,7 @@ export const ReelsSection: React.FC<ReelsSectionProps> = ({ onOpenInquiry }) => 
       destination: newLocation,
       location: newLocation,
       posterImage: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80',
-      videoUrl: newVideoUrl || 'https://assets.mixkit.co/videos/preview/mixkit-snowy-mountain-peak-under-a-clear-blue-sky-42823-large.mp4',
+      videoUrl: newVideoUrl || '/images/destinations/reel1.mp4',
       likesCount: 1,
       viewsCount: '1',
       sharesCount: 0,

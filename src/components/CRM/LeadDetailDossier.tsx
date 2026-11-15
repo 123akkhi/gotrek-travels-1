@@ -145,11 +145,12 @@ export const LeadDetailDossier: React.FC<LeadDetailDossierProps> = memo(({
   };
 
   // Calculate ILP readiness percentage
+  const ilpStatus = localLead.ilpStatus || { aadharProvided: false, policeVerification: false, medicalCertificate: false, sdmApproval: "Pending", itbpClearance: "Pending" };
   const ilpSteps = [
-    localLead.ilpStatus.aadharProvided,
-    localLead.ilpStatus.policeVerification,
-    localLead.ilpStatus.medicalCertificate,
-    localLead.ilpStatus.sdmApproval === "Issued"
+    ilpStatus.aadharProvided,
+    ilpStatus.policeVerification,
+    ilpStatus.medicalCertificate,
+    ilpStatus.sdmApproval === "Issued"
   ];
   const completedIlpSteps = ilpSteps.filter(Boolean).length;
   const ilpPercentage = Math.round((completedIlpSteps / 4) * 100);

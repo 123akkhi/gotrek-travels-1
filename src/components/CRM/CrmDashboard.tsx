@@ -34,7 +34,8 @@ import {
   ChevronUp,
   ChevronLeft,
   LogOut,
-  ClipboardCheck
+  ClipboardCheck,
+  Mail
 } from "lucide-react";
 import { LeadBooking, HandlerUser, HandlerRole } from "../../types";
 import { INITIAL_LEADS } from "../../data/mockData";
@@ -48,6 +49,22 @@ import { AddLeadModal } from "./AddLeadModal";
 import { HandlersRosterModal } from "./HandlersRosterModal";
 import { AddHandlerModal } from "./AddHandlerModal";
 import { MyYatraChecklist } from "./MyYatraChecklist";
+
+interface PilgrimData {
+  id: string;
+  name?: string;
+  phone?: string;
+  email?: string;
+  city?: string;
+  state?: string;
+  yatriBadgeId?: string;
+  preferredYatra?: string;
+  gender?: string;
+  age?: string | number;
+  emergencyContactName?: string;
+  emergencyContactPhone?: string;
+  registeredAt?: string;
+}
 
 interface CrmDashboardProps {
   onClose: () => void;
@@ -87,12 +104,16 @@ export const CrmDashboard: React.FC<CrmDashboardProps> = ({ onClose }) => {
   const [isSyncing, setIsSyncing] = useState(false);
   const [lastSyncedTime, setLastSyncedTime] = useState<string>("Just now");
 
+  // ─── PILGRIMS REGISTERED IN FIRESTORE ──────────────────────────
+  const [pilgrims, setPilgrims] = useState<PilgrimData[]>([]);
+  const [pilgrimSearch, setPilgrimSearch] = useState<string>("");
+
   // ─── FILTERS & SEARCH ──────────────────────────────────────────
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("All");
   const [destinationFilter, setDestinationFilter] = useState<string>("All");
   const [sortBy, setSortBy] = useState<"newest" | "travelDate" | "advance" | "name">("newest");
-  const [mainView, setMainView] = useState<"leads" | "news_desk" | "yatra_checklist">("leads");
+  const [mainView, setMainView] = useState<"leads" | "news_desk" | "yatra_checklist" | "pilgrims">("leads");
   const [showMetrics, setShowMetrics] = useState(true);
   const [cardViewMode, setCardViewMode] = useState<"streamlined" | "full">("streamlined");
   const [recentlyUpdatedIds, setRecentlyUpdatedIds] = useState<Set<string>>(new Set());
@@ -153,7 +174,7 @@ export const CrmDashboard: React.FC<CrmDashboardProps> = ({ onClose }) => {
     return headers;
   }, [currentHandler]);
 
-  // ─── FETCH LEADS & HANDLERS ────────────────────────────────────
+  // ─── FETCH LEADS, HANDLERS & PILGRIMS (Live Firestore Sync) ────
   const fetchLeads = useCallback(async (showSyncIndicator = false) => {
     const saved = localStorage.getItem(HANDLER_CACHE_KEY);
     const handler = currentHandler || (saved ? JSON.parse(saved) : null);
@@ -174,17 +195,20 @@ export const CrmDashboard: React.FC<CrmDashboardProps> = ({ onClose }) => {
         handleLogout();
         return;
       }
-      if (!res.ok) throw new Error("Failed to fetch leads");
-      const data = await res.json();
-      if (data.success && Array.isArray(data.leads)) {
-        setLeads(data.leads);
-        try {
-          localStorage.setItem(LEADS_CACHE_KEY, JSON.stringify(data.leads));
-        } catch (e) {}
-        setLastSyncedTime(new Date().toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" }));
+      if (res.ok) {
+        const data = await res.json();
+        const list = Array.isArray(data) ? data : (data.success && Array.isArray(data.leads) ? data.leads : []);
+        if (list.length > 0) {
+          setLeads(list);
+          try {
+            localStorage.setItem(LEADS_CACHE_KEY, JSON.stringify(list));
+          } catch (e) {}
+          setLastSyncedTime(new Date().toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" }));
+          return;
+        }
       }
     } catch (err) {
-      console.warn("CRM fetch leads warning (using cached data):", err);
+      console.warn("CRM fetch leads from API failed:", err);
     } finally {
       if (showSyncIndicator) setIsSyncing(false);
     }
@@ -211,20 +235,52 @@ export const CrmDashboard: React.FC<CrmDashboardProps> = ({ onClose }) => {
       }
       if (res.ok) {
         const data = await res.json();
-        if (data.success && Array.isArray(data.handlers)) {
-          setHandlers(data.handlers);
+        const list = Array.isArray(data) ? data : (data.success && Array.isArray(data.handlers) ? data.handlers : []);
+        if (list.length > 0) {
+          setHandlers(list);
+          return;
         }
       }
     } catch (err) {
       console.warn("CRM fetch handlers warning:", err);
     }
+
   }, [currentHandler, handleLogout]);
+
+  const fetchPilgrims = useCallback(async () => {
+    const saved = localStorage.getItem(HANDLER_CACHE_KEY);
+    const handler = currentHandler || (saved ? JSON.parse(saved) : null);
+    if (!handler) {
+      setPilgrims([]);
+      return;
+    }
+    try {
+      const token = localStorage.getItem("gotrek_handler_token") || `gt_token_${handler.id}`;
+      const res = await fetch("/api/pilgrims", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "x-handler-id": handler.id,
+        },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        const list = Array.isArray(data) ? data : (data.success && Array.isArray(data.pilgrims) ? data.pilgrims : []);
+        if (list.length > 0) {
+          setPilgrims(list);
+          return;
+        }
+      }
+    } catch (err) {
+      console.warn("CRM fetch pilgrims from API failed:", err);
+    }
+  }, [currentHandler]);
 
   useEffect(() => {
     if (!currentHandler) return;
     fetchLeads(false);
     fetchHandlers();
-  }, [fetchLeads, fetchHandlers, currentHandler]);
+    fetchPilgrims();
+  }, [fetchLeads, fetchHandlers, fetchPilgrims, currentHandler]);
 
   // Real-time listener when inquiry or checkout modal registers or updates details
   useEffect(() => {
@@ -293,6 +349,7 @@ export const CrmDashboard: React.FC<CrmDashboardProps> = ({ onClose }) => {
 
   // ─── DERIVED TRIP STATUS HELPER ────────────────────────────────
   const getLeadTripStatus = useCallback((lead: LeadBooking): 'Upcoming' | 'Confirmed' | 'Processing' | 'Completed' | 'On Hold' => {
+    if (!lead) return 'Upcoming';
     if (lead.tripStatus) return lead.tripStatus;
     if (lead.status === 'Approved & Booked') return 'Confirmed';
     if (lead.status === 'ILP Processing' || lead.status === 'Docs Received') return 'Processing';
@@ -302,16 +359,23 @@ export const CrmDashboard: React.FC<CrmDashboardProps> = ({ onClose }) => {
 
   // ─── FILTERED & SORTED LEADS (Memoized for 60fps) ──────────────
   const filteredLeads = useMemo(() => {
-    return leads
+    return (leads || [])
       .filter((lead) => {
+        if (!lead || typeof lead !== "object") return false;
+        const name = (lead.fullName || "").toLowerCase();
+        const phone = lead.phone || "";
+        const id = (lead.id || "").toLowerCase();
+        const dest = (lead.destination || "").toLowerCase();
+        const guide = (lead.assignedGuide || "").toLowerCase();
+
         // Search filter
         if (searchTerm.trim()) {
           const term = searchTerm.toLowerCase();
-          const matchName = lead.fullName.toLowerCase().includes(term);
-          const matchPhone = lead.phone.includes(term);
-          const matchId = lead.id.toLowerCase().includes(term);
-          const matchDest = lead.destination.toLowerCase().includes(term);
-          const matchGuide = lead.assignedGuide?.toLowerCase().includes(term);
+          const matchName = name.includes(term);
+          const matchPhone = phone.includes(term);
+          const matchId = id.includes(term);
+          const matchDest = dest.includes(term);
+          const matchGuide = guide.includes(term);
           if (!matchName && !matchPhone && !matchId && !matchDest && !matchGuide) return false;
         }
 
@@ -328,14 +392,14 @@ export const CrmDashboard: React.FC<CrmDashboardProps> = ({ onClose }) => {
 
         // Destination filter
         if (destinationFilter !== "All") {
-          if (!lead.destination.toLowerCase().includes(destinationFilter.toLowerCase())) return false;
+          if (!dest.includes(destinationFilter.toLowerCase())) return false;
         }
 
         return true;
       })
       .sort((a, b) => {
-        if (sortBy === "newest") return b.id.localeCompare(a.id);
-        if (sortBy === "name") return a.fullName.localeCompare(b.fullName);
+        if (sortBy === "newest") return (b.id || "").localeCompare(a.id || "");
+        if (sortBy === "name") return (a.fullName || "").localeCompare(b.fullName || "");
         if (sortBy === "advance") return (b.advancePaid || 0) - (a.advancePaid || 0);
         if (sortBy === "travelDate") return (a.month || "").localeCompare(b.month || "");
         return 0;
@@ -477,19 +541,19 @@ export const CrmDashboard: React.FC<CrmDashboardProps> = ({ onClose }) => {
     ];
 
     const rows = filteredLeads.map((l) => [
-      `"${l.id}"`,
-      `"${l.fullName.replace(/"/g, '""')}"`,
-      `"${l.phone}"`,
+      `"${l.id || ""}"`,
+      `"${(l.fullName || "Guest Yatri").replace(/"/g, '""')}"`,
+      `"${l.phone || ""}"`,
       `"${l.email || ""}"`,
-      `"${l.destination}"`,
+      `"${l.destination || "Adi Kailash Yatra"}"`,
       l.travellers || 1,
-      `"${l.month}"`,
+      `"${l.month || ""}"`,
       `"${l.pickupLocation || ""}"`,
       `"${getLeadTripStatus(l)}"`,
-      l.ilpStatus.aadharProvided ? "YES" : "NO",
-      l.ilpStatus.policeVerification ? "YES" : "NO",
-      l.ilpStatus.medicalCertificate ? "YES" : "NO",
-      `"${l.ilpStatus.sdmApproval}"`,
+      l.ilpStatus?.aadharProvided ? "YES" : "NO",
+      l.ilpStatus?.policeVerification ? "YES" : "NO",
+      l.ilpStatus?.medicalCertificate ? "YES" : "NO",
+      `"${l.ilpStatus?.sdmApproval || "Pending"}"`,
       `"${l.assignedVehicle || "Unassigned"}"`,
       `"${l.assignedGuide || "Unassigned"}"`,
       l.totalAmount || 0,
@@ -654,6 +718,18 @@ export const CrmDashboard: React.FC<CrmDashboardProps> = ({ onClose }) => {
               <span className="sm:hidden">Manifest ({leads.length})</span>
             </button>
             <button
+              onClick={() => setMainView("pilgrims")}
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                mainView === "pilgrims"
+                  ? "bg-amber-500 text-slate-950 shadow-xs"
+                  : "text-slate-400 hover:text-white"
+              }`}
+            >
+              <User size={14} />
+              <span className="hidden sm:inline">Registered Yatris ({pilgrims.length})</span>
+              <span className="sm:hidden">Yatris ({pilgrims.length})</span>
+            </button>
+            <button
               onClick={() => setMainView("yatra_checklist")}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
                 mainView === "yatra_checklist"
@@ -720,14 +796,14 @@ export const CrmDashboard: React.FC<CrmDashboardProps> = ({ onClose }) => {
                   title="View Staff Operations Roster"
                 >
                   <div className="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 flex items-center justify-center font-black text-xs">
-                    {currentHandler.name.charAt(0)}
+                    {(currentHandler.name || "S").charAt(0)}
                   </div>
                   <div className="hidden xl:block">
                     <p className="text-xs font-bold text-slate-200 leading-tight group-hover:text-amber-400 transition-colors">
-                      {currentHandler.name}
+                      {currentHandler.name || "Staff Member"}
                     </p>
                     <p className="text-[10px] text-slate-400 truncate max-w-[130px]">
-                      {currentHandler.role}
+                      {currentHandler.role || "Operations Officer"}
                     </p>
                   </div>
                 </button>
@@ -776,6 +852,171 @@ export const CrmDashboard: React.FC<CrmDashboardProps> = ({ onClose }) => {
               onSelectLead={(lead) => setSelectedLead(lead)}
               onUpdateLeadIlp={handleUpdateLeadIlp}
             />
+          </div>
+        ) : mainView === "pilgrims" ? (
+          <div className="flex-1 flex flex-col min-h-0 overflow-hidden bg-slate-50/70 p-4 sm:p-6 space-y-4">
+            {/* Top Bar for Pilgrims */}
+            <div className="flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs">
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 rounded-xl bg-amber-100 text-amber-900 border border-amber-300">
+                  <User size={20} />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-slate-900">
+                    Registered Yatri Pilgrims ({pilgrims.length})
+                  </h3>
+                  <p className="text-xs text-slate-500 font-medium">
+                    Verified pilgrim accounts synchronized from Firebase Firestore (<code className="font-mono text-amber-900 font-bold">pilgrims</code> collection)
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 w-full sm:w-auto">
+                <div className="relative flex-1 sm:w-64">
+                  <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                  <input
+                    type="text"
+                    value={pilgrimSearch}
+                    onChange={(e) => setPilgrimSearch(e.target.value)}
+                    placeholder="Search by name, phone, city..."
+                    className="w-full pl-8 pr-3 py-1.5 text-xs rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+                  />
+                  {pilgrimSearch && (
+                    <button
+                      onClick={() => setPilgrimSearch("")}
+                      className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                    >
+                      <X size={12} />
+                    </button>
+                  )}
+                </div>
+                <button
+                  onClick={fetchPilgrims}
+                  className="p-2 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-100 transition-colors"
+                  title="Refresh Pilgrims from Firestore"
+                >
+                  <RefreshCw size={14} />
+                </button>
+              </div>
+            </div>
+
+            {/* Pilgrims List */}
+            <div className="flex-1 overflow-y-auto smooth-scroll-y min-h-0 space-y-3 pb-8">
+              {pilgrims
+                .filter((p) => {
+                  if (!pilgrimSearch.trim()) return true;
+                  const q = pilgrimSearch.toLowerCase();
+                  return (
+                    (p.name || "").toLowerCase().includes(q) ||
+                    (p.phone || "").includes(q) ||
+                    (p.email || "").toLowerCase().includes(q) ||
+                    (p.city || "").toLowerCase().includes(q) ||
+                    (p.state || "").toLowerCase().includes(q) ||
+                    (p.yatriBadgeId || "").toLowerCase().includes(q) ||
+                    (p.preferredYatra || "").toLowerCase().includes(q)
+                  );
+                })
+                .map((p) => (
+                  <div
+                    key={p.id}
+                    className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200/90 hover:border-slate-300 shadow-2xs hover:shadow-xs transition-all flex flex-col md:flex-row md:items-center justify-between gap-4"
+                  >
+                    <div className="flex items-start gap-3.5">
+                      <div className="w-11 h-11 rounded-2xl bg-amber-900 text-white font-black flex items-center justify-center text-base shadow-xs shrink-0">
+                        {(p.name || "Y").charAt(0).toUpperCase()}
+                      </div>
+                      <div className="space-y-1">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="font-bold text-slate-900 text-sm">{p.name}</span>
+                          <span className="text-[10px] font-mono font-bold text-amber-950 bg-amber-100 px-2 py-0.5 rounded-md border border-amber-300">
+                            {p.yatriBadgeId || p.id}
+                          </span>
+                          {p.gender && p.gender !== "Unspecified" && (
+                            <span className="text-[10px] text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
+                              {p.gender}{p.age ? `, ${p.age} yrs` : ""}
+                            </span>
+                          )}
+                        </div>
+
+                        <div className="text-xs text-amber-900 font-semibold flex items-center gap-1.5">
+                          <span>{p.preferredYatra || "Adi Kailash & Om Parvat Yatra"}</span>
+                        </div>
+
+                        <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-500">
+                          {(p.city || p.state) && (
+                            <span>Base: {[p.city, p.state].filter(Boolean).join(", ")}</span>
+                          )}
+                          {p.emergencyContactName && (
+                            <span className="text-slate-600 font-medium">
+                              Emergency: {p.emergencyContactName} ({p.emergencyContactPhone || "N/A"})
+                            </span>
+                          )}
+                          <span className="text-slate-400">Reg: {p.registeredAt || "2027"}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-slate-100">
+                      {p.phone && (
+                        <a
+                          href={`https://wa.me/91${p.phone.replace(/\D/g, "")}?text=${encodeURIComponent(`Om Namah Shivaya ${p.name}! Greetings from GoTrek Travels Pithoragarh regarding your sacred Yatra registration (${p.yatriBadgeId || p.id}).`)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-3 py-1.5 rounded-xl bg-[#25D366] hover:bg-[#1EBE57] text-white text-xs font-bold transition-all flex items-center gap-1.5 shadow-2xs"
+                        >
+                          <Send size={12} />
+                          <span>WhatsApp</span>
+                        </a>
+                      )}
+                      {p.phone && (
+                        <a
+                          href={`tel:${p.phone}`}
+                          className="px-3 py-1.5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-bold transition-colors flex items-center gap-1.5"
+                        >
+                          <Phone size={12} />
+                          <span>Call</span>
+                        </a>
+                      )}
+                      {p.email && (
+                        <a
+                          href={`mailto:${p.email}`}
+                          className="p-2 rounded-xl border border-slate-200 text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition-colors"
+                          title={p.email}
+                        >
+                          <Mail size={13} />
+                        </a>
+                      )}
+                      <button
+                        onClick={async () => {
+                          if (confirm(`Are you sure you want to delete pilgrim record for ${p.name}?`)) {
+                            try {
+                              await fetch(`/api/pilgrims/${p.id}`, { method: "DELETE" });
+                              setPilgrims((prev) => prev.filter((item) => item.id !== p.id));
+                              showToast(`Pilgrim ${p.name} removed`);
+                            } catch (e) {
+                              showToast("Failed to delete pilgrim");
+                            }
+                          }
+                        }}
+                        className="p-2 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors"
+                        title="Delete Pilgrim Record"
+                      >
+                        <Trash2 size={13} />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+
+              {pilgrims.length === 0 && (
+                <div className="p-12 text-center bg-white rounded-2xl border border-slate-200 space-y-2">
+                  <User size={32} className="mx-auto text-slate-300" />
+                  <h4 className="text-sm font-bold text-slate-700">No Pilgrim Registrations Found</h4>
+                  <p className="text-xs text-slate-500 max-w-sm mx-auto">
+                    New pilgrims who sign up via the Yatri Portal will automatically appear here and sync in real-time to Firestore.
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         ) : (
           <div className="flex-1 flex flex-col min-h-0 overflow-hidden bg-slate-50/60">
@@ -998,12 +1239,12 @@ export const CrmDashboard: React.FC<CrmDashboardProps> = ({ onClose }) => {
                             {/* Pilgrim Primary Profile */}
                             <div className="flex items-center gap-3 min-w-0">
                               <div className="w-10 h-10 rounded-xl bg-slate-900 text-amber-400 font-black flex items-center justify-center text-sm shadow-xs shrink-0">
-                                {lead.fullName.charAt(0)}
+                                {(lead.fullName || "Y").charAt(0)}
                               </div>
                               <div className="min-w-0">
                                 <div className="flex items-center gap-2 flex-wrap">
                                   <h4 className="font-bold text-slate-900 text-sm truncate max-w-[180px] sm:max-w-xs">
-                                    {lead.fullName}
+                                    {lead.fullName || "Guest Yatri"}
                                   </h4>
                                   <span className="text-[10px] font-mono font-bold text-slate-500 bg-slate-100 px-1.5 py-0.2 rounded shrink-0">
                                     {lead.id}

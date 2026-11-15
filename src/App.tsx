@@ -44,6 +44,8 @@ const ReelsPage = lazyWithRetry(() => import("./components/ReelsPage").then(m =>
 const MemoriesPage = lazyWithRetry(() => import("./components/MemoriesPage").then(m => ({ default: m.MemoriesPage })), "MemoriesPage");
 const PithoragarhFlightsPage = lazyWithRetry(() => import("./components/PithoragarhFlightsPage"), "PithoragarhFlightsPage");
 const PaymentSuccessPage = lazyWithRetry(() => import("./components/PaymentSuccessPage"), "PaymentSuccessPage");
+const HotelsPage = lazyWithRetry(() => import("./components/HotelsPage"), "HotelsPage");
+const WomenSpecialBatchPage = lazyWithRetry(() => import("./components/WomenSpecialBatchPage"), "WomenSpecialBatchPage");
 const CrmDashboard = lazyWithRetry(() => import("./components/CRM/CrmDashboard"), "CrmDashboard");
 
 // Code-split modals with auto-retry
@@ -96,6 +98,8 @@ function getInitialRouteState() {
       isPithoragarhFlightsOpen: false,
       isPaymentSuccessOpen: false,
       isMedicalFitnessOpen: false,
+      isHotelsPageOpen: false,
+      isWomenBatchPageOpen: false,
     };
   }
 
@@ -117,6 +121,8 @@ function getInitialRouteState() {
       isPithoragarhFlightsOpen: false,
       isPaymentSuccessOpen: false,
       isMedicalFitnessOpen: false,
+      isHotelsPageOpen: false,
+      isWomenBatchPageOpen: false,
     };
   }
 
@@ -142,6 +148,8 @@ function getInitialRouteState() {
     isPithoragarhFlightsOpen: false,
     isPaymentSuccessOpen: false,
     isMedicalFitnessOpen: false,
+    isHotelsPageOpen: false,
+    isWomenBatchPageOpen: false,
   };
 
   if (!cleanPath) return state;
@@ -214,6 +222,27 @@ function getInitialRouteState() {
     state.isMedicalFitnessOpen = true;
     return state;
   }
+  if (
+    cleanPath === 'hotels' ||
+    cleanPath === 'hotel' ||
+    cleanPath === 'stays' ||
+    cleanPath === 'homestays' ||
+    cleanPath === 'accommodations'
+  ) {
+    state.isHotelsPageOpen = true;
+    return state;
+  }
+  if (
+    cleanPath === 'women-special' ||
+    cleanPath === 'women-batch' ||
+    cleanPath === 'ladies-batch' ||
+    cleanPath === 'nari-shakti-yatra' ||
+    cleanPath === 'women-special-batch' ||
+    cleanPath === 'women'
+  ) {
+    state.isWomenBatchPageOpen = true;
+    return state;
+  }
 
   return state;
 }
@@ -239,6 +268,8 @@ export default function App() {
   const [isMemoriesPageOpen, setIsMemoriesPageOpen] = useState<boolean>(initialRoute.isMemoriesPageOpen);
   const [isPithoragarhFlightsOpen, setIsPithoragarhFlightsOpen] = useState<boolean>(initialRoute.isPithoragarhFlightsOpen);
   const [isPaymentSuccessOpen, setIsPaymentSuccessOpen] = useState<boolean>(initialRoute.isPaymentSuccessOpen);
+  const [isHotelsPageOpen, setIsHotelsPageOpen] = useState<boolean>(initialRoute.isHotelsPageOpen);
+  const [isWomenBatchPageOpen, setIsWomenBatchPageOpen] = useState<boolean>(initialRoute.isWomenBatchPageOpen);
   const [activeBookingReceipt, setActiveBookingReceipt] = useState<BookingReceiptData | null>(null);
   const [isRazorpayOpen, setIsRazorpayOpen] = useState<boolean>(false);
   const [razorpayPackage, setRazorpayPackage] = useState<string>("Adi Kailash & Om Parvat Yatra 2027");
@@ -251,8 +282,21 @@ export default function App() {
     const timer = setTimeout(() => setShowFloatingWidgets(true), 1200);
     const handleQuickPopup = () => setIsQuickPopupOpen(true);
     window.addEventListener("open-quick-popup", handleQuickPopup);
+
+    // Polite automatic prompt for 2027 booking pass on initial visit
+    let autoPopupTimer: NodeJS.Timeout | null = null;
+    try {
+      const dismissed = sessionStorage.getItem("initialPopupDismissed");
+      if (!dismissed) {
+        autoPopupTimer = setTimeout(() => {
+          setIsQuickPopupOpen(true);
+        }, 5000);
+      }
+    } catch {}
+
     return () => {
       clearTimeout(timer);
+      if (autoPopupTimer) clearTimeout(autoPopupTimer);
       window.removeEventListener("open-quick-popup", handleQuickPopup);
     };
   }, []);
@@ -357,6 +401,8 @@ export default function App() {
     setIsMemoriesPageOpen(false);
     setIsPithoragarhFlightsOpen(false);
     setIsMedicalFitnessOpen(false);
+    setIsHotelsPageOpen(false);
+    setIsWomenBatchPageOpen(false);
     setSelectedDestinationSlug(slug);
     const targetPath = `/destinations/${slug}`;
     if (window.location.pathname !== targetPath) {
@@ -381,6 +427,8 @@ export default function App() {
     setIsMemoriesPageOpen(false);
     setIsPithoragarhFlightsOpen(false);
     setIsMedicalFitnessOpen(false);
+    setIsHotelsPageOpen(false);
+    setIsWomenBatchPageOpen(false);
     const cleanSlug = slug || '';
     setSelectedBlogSlug(cleanSlug);
     const targetPath = cleanSlug ? `/blogs/${cleanSlug}` : '/blogs';
@@ -404,6 +452,8 @@ export default function App() {
     setIsMemoriesPageOpen(false);
     setIsPithoragarhFlightsOpen(false);
     setIsMedicalFitnessOpen(false);
+    setIsHotelsPageOpen(false);
+    setIsWomenBatchPageOpen(false);
     const chosenSlug = slug || 'adi-kailash-yatra-standard';
     setSelectedPackageSlug(chosenSlug);
     const targetPath = `/packages/${chosenSlug}`;
@@ -429,6 +479,8 @@ export default function App() {
     setIsPithoragarhFlightsOpen(false);
     setIsPaymentSuccessOpen(false);
     setIsMedicalFitnessOpen(false);
+    setIsHotelsPageOpen(false);
+    setIsWomenBatchPageOpen(false);
     if (window.location.pathname !== '/') {
       window.history.pushState({}, '', '/');
     }
@@ -485,6 +537,8 @@ export default function App() {
     setIsPithoragarhFlightsOpen(false);
     setIsPaymentSuccessOpen(false);
     setIsMedicalFitnessOpen(false);
+    setIsHotelsPageOpen(false);
+    setIsWomenBatchPageOpen(false);
     const validSlug = slug || 'adi-kailash-yatra-2027';
     setSelectedSeoSlug(validSlug);
     const targetPath = `/${validSlug}`;
@@ -744,6 +798,62 @@ export default function App() {
         setIsPithoragarhFlightsOpen(false);
         setIsPaymentSuccessOpen(false);
         setIsMedicalFitnessOpen(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      if (
+        cleanPath === 'hotels' ||
+        cleanPath === 'hotel' ||
+        cleanPath === 'stays' ||
+        cleanPath === 'homestays' ||
+        cleanPath === 'accommodations'
+      ) {
+        setSelectedDestinationSlug('');
+        setSelectedBlogSlug('');
+        setSelectedPackageSlug('');
+        setSelectedSeoSlug('');
+        setIsTeamPageOpen(false);
+        setIsCareersPageOpen(false);
+        setIsClothingGuideOpen(false);
+        setIsTermsPageOpen(false);
+        setIsPrivacyPageOpen(false);
+        setIsAboutUsOpen(false);
+        setIsReelsPageOpen(false);
+        setIsMemoriesPageOpen(false);
+        setIsPithoragarhFlightsOpen(false);
+        setIsPaymentSuccessOpen(false);
+        setIsMedicalFitnessOpen(false);
+        setIsHotelsPageOpen(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      if (
+        cleanPath === 'women-special' ||
+        cleanPath === 'women-batch' ||
+        cleanPath === 'ladies-batch' ||
+        cleanPath === 'nari-shakti-yatra' ||
+        cleanPath === 'women-special-batch' ||
+        cleanPath === 'women'
+      ) {
+        setSelectedDestinationSlug('');
+        setSelectedBlogSlug('');
+        setSelectedPackageSlug('');
+        setSelectedSeoSlug('');
+        setIsTeamPageOpen(false);
+        setIsCareersPageOpen(false);
+        setIsClothingGuideOpen(false);
+        setIsTermsPageOpen(false);
+        setIsPrivacyPageOpen(false);
+        setIsAboutUsOpen(false);
+        setIsReelsPageOpen(false);
+        setIsMemoriesPageOpen(false);
+        setIsPithoragarhFlightsOpen(false);
+        setIsPaymentSuccessOpen(false);
+        setIsMedicalFitnessOpen(false);
+        setIsHotelsPageOpen(false);
+        setIsWomenBatchPageOpen(true);
         window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
@@ -1018,6 +1128,72 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
+  const handleOpenHotelsPage = useCallback(() => {
+    setSelectedDestinationSlug('');
+    setSelectedBlogSlug('');
+    setSelectedPackageSlug('');
+    setSelectedSeoSlug('');
+    setIsTeamPageOpen(false);
+    setIsCareersPageOpen(false);
+    setIsClothingGuideOpen(false);
+    setIsTermsPageOpen(false);
+    setIsPrivacyPageOpen(false);
+    setIsAboutUsOpen(false);
+    setIsReelsPageOpen(false);
+    setIsMemoriesPageOpen(false);
+    setIsPithoragarhFlightsOpen(false);
+    setIsPaymentSuccessOpen(false);
+    setIsMedicalFitnessOpen(false);
+    setIsWomenBatchPageOpen(false);
+    setIsHotelsPageOpen(true);
+    const targetPath = '/hotels';
+    if (window.location.pathname !== targetPath) {
+      window.history.pushState({}, '', targetPath);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  const handleCloseHotelsPage = useCallback(() => {
+    setIsHotelsPageOpen(false);
+    if (window.location.pathname === '/hotels') {
+      window.history.pushState({}, '', '/');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  const handleOpenWomenBatchPage = useCallback(() => {
+    setSelectedDestinationSlug('');
+    setSelectedBlogSlug('');
+    setSelectedPackageSlug('');
+    setSelectedSeoSlug('');
+    setIsTeamPageOpen(false);
+    setIsCareersPageOpen(false);
+    setIsClothingGuideOpen(false);
+    setIsTermsPageOpen(false);
+    setIsPrivacyPageOpen(false);
+    setIsAboutUsOpen(false);
+    setIsReelsPageOpen(false);
+    setIsMemoriesPageOpen(false);
+    setIsPithoragarhFlightsOpen(false);
+    setIsPaymentSuccessOpen(false);
+    setIsMedicalFitnessOpen(false);
+    setIsHotelsPageOpen(false);
+    setIsWomenBatchPageOpen(true);
+    const targetPath = '/women-special';
+    if (window.location.pathname !== targetPath) {
+      window.history.pushState({}, '', targetPath);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  const handleCloseWomenBatchPage = useCallback(() => {
+    setIsWomenBatchPageOpen(false);
+    if (window.location.pathname === '/women-special') {
+      window.history.pushState({}, '', '/');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   const handleOpenRazorpayCheckout = useCallback((options?: { amount?: number; title?: string; packageType?: string } | string) => {
     if (typeof options === 'string') {
       setRazorpayPackage(options || "Adi Kailash Yatra 2027");
@@ -1033,6 +1209,10 @@ export default function App() {
     ? 'flights'
     : isMedicalFitnessOpen
     ? 'medical-fitness'
+    : isWomenBatchPageOpen
+    ? 'women-special'
+    : isHotelsPageOpen
+    ? 'hotels'
     : isReelsPageOpen
     ? 'reels'
     : isMemoriesPageOpen
@@ -1206,6 +1386,37 @@ export default function App() {
                   onBackToHome={handleCloseMedicalFitness}
                   onOpenInquiry={handleOpenInquiry}
                   onSelectPackage={handleSelectPackage}
+                />
+              </Suspense>
+            </motion.div>
+          ) : isHotelsPageOpen ? (
+            <motion.div
+              key="hotels-page"
+              variants={floatingPageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <Suspense fallback={<PageLoadingFallback message="Loading 15 Yatra Accommodations..." />}>
+                <HotelsPage
+                  onBack={handleGoHome}
+                  onOpenInquiry={handleOpenInquiry}
+                />
+              </Suspense>
+            </motion.div>
+          ) : isWomenBatchPageOpen ? (
+            <motion.div
+              key="women-batch-page"
+              variants={floatingPageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <Suspense fallback={<PageLoadingFallback message="Loading Adi Kailash Women Special Batch..." />}>
+                <WomenSpecialBatchPage
+                  onBackToHome={handleGoHome}
+                  onOpenInquiry={handleOpenInquiry}
+                  onOpenRazorpay={handleOpenRazorpayCheckout}
                 />
               </Suspense>
             </motion.div>
@@ -1476,6 +1687,7 @@ export default function App() {
               onSelectReels={handleOpenReelsPage}
               onSelectMemories={handleOpenMemoriesPage}
               onSelectPithoragarhFlights={handleOpenPithoragarhFlights}
+              onOpenHotelsPage={handleOpenHotelsPage}
             />
           </Suspense>
         </DeferredSection>

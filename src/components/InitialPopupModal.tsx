@@ -1,4 +1,5 @@
 import React, { useState, useEffect, memo } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { X, ShieldCheck, Sparkles, Send, CheckCircle2, MapPin, Navigation, Building2, CreditCard, Lock } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
@@ -45,6 +46,26 @@ export const InitialPopupModal = memo(({ isOpen: controlledOpen, onClose: contro
     sessionStorage.setItem("initialPopupDismissed", "true");
   };
 
+  // Close on Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") handleClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
+  // Lock body scroll when popup is open
+  useEffect(() => {
+    if (!isOpen) return;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isOpen]);
+
   const resolvedPickup = pickupLocation === "other" && customPickupCity.trim()
     ? `Custom: ${customPickupCity.trim()}`
     : pickupLocation;
@@ -56,21 +77,23 @@ export const InitialPopupModal = memo(({ isOpen: controlledOpen, onClose: contro
     }
 
     setSubmitting(true);
+    const leadPayload = {
+      fullName,
+      phone,
+      destination,
+      pickupLocation: resolvedPickup,
+      month: travelDate,
+      travelDate,
+      notes: "[Direct Advance Slot Booking via Razorpay from Initial Popup]",
+      source: "Initial Popup -> Razorpay",
+    };
+
     try {
       await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fullName,
-          phone,
-          destination,
-          pickupLocation: resolvedPickup,
-          month: travelDate,
-          travelDate,
-          notes: "[Direct Advance Slot Booking via Razorpay from Initial Popup]",
-          source: "Initial Popup -> Razorpay",
-        }),
-      });
+        body: JSON.stringify(leadPayload),
+      }).catch((apiErr) => console.warn("API write notice:", apiErr));
     } catch (err) {
       console.error("Failed to post lead", err);
     }
@@ -95,20 +118,23 @@ export const InitialPopupModal = memo(({ isOpen: controlledOpen, onClose: contro
 
     setSubmitting(true);
 
+    const leadPayload = {
+      fullName,
+      phone,
+      destination,
+      pickupLocation: resolvedPickup,
+      month: travelDate,
+      travelDate,
+      source: "Initial Popup Modal",
+    };
+
     try {
       await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fullName,
-          phone,
-          destination,
-          pickupLocation: resolvedPickup,
-          month: travelDate,
-          travelDate,
-          source: "Initial Popup Modal",
-        }),
-      });
+        body: JSON.stringify(leadPayload),
+      }).catch((apiErr) => console.warn("API write notice:", apiErr));
+
       window.dispatchEvent(
         new CustomEvent("gotrek:lead-created", {
           detail: { fullName, phone, destination, pickupLocation: resolvedPickup },
@@ -127,22 +153,27 @@ export const InitialPopupModal = memo(({ isOpen: controlledOpen, onClose: contro
     }, 600);
   };
 
-  return (
+  if (typeof document === 'undefined') return null;
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <div 
-          className="fixed inset-0 z-[130] flex items-center justify-center p-3 sm:p-6 md:p-8 bg-slate-950/80 backdrop-blur-sm overflow-y-auto animate-in fade-in duration-200"
+          className="fixed inset-0 z-[99999] flex flex-col justify-end sm:justify-center sm:items-center p-0 sm:p-6 md:p-8 bg-slate-950/85 backdrop-blur-md overflow-hidden animate-in fade-in duration-200"
           onClick={(e) => {
             if (e.target === e.currentTarget) handleClose();
           }}
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 12 }}
+            initial={{ opacity: 0, scale: 0.96, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.96, y: 12 }}
+            exit={{ opacity: 0, scale: 0.96, y: 20 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="relative w-full max-w-lg my-auto bg-white border border-[#E6E2D3] rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden text-slate-800 crisp-dialog"
+            className="relative w-full max-w-lg bg-white border border-[#E6E2D3] rounded-t-[28px] sm:rounded-3xl shadow-2xl overflow-hidden text-slate-800 crisp-dialog max-h-[92vh] sm:max-h-[88vh] flex flex-col"
           >
+            {/* Mobile Pull Handle */}
+            <div className="w-12 h-1.5 rounded-full bg-slate-300 mx-auto my-2 sm:hidden shrink-0" />
+
             {/* Header Banner */}
             <div 
               className="bg-gradient-to-r from-slate-900 via-slate-800 to-amber-950 text-white p-4 sm:p-5 relative shrink-0"
@@ -174,7 +205,7 @@ export const InitialPopupModal = memo(({ isOpen: controlledOpen, onClose: contro
             </div>
 
             {/* Content Body */}
-            <div className="p-4 sm:p-5 space-y-4 max-h-[80vh] overflow-y-auto overscroll-contain smooth-scroll-y">
+            <div className="p-4 sm:p-5 space-y-4 flex-1 overflow-y-auto overscroll-contain smooth-scroll-y pb-[calc(env(safe-area-inset-bottom,0px)+16px)] sm:pb-5">
               {submitted ? (
                 <div className="py-6 text-center space-y-3">
                   <div className="h-12 w-12 mx-auto rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center">
@@ -386,7 +417,8 @@ export const InitialPopupModal = memo(({ isOpen: controlledOpen, onClose: contro
           </motion.div>
         </div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 });
 

@@ -156,7 +156,10 @@ export const YatraTiers = memo(({ onOpenInquiry, onSelectPackage, onSelectSeoPag
                     }`}>
                       {getTierTagline(tier.tagline)}
                     </span>
-                    <h3 className="text-2xl sm:text-3xl font-bold mt-2.5">
+                    <h3 
+                      onClick={() => onSelectPackage && onSelectPackage(tier.slug)}
+                      className="text-2xl sm:text-3xl font-bold mt-2.5 cursor-pointer hover:text-amber-400 transition-colors"
+                    >
                       {getTierLabel(tier.label)}
                     </h3>
                     <div className="mt-4 flex items-baseline gap-2 pb-4 border-b border-slate-700/50">

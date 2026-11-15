@@ -195,6 +195,7 @@ export const UserAuthModal: React.FC<UserAuthModalProps> = ({
     };
 
     try {
+      // Post to backend signup route
       const res = await fetch('/api/user/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

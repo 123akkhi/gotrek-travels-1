@@ -1,13 +1,38 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /leads/{leadId} {
+    // Yatra Inquiries and Bookings
+    match /leads/{leadId=**} {
       allow read, write: if true;
     }
-    match /handlers/{handlerId} {
+
+    // CRM Staff & Station Handlers
+    match /handlers/{handlerId=**} {
       allow read, write: if true;
     }
-    match /pilgrims/{pilgrimId} {
+
+    // Pilgrim Profiles & Registrations
+    match /pilgrims/{pilgrimId=**} {
+      allow read, write: if true;
+    }
+
+    // CRM Blogs & Travel Handbooks
+    match /blogs/{blogId=**} {
+      allow read, write: if true;
+    }
+
+    // Weather & High-Altitude News Bulletins
+    match /news/{newsId=**} {
+      allow read, write: if true;
+    }
+
+    // Staff & Pilgrim OTP Verification Codes
+    match /otps/{otpId=**} {
+      allow read, write: if true;
+    }
+
+    // Fallback permissive rule for seamless local dev & staging
+    match /{document=**} {
       allow read, write: if true;
     }
   }

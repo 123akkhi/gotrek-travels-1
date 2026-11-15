@@ -1,0 +1,35 @@
+{
+  "buildCommand": "vite build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/api/health",
+      "destination": "/api/health"
+    },
+    {
+      "source": "/api/consult",
+      "destination": "/api/consult"
+    },
+    {
+      "source": "/api/leads",
+      "destination": "/api/leads"
+    },
+    {
+      "source": "/api /payment/create-order",
+      "destination": "/api/payment/create-order"
+    },
+    {
+      "source": "/api/payment/verify-payment",
+      "destination": "/api/payment/verify-payment"
+    },
+    {
+      "source": "/api/google-reviews",
+      "destination": "/api/google-reviews"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

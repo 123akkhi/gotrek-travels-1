@@ -15,12 +15,12 @@ export const CrmStatsCards: React.FC<CrmStatsCardsProps> = memo(({ leads }) => {
   );
   const confirmedPilgrims = confirmedLeads.reduce((acc, curr) => acc + (curr.travellers || 1), 0);
 
-  const ilpProcessingCount = leads.filter(
-    (l) => l.status === "ILP Processing" || l.ilpStatus.sdmApproval === "In Progress" || l.ilpStatus.sdmApproval === "Pending"
+  const ilpProcessingCount = (leads || []).filter(
+    (l) => l?.status === "ILP Processing" || l?.ilpStatus?.sdmApproval === "In Progress" || l?.ilpStatus?.sdmApproval === "Pending"
   ).length;
 
-  const sdmIssuedCount = leads.filter(
-    (l) => l.ilpStatus.sdmApproval === "Issued"
+  const sdmIssuedCount = (leads || []).filter(
+    (l) => l?.ilpStatus?.sdmApproval === "Issued"
   ).length;
 
   const totalRevenue = leads.reduce((acc, curr) => acc + (curr.totalAmount || 0), 0);

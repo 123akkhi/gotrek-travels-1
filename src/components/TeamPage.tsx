@@ -127,7 +127,20 @@ const ALL_TEAM_MEMBERS: TeamMember[] = [
     badge: "Tech & Experience Lead",
     bio: "Oversees digital booking systems, instant WhatsApp permit tracking, AI travel consultants, and 24/7 guest consultation for seamless high-altitude yatra experiences.",
     highlights: ["Instant AI Permit Assistant", "Live WhatsApp Permit Tracker", "24/7 Guest Desk Support"]
-  }
+  },
+  {
+    id: "Mukesh Samant",
+    name: "Mukesh",
+    role: "Taxi and Transport Logistic",
+    category: "marketing-sales",
+    location: "Rishikesh, Haridwar & Pithoragarh",
+    experience: "6+ Years",
+    avatar: "/images/team/team9.webp",
+    specialty: "Ashram Trusts, Corporate Retreats & B2B Alliances",
+    badge: "Group Sales Specialist",
+    bio: "Dedicated to organizing customized group pilgrimages for spiritual trusts, yoga ashrams, and corporate teams with dedicated 4x4 convoys, group permits, and private catering in Vyas Valley.",
+    highlights: ["Corporate Spiritual Expeditions", "Ashram Trusts & Sangha Group Convoys", "B2B Travel Partner Programs"]
+  },
 ];
 
 interface TeamPageProps {

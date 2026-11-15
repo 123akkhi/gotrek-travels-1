@@ -369,7 +369,7 @@ export const ReviewsFaq = memo(() => {
                   </button>
 
                   <a
-                    href="https://g.page/r/gotrektravels-pithoragarh/review"
+                    href="https://g.page/r/CRMBICRA01wjEBM/review"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-[11px] font-bold text-blue-600 hover:text-blue-800 transition-colors"
@@ -445,7 +445,7 @@ export const ReviewsFaq = memo(() => {
           {/* Bottom Action: Write a Review on Google CTA */}
           <div className="text-center mt-6">
             <a
-              href="https://g.page/r/gotrektravels-pithoragarh/review"
+              href="https://g.page/r/CRMBICRA01wjEBM/review"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-stone-50 border border-slate-300 text-slate-800 text-xs font-bold shadow-xs hover:shadow-md transition-all group"

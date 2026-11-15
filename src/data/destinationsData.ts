@@ -845,7 +845,7 @@ export const DESTINATIONS_DATA: Record<string, DestinationDetail> = {
     endingPoint: "Haridwar / Rishikesh / Dehradun",
     priceStandard: 32000,
     pricePremium: 48000,
-    bannerImage: "/images/destinations/chardham-yatra.webp",
+    bannerImage: "/images/destinations/char-dham.webp",
     galleryImages: [
       "/images/temples/badrinath.webp",
       "/images/temples/kedarnath.webp",
@@ -3366,7 +3366,7 @@ export const DESTINATIONS_DATA: Record<string, DestinationDetail> = {
         altitude: "6,900 ft (2,103 m)",
         location: "3 km from Manali town across Beas River",
         category: "Spiritual",
-        image: "/images/destinations/vashisht-kund.webp",
+        image: "/images/destinations/vashisht-hot-springs.webp",
         significance: "Ancient temple of Sage Vashisht, Guru of Lord Rama, featuring natural mineral-rich geothermal sulphur hot water baths.",
         mythologicalLore: "Legend holds that Lakshmana shot a fire arrow into the ground here to create hot medicinal springs for Sage Vashisht's morning bath.",
         description: "The temple has beautiful stone and wooden carvings with separate enclosed stone bath enclosures for men and women where hot medicinal spring water flows continuously.",

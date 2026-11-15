@@ -1,5 +1,5 @@
 // GoTrek Travels - High Altitude Trek Offline Service Worker
-const CACHE_NAME = 'gotrek-trek-cache-v2';
+const CACHE_NAME = 'gotrek-trek-cache-v5-real-reviews';
 
 const STATIC_ASSETS_TO_CACHE = [
   '/',
@@ -16,17 +16,18 @@ const STATIC_ASSETS_TO_CACHE = [
 
 // Install Event - Precache critical shell and offline resources
 self.addEventListener('install', (event) => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       console.log('[GoTrek SW] Precaching offline app shell & trek resources');
       return cache.addAll(STATIC_ASSETS_TO_CACHE).catch((err) => {
         console.warn('[GoTrek SW] Pre-cache partial fail, continuing anyway:', err);
       });
-    }).then(() => self.skipWaiting())
+    })
   );
 });
 
-// Activate Event - Clean up stale old caches
+// Activate Event - Clean up ALL stale old caches immediately
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
@@ -34,7 +35,7 @@ self.addEventListener('activate', (event) => {
         cacheNames
           .filter((name) => name !== CACHE_NAME)
           .map((name) => {
-            console.log('[GoTrek SW] Removing old cache version:', name);
+            console.log('[GoTrek SW] Purging old cache version:', name);
             return caches.delete(name);
           })
       );
@@ -49,18 +50,28 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(event.request.url);
 
-  // Skip chrome-extension, non-http, or backend API modifications
+  // CRITICAL: NEVER intercept or cache backend API calls (/api/*), Vite modules, or WebSocket requests!
+  if (
+    url.pathname.startsWith('/api/') || 
+    url.pathname.includes('/@vite/') || 
+    url.pathname.includes('/@fs/') ||
+    url.pathname.includes('/src/') ||
+    url.pathname.endsWith('.ts') ||
+    url.pathname.endsWith('.tsx')
+  ) {
+    return; // Pass directly to native browser network
+  }
+
+  // Skip chrome-extension, non-http
   if (!url.protocol.startsWith('http')) return;
 
-  // Handle image and static assets: Cache first, fallback to network
+  // Handle image and static media assets: Cache first, fallback to network
   if (
     url.pathname.startsWith('/images/') || 
     url.pathname.endsWith('.jpg') || 
     url.pathname.endsWith('.png') || 
     url.pathname.endsWith('.svg') || 
-    url.pathname.endsWith('.webp') ||
-    url.pathname.endsWith('.css') ||
-    url.pathname.endsWith('.js')
+    url.pathname.endsWith('.webp')
   ) {
     event.respondWith(
       caches.match(event.request).then((cachedResponse) => {
@@ -85,7 +96,6 @@ self.addEventListener('fetch', (event) => {
           }
           return networkResponse;
         }).catch(() => {
-          // If offline and image fails, return placeholder or cached shell
           return caches.match('/logo.jpg');
         });
       })
@@ -115,6 +125,24 @@ self.addEventListener('fetch', (event) => {
             headers: { 'Content-Type': 'text/plain' }
           });
         })
+    );
+    return;
+  }
+
+  // For JavaScript and CSS: Network first to ensure code updates reflect immediately
+  if (url.pathname.endsWith('.js') || url.pathname.endsWith('.css')) {
+    event.respondWith(
+      fetch(event.request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const responseToCache = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, responseToCache);
+            });
+          }
+          return networkResponse;
+        })
+        .catch(() => caches.match(event.request))
     );
     return;
   }

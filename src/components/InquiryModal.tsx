@@ -1,4 +1,5 @@
 import React, { useState, useEffect, memo } from "react";
+import { createPortal } from "react-dom";
 import { motion } from "motion/react";
 import {
   X,
@@ -35,6 +36,16 @@ interface InquiryModalProps {
   onOpenRazorpay?: (destination: string) => void;
 }
 
+export const isFlexibleGroupCircuit = (circuitName: string): boolean => {
+  if (!circuitName) return true;
+  const lower = circuitName.toLowerCase();
+  return (
+    lower.includes("adi kailash") ||
+    lower.includes("darma") ||
+    lower.includes("khaliya")
+  );
+};
+
 export const InquiryModal = memo(({
   isOpen,
   onClose,
@@ -52,7 +63,7 @@ export const InquiryModal = memo(({
   const [destination, setDestination] = useState(defaultDestination);
   const [pickupLocation, setPickupLocation] = useState(defaultPickupLocation);
   const [customPickupCity, setCustomPickupCity] = useState("");
-  const [travellers, setTravellers] = useState("2");
+  const [travellers, setTravellers] = useState(() => (isFlexibleGroupCircuit(defaultDestination) ? "2" : "4"));
   const [travelDate, setTravelDate] = useState("2027-05-10");
   const [vehicle, setVehicle] = useState("suv");
   const [notes, setNotes] = useState("");
@@ -64,8 +75,18 @@ export const InquiryModal = memo(({
   useEffect(() => {
     if (defaultDestination) {
       setDestination(defaultDestination);
+      if (!isFlexibleGroupCircuit(defaultDestination) && Number(travellers) < 4) {
+        setTravellers("4");
+      }
     }
   }, [defaultDestination]);
+
+  // Enforce minimum 4 travellers for circuits other than Adi Kailash, Darma Valley, and Khaliya Top
+  useEffect(() => {
+    if (!isFlexibleGroupCircuit(destination) && Number(travellers) < 4) {
+      setTravellers("4");
+    }
+  }, [destination]);
 
   useEffect(() => {
     if (defaultPickupLocation) {
@@ -86,6 +107,26 @@ export const InquiryModal = memo(({
   }, []);
 
   const WHATSAPP_NUMBER = "917248285767";
+
+  // Close on Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (!isOpen) return;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -141,6 +182,11 @@ export const InquiryModal = memo(({
       setStepError("Please specify your custom pickup city.");
       return;
     }
+    if (!isFlexibleGroupCircuit(destination) && Number(travellers) < 4) {
+      setStepError(`Minimum group of 4 travelers required for ${destination}. Group size has been set to 4.`);
+      setTravellers("4");
+      return;
+    }
     setStepError(null);
     setCurrentStep('payment');
   };
@@ -173,22 +219,25 @@ export const InquiryModal = memo(({
 
     setSubmitting(true);
 
+    const leadPayload = {
+      fullName,
+      phone,
+      destination,
+      pickupLocation: resolvedPickup,
+      travellers: Number(travellers) || 1,
+      month: travelDate,
+      travelDate,
+      vehicle,
+      notes: `[Razorpay Intent] ${notes || 'User initiated ₹5,000 Advance Slot Booking'}`,
+    };
+
     try {
+      // Post lead to the API route.
       await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fullName,
-          phone,
-          destination,
-          pickupLocation: resolvedPickup,
-          travellers,
-          month: travelDate,
-          travelDate,
-          vehicle,
-          notes: `[Razorpay Intent] ${notes || 'User initiated ₹5,000 Advance Slot Booking'}`,
-        }),
-      });
+        body: JSON.stringify(leadPayload),
+      }).catch((apiErr) => console.warn("API write notice:", apiErr));
 
       window.dispatchEvent(new CustomEvent("gotrek:lead-created", {
         detail: { fullName, phone, destination, pickupLocation: resolvedPickup }
@@ -216,26 +265,29 @@ export const InquiryModal = memo(({
     setSubmitting(true);
     setStepError(null);
 
+    const leadPayload = {
+      fullName,
+      phone,
+      destination,
+      pickupLocation: resolvedPickup,
+      travellers: Number(travellers) || 1,
+      month: travelDate,
+      travelDate,
+      vehicle,
+      notes,
+    };
+
     try {
       if (dontShowAgain) {
         localStorage.setItem("gotrek_hide_inquiry_popup", "true");
       }
 
+      // Post lead to the API route.
       await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fullName,
-          phone,
-          destination,
-          pickupLocation: resolvedPickup,
-          travellers,
-          month: travelDate,
-          travelDate,
-          vehicle,
-          notes,
-        }),
-      });
+        body: JSON.stringify(leadPayload),
+      }).catch((apiErr) => console.warn("API write notice:", apiErr));
 
       window.dispatchEvent(new CustomEvent("gotrek:lead-created", {
         detail: { fullName, phone, destination, pickupLocation: resolvedPickup }
@@ -253,20 +305,25 @@ export const InquiryModal = memo(({
     }
   };
 
-  return (
+  if (typeof document === "undefined") return null;
+
+  return createPortal(
     <div 
-      className="fixed inset-0 z-[150] flex items-center justify-center p-3 sm:p-6 md:p-8 bg-slate-950/80 backdrop-blur-sm overflow-y-auto animate-in fade-in duration-200"
+      className="fixed inset-0 z-[99999] flex flex-col justify-end sm:justify-center sm:items-center p-0 sm:p-6 md:p-8 bg-slate-950/85 backdrop-blur-md overflow-hidden animate-in fade-in duration-200"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
     >
       <motion.div 
-        initial={{ opacity: 0, scale: 0.96, y: 12 }}
+        initial={{ opacity: 0, scale: 0.96, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.96, y: 12 }}
+        exit={{ opacity: 0, scale: 0.96, y: 20 }}
         transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-        className="relative w-full max-w-xl my-auto bg-white border border-[#E6E2D3] rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh] crisp-dialog"
+        className="relative w-full max-w-xl bg-white border border-[#E6E2D3] rounded-t-[28px] sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh] sm:max-h-[88vh] crisp-dialog"
       >
+        {/* Mobile Pull Handle */}
+        <div className="w-12 h-1.5 rounded-full bg-slate-300 mx-auto my-2 sm:hidden shrink-0" />
+
         {/* Header */}
         <div className="p-4 sm:p-5 bg-[#F5F2ED] border-b border-[#E6E2D3] flex items-center justify-between shrink-0">
           <div className="flex items-center gap-2.5">
@@ -449,7 +506,7 @@ export const InquiryModal = memo(({
         )}
 
         {/* Content Body */}
-        <div className="p-5 sm:p-7 flex-1 overflow-y-auto space-y-4 bg-[#FDFBF7] smooth-scroll-y">
+        <div className="p-4 sm:p-7 flex-1 overflow-y-auto overscroll-contain space-y-4 bg-[#FDFBF7] smooth-scroll-y pb-[calc(env(safe-area-inset-bottom,0px)+16px)] sm:pb-7">
           {submitted ? (
             <div className="py-8 text-center space-y-4 animate-in fade-in duration-300">
               <div className="h-16 w-16 mx-auto rounded-full bg-emerald-100 border border-emerald-300 text-emerald-800 flex items-center justify-center">
@@ -609,7 +666,14 @@ export const InquiryModal = memo(({
                       </label>
                       <select
                         value={destination}
-                        onChange={(e) => setDestination(e.target.value)}
+                        onChange={(e) => {
+                          const newDest = e.target.value;
+                          setDestination(newDest);
+                          if (!isFlexibleGroupCircuit(newDest) && Number(travellers) < 4) {
+                            setTravellers("4");
+                          }
+                          if (stepError) setStepError(null);
+                        }}
                         className="w-full bg-white border border-[#E6E2D3] rounded-xl px-3.5 py-2.5 text-[16px] sm:text-xs text-[#1E293B] focus:border-amber-800 focus:ring-2 focus:ring-amber-800/20 outline-none transition-all cursor-pointer shadow-2xs"
                       >
                         <optgroup label="Adi Kailash & Om Parvat Circuits">
@@ -755,21 +819,65 @@ export const InquiryModal = memo(({
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="font-bold text-[#1E293B] flex items-center gap-1">
-                        <Users size={13} className="text-amber-800" />
-                        <span>Total Travellers</span>
-                      </label>
+                      <div className="flex items-center justify-between">
+                        <label className="font-bold text-[#1E293B] flex items-center gap-1">
+                          <Users size={13} className="text-amber-800" />
+                          <span>Total Travellers *</span>
+                        </label>
+                        {!isFlexibleGroupCircuit(destination) && (
+                          <span className="text-[10px] font-bold text-amber-900 bg-amber-100/90 border border-amber-300 px-2 py-0.5 rounded-full flex items-center gap-1 shadow-2xs">
+                            Min. 4 Pax Required
+                          </span>
+                        )}
+                      </div>
+
                       <select
                         value={travellers}
-                        onChange={(e) => setTravellers(e.target.value)}
-                        className="w-full bg-white border border-[#E6E2D3] rounded-xl px-3.5 py-2.5 text-[16px] sm:text-xs text-[#1E293B] focus:border-amber-800 focus:ring-2 focus:ring-amber-800/20 outline-none transition-all cursor-pointer shadow-2xs"
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          if (!isFlexibleGroupCircuit(destination) && Number(val) < 4) {
+                            setTravellers("4");
+                          } else {
+                            setTravellers(val);
+                          }
+                          if (stepError) setStepError(null);
+                        }}
+                        className="w-full bg-white border border-[#E6E2D3] rounded-xl px-3.5 py-2.5 text-[16px] sm:text-xs text-[#1E293B] font-medium focus:border-amber-800 focus:ring-2 focus:ring-amber-800/20 outline-none transition-all cursor-pointer shadow-2xs"
                       >
-                        <option value="1">1 Person (Solo Yatri)</option>
-                        <option value="2">2 Persons</option>
-                        <option value="4">4 Persons (Standard SUV Group)</option>
-                        <option value="6">6 Persons</option>
-                        <option value="8">8+ Persons (Private Batch)</option>
+                        {isFlexibleGroupCircuit(destination) ? (
+                          <>
+                            <option value="1">1 Person (Solo Yatri)</option>
+                            <option value="2">2 Persons (Couple / Pair)</option>
+                            <option value="3">3 Persons</option>
+                            <option value="4">4 Persons (Standard SUV Group)</option>
+                            <option value="6">6 Persons (Dedicated 4x4)</option>
+                            <option value="8">8+ Persons (Private Batch)</option>
+                          </>
+                        ) : (
+                          <>
+                            <option value="4">4 Persons (Minimum Group Size)</option>
+                            <option value="5">5 Persons</option>
+                            <option value="6">6 Persons (Dedicated 4x4 Bolero/Scorpio)</option>
+                            <option value="8">8+ Persons (Private Group Batch)</option>
+                            <option value="12">12+ Persons (Large Sangha Batch)</option>
+                          </>
+                        )}
                       </select>
+
+                      {/* Informational Guidance Callout */}
+                      {!isFlexibleGroupCircuit(destination) ? (
+                        <div className="p-2.5 rounded-xl bg-amber-50/90 border border-amber-200/90 flex items-start gap-2 text-[11px] text-amber-950 mt-1 shadow-2xs">
+                          <AlertCircle size={14} className="text-amber-800 shrink-0 mt-0.5" />
+                          <p className="leading-snug">
+                            <strong>Minimum Group Rule:</strong> A minimum group of <strong>4 travelers</strong> is required for this circuit. Solo travelers and smaller groups of 1–3 are exclusively accommodated on <strong>Adi Kailash</strong>, <strong>Darma Valley</strong>, and <strong>Khaliya Top</strong>.
+                          </p>
+                        </div>
+                      ) : (
+                        <p className="text-[10px] text-emerald-800 flex items-center gap-1 font-medium pl-0.5 mt-0.5">
+                          <Check size={11} className="text-emerald-600 shrink-0" />
+                          <span>Solo and 2-person bookings are welcomed for Adi Kailash, Darma Valley & Khaliya Top.</span>
+                        </p>
+                      )}
 
                       <div className="pt-2">
                         <label className="font-bold text-[#1E293B]">Vehicle Preference</label>
@@ -965,7 +1073,8 @@ export const InquiryModal = memo(({
           )}
         </div>
       </motion.div>
-    </div>
+    </div>,
+    document.body
   );
 });
 

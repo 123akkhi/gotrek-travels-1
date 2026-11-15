@@ -25,7 +25,7 @@ import { SEO_PAGES, SeoPageData } from "../data/seoPagesData";
 import { generateItineraryPdf } from "../utils/pdfGenerator";
 import { YatraWeatherCard } from "./YatraWeatherCard";
 import { WhatsAppIcon } from "./WhatsAppIcon";
-import { HotelsAccommodationSection } from "./HotelsAccommodationSection";
+import HotelsAccommodationSection from "./HotelsAccommodationSection";
 import { WhatToWearPage } from "./WhatToWearPage";
 import { RelatedPackagesSection } from "./RelatedPackagesSection";
 import { FloatingOmBackground, OmLightSymbol } from "./OmLightMotif";
@@ -330,10 +330,9 @@ export const SeoPageRenderer: React.FC<SeoPageRendererProps> = ({
             {isAdiKailashPage && page.category !== 'B2B Partner' && !page.slug.startsWith('b2b-') && (
               <div className="rounded-[28px] overflow-hidden">
                 <HotelsAccommodationSection
-                  onOpenInquiry={onOpenInquiry}
-                  titleOverride="Hotels & Homestays Directory"
-                  subtitleOverride="Compare verified Standard homestays vs. Premium deluxe stays for this yatra route."
-                />
+                  onOpenInquiry={onOpenInquiry} onBack={function (): void {
+                    throw new Error("Function not implemented.");
+                  } }                />
               </div>
             )}
 

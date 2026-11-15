@@ -28,9 +28,12 @@ import {
   Bell,
   CheckCircle2,
   Loader2,
-  Shield
+  Shield,
+  Camera,
+  X,
+  ZoomIn
 } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 import { FloatingOmBackground, OmLightSymbol } from "./OmLightMotif";
 import { PageBreadcrumbs } from "./PageBreadcrumbs";
@@ -53,6 +56,12 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
   const [allArticles, setAllArticles] = useState<BlogArticle[]>([]);
   const [copied, setCopied] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const [selectedImageForModal, setSelectedImageForModal] = useState<{
+    url: string;
+    caption: string;
+    tag?: string;
+    altitude?: string;
+  } | null>(null);
 
   // Newsletter subscription state
   const [newsletterEmail, setNewsletterEmail] = useState("");
@@ -442,6 +451,53 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
                   ))}
                 </ul>
               )}
+
+              {/* Photo Glimpses Grid if present */}
+              {section.gallery && section.gallery.length > 0 && (
+                <div className="pt-2 pb-2 space-y-4">
+                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-900">
+                    <Camera size={16} className="text-amber-700" />
+                    <span>Visual Photo Glimpses ({section.gallery.length} Photos)</span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {section.gallery.map((item, gIdx) => (
+                      <div
+                        key={gIdx}
+                        onClick={() => setSelectedImageForModal(item)}
+                        className="group relative rounded-2xl overflow-hidden bg-stone-900 border border-stone-200 cursor-pointer shadow-sm hover:shadow-md transition-all duration-300"
+                      >
+                        <div className="relative aspect-4/3 overflow-hidden">
+                          <BlurUpImage
+                            src={item.url}
+                            alt={item.caption}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+                          {item.tag && (
+                            <span className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-wide border border-white/20">
+                              {item.tag}
+                            </span>
+                          )}
+                          {item.altitude && (
+                            <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-md bg-amber-500/90 text-slate-950 text-[10px] font-extrabold shadow-sm">
+                              {item.altitude}
+                            </span>
+                          )}
+                          <div className="absolute bottom-2.5 right-2.5 w-7 h-7 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-slate-900 opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
+                            <ZoomIn size={14} />
+                          </div>
+                        </div>
+                        <div className="p-3 bg-[#FAF8F5] border-t border-stone-100">
+                          <p className="text-xs text-slate-700 font-medium line-clamp-2 leading-relaxed">
+                            {item.caption}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </section>
           ))}
         </div>
@@ -792,6 +848,55 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
           </div>
         )}
       </div>
+
+      {/* Fullscreen Photo Lightbox Modal */}
+      <AnimatePresence>
+        {selectedImageForModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedImageForModal(null)}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
+          >
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-4xl w-full bg-stone-900 rounded-3xl overflow-hidden shadow-2xl border border-white/10"
+            >
+              <button
+                onClick={() => setSelectedImageForModal(null)}
+                className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/60 text-white hover:bg-black/80 flex items-center justify-center transition-colors cursor-pointer"
+                aria-label="Close photo preview"
+              >
+                <X size={18} />
+              </button>
+              <div className="relative max-h-[70vh] flex items-center justify-center bg-black">
+                <img
+                  src={selectedImageForModal.url}
+                  alt={selectedImageForModal.caption}
+                  className="max-h-[70vh] w-auto object-contain mx-auto"
+                />
+                {selectedImageForModal.tag && (
+                  <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-amber-500 text-slate-950 text-xs font-bold shadow-md">
+                    {selectedImageForModal.tag}
+                  </span>
+                )}
+              </div>
+              <div className="p-5 sm:p-6 bg-stone-900 text-white space-y-1.5 border-t border-white/10">
+                <div className="flex items-center justify-between text-xs text-amber-400 font-semibold">
+                  <span>Adi Kailash Parikrama Run 2.0 • Official Race Glimpse</span>
+                  {selectedImageForModal.altitude && (
+                    <span className="text-stone-300 font-bold">{selectedImageForModal.altitude}</span>
+                  )}
+                </div>
+                <p className="text-sm sm:text-base text-stone-200 leading-relaxed">
+                  {selectedImageForModal.caption}
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.article>
   );
 };

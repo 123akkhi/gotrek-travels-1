@@ -28,7 +28,7 @@ export const ADI_KAILASH_HOTELS: AccommodationStay[] = [
     tierBadge: "Premium Deluxe Stay",
     location: "Gunji Valley",
     altitude: "10,500 FT",
-    image: "/public/hotels/Homestay/wooden-homestay-1.webp",
+    image: "/hotels/Homestay/wooden-homestay-1.webp",
     rating: 4.9,
     reviewsCount: 148,
     packageInclusion: "Included in Premium 4x4 Package",
@@ -50,21 +50,20 @@ export const ADI_KAILASH_HOTELS: AccommodationStay[] = [
     description: "Handcrafted alpine pine-wood cottages nestled in the heart of Gunji valley, engineered with insulated double-walls, electric blankets, and attached western toilets for peak pilgrim comfort."
   },
   {
-    id: "Nabi Homests",
-    name: "Dharchula Riverside Grand Resort & Hotel",
+    id: "Gunji Dharchula",
+    name: "Athithi Homestay",
     hindiName: "धारचूला रिवरसाइड ग्रैंड रिसॉर्ट",
     tier: "premium",
     tierBadge: "Premium Deluxe Hotel",
     location: "Dharchula Base",
     altitude: "3,000 FT",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=720&q=75&fm=webp",
+    image: "/hotels/atithi homestay/atithi-homestay1.webp",
     rating: 4.9,
     reviewsCount: 210,
     packageInclusion: "Included in Premium 4x4 Package",
     roomType: "Deluxe River-Facing AC Room",
     sharingType: "Double Sharing",
     amenities: [
-      "Kali River View Balcony",
       "Air Conditioning & Heating",
       "Attached Luxury Bath",
       "Elevator Access",
@@ -72,11 +71,10 @@ export const ADI_KAILASH_HOTELS: AccommodationStay[] = [
       "Secure High-Speed WiFi"
     ],
     keyHighlights: [
-      "Spectacular balcony view across the roaring Kali river towards Nepal hills",
       "Elevator access for senior citizens and luxury spring mattresses",
       "Dedicated permit documentation lounge and 24-hr room service"
     ],
-    description: "The premier luxury riverfront property in Dharchula, serving as the relaxing staging gateway before the high-altitude ascent into Vyas Valley."
+    description: "A welcoming  high-altitude homestay in gunji- the last major halt before adi kaialsh and om parvat."
   },
   {
     id: "nabi-heritage-rung-cottage",
@@ -86,7 +84,7 @@ export const ADI_KAILASH_HOTELS: AccommodationStay[] = [
     tierBadge: "Premium Deluxe Cottage",
     location: "Nabi Heritage Village",
     altitude: "10,200 FT",
-    image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=720&q=75&fm=webp",
+    image: "/hotels/cp residency/cp-residency1.webp",
     rating: 4.8,
     reviewsCount: 165,
     packageInclusion: "Included in Premium Package",
@@ -109,20 +107,18 @@ export const ADI_KAILASH_HOTELS: AccommodationStay[] = [
   },
   {
     id: "pithoragarh-valley-lodge",
-    name: "Kumaon Valley Boutique Lodge",
-    hindiName: "कुमाऊं वैली बुटीक लॉज पिथौरागढ़",
+    name: "Green Hills Hotel",
     tier: "premium",
     tierBadge: "Premium Deluxe Hotel",
     location: "Pithoragarh City",
     altitude: "5,350 FT",
-    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=720&q=75&fm=webp",
+    image: "/hotels/gold petals/gold-petal-1.webp",
     rating: 4.9,
     reviewsCount: 190,
     packageInclusion: "Included in Premium Package (Kathgodam/Pithoragarh)",
     roomType: "Panoramic Peak View Suite",
     sharingType: "Double Sharing",
     amenities: [
-      "Panchachuli Peak Views",
       "Plush Spring Mattresses",
       "Designer Rain Shower",
       "Electric Tea/Coffee Kettle",
@@ -130,21 +126,19 @@ export const ADI_KAILASH_HOTELS: AccommodationStay[] = [
       "Pure Veg Buffet Breakfast"
     ],
     keyHighlights: [
-      "Unobstructed views of the five sacred Panchachuli snow summits at dawn",
       "Premium linens and hygienic sanitized bathrooms",
       "Convenient access to Naini Saini Airport and Chandak Hill"
     ],
-    description: "Upscale boutique hospitality in Pithoragarh offering serene Himalayan vistas and restorative sleep before the off-road expedition begins."
+    description: "Sweeping  views over the kumaon hills with spacious doublle rooms and  a peacefull stay for premium yatris."
   },
   {
-    id: "nabi-village-traditional-homestay",
-    name: "Nabi Village Traditional Rung Homestay",
-    hindiName: "नाबी ग्राम पारंपरिक रंग होमस्टे",
+    id: "Gunji homestay",
+    name: "Kuber Homestay",
     tier: "standard",
     tierBadge: "Standard Village Homestay",
     location: "Nabi Heritage Village",
     altitude: "10,200 FT",
-    image: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=720&q=75&fm=webp",
+    image: "/hotels/ishwar/ishwar-1.webp",
     rating: 4.8,
     reviewsCount: 240,
     packageInclusion: "Included in Standard Yatra Package",
@@ -166,14 +160,13 @@ export const ADI_KAILASH_HOTELS: AccommodationStay[] = [
     description: "The authentic heart of high-altitude yatra hospitality. Sleep in spotless, traditional stone-and-timber village homes where local families welcome yatris like sacred guests."
   },
   {
-    id: "kmvn-tourist-rest-house-gunji",
-    name: "KMVN Tourist Rest House & Yatri Niwas",
-    hindiName: "केएमवीएन पर्यटक विश्राम गृह (गुंजी/धारचूला)",
+    id: "khotel-shresth",
+    name: "Hotel Shresth",
     tier: "standard",
     tierBadge: "Standard Verified TRH",
-    location: "Gunji & Dharchula",
-    altitude: "3,000 – 10,500 FT",
-    image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=720&q=75&fm=webp",
+    location: "Pithoragarh",
+    altitude: "2500 – 3000 FT",
+    image: "/hotels/hotel shresth/hotel-shresth1.webp",
     rating: 4.7,
     reviewsCount: 180,
     packageInclusion: "Included in Standard Package",
@@ -188,21 +181,19 @@ export const ADI_KAILASH_HOTELS: AccommodationStay[] = [
       "Doctor-on-Call Desk"
     ],
     keyHighlights: [
-      "Official Kumaon Mandal Vikas Nigam (KMVN) yatri premises",
       "Close proximity to ITBP transit medical station and Helipad",
       "Wholesome North-Indian & Kumaoni vegetarian buffet"
     ],
     description: "Reliable, government-authorized tourist rest house providing sturdy infrastructure, clean rooms, and immediate medical coordination across Gunji and Dharchula."
   },
   {
-    id: "jolingkong-alpine-haven",
-    name: "Jolingkong High-Altitude Alpine Base Haven",
-    hindiName: "जोलींगकोंग अल्पाइन बेस शेल्टर (14,500 फीट)",
+    id: "Pithoragarh",
+    name: "Pithoragarh Valley",
     tier: "standard",
-    tierBadge: "Alpine Base Stay",
-    location: "Jolingkong (Near Parvati Sarovar)",
+    tierBadge: "city base",
+    location: "Pithoragarh(Head Quarter)",
     altitude: "14,500 FT",
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=720&q=75&fm=webp",
+    image: "/hotels/maa bhagwati/maa-bhagwati-1.webp",
     rating: 4.8,
     reviewsCount: 135,
     packageInclusion: "Included in All Adi Kailash Batches",
@@ -251,6 +242,209 @@ export const ADI_KAILASH_HOTELS: AccommodationStay[] = [
       "Direct views of Nama and Kuti glacial peaks"
     ],
     description: "Step back in time in the last inhabited Indian village before the Indo-Tibetan border, sheltered by ancient stone walls, warm wood-fire stoves, and peerless serenity."
+  },
+  {
+    id: "vyas-valley-swiss-camps",
+    name: "Vyas Valley Alpine Swiss Glamping Resort",
+    hindiName: "व्यास वैली अल्पाइन स्विस ग्लैम्पिंग रिसॉर्ट",
+    tier: "premium",
+    tierBadge: "Premium Luxury Glamping",
+    location: "Upper Gunji Helipad",
+    altitude: "10,600 FT",
+    image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=720&q=75&fm=webp",
+    rating: 4.9,
+    reviewsCount: 132,
+    packageInclusion: "Included in VIP Helicopter / Luxury 4x4",
+    roomType: "Heated Luxury Swiss Alpine Tent",
+    sharingType: "Double Sharing",
+    amenities: [
+      "Electric Heated Mattresses",
+      "Attached Western Tiled Bath",
+      "Instant 25L Hot Water Geyser",
+      "Dedicated Medical Oxygen Point",
+      "Panoramic Himalayan Glass Dining",
+      "Carpeted Weatherproof Flooring"
+    ],
+    keyHighlights: [
+      "Luxurious insulated Swiss weather tents with 360-degree high-Himalayan skyline",
+      "Private attached western bathroom with high-pressure hot shower",
+      "Close proximity to Gunji VIP helipad and ITBP medical dispensary"
+    ],
+    description: "State-of-the-art alpine glamping tents constructed with heavy multi-layer wind insulation, private en-suite tiled bathrooms, and panoramic glass dining facing the Vyas peaks."
+  },
+  {
+    id: "kathgodam-gateway-heritage",
+    name: "Kathgodam Gateway Heritage Hotel",
+    hindiName: "काठगोदाम गेटवे हेरिटेज होटल",
+    tier: "premium",
+    tierBadge: "Premium Gateway Hotel",
+    location: "Kathgodam Hub",
+    altitude: "1,800 FT",
+    image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=720&q=75&fm=webp",
+    rating: 4.8,
+    reviewsCount: 220,
+    packageInclusion: "Included in All Premium Ex-Kathgodam Batches",
+    roomType: "Grand Deluxe Executive Suite",
+    sharingType: "Double Sharing",
+    amenities: [
+      "Central AC & Temperature Control",
+      "Express Railway Transfer",
+      "High-Speed Wi-Fi",
+      "Buffet Breakfast & Dinner",
+      "Elevator & Valet Parking",
+      "Luggage Cloakroom Facility"
+    ],
+    keyHighlights: [
+      "Located just 3 minutes from Kathgodam Railway Station for effortless arrival",
+      "Express check-in and secure luggage locker room for extra city bags",
+      "Lavish vegetarian dining preparing yatris for the sacred journey ahead"
+    ],
+    description: "The premier staging hotel in Kathgodam foothills. Unwind after your train journey in plush air-conditioned rooms before meeting your GoTrek 4x4 convoy."
+  },
+  {
+    id: "chaukori-panchachuli-retreat",
+    name: "Chaukori Himalayan Snow-View Retreat",
+    hindiName: "चौकोड़ी हिमालयन स्नो-व्यू रिट्रीट",
+    tier: "premium",
+    tierBadge: "Premium Mountain Retreat",
+    location: "Chaukori Pine Ridge",
+    altitude: "6,600 FT",
+    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=720&q=75&fm=webp",
+    rating: 4.9,
+    reviewsCount: 175,
+    packageInclusion: "Included in Extended Kumaon Heritage Package",
+    roomType: "Pine Valley Chalet",
+    sharingType: "Double Sharing",
+    amenities: [
+      "Panchachuli Sunrise Balcony",
+      "Room Heating & Tea Kettle",
+      "Attached Western Washroom",
+      "Organic Tea Garden Stroll",
+      "Bonfire Lounge",
+      "Pure Sattvik Kumaoni Kitchen"
+    ],
+    keyHighlights: [
+      "Witness gold-tinted sunrise over the 5 sacred peaks of Panchachuli from your bed",
+      "Surrounded by emerald virgin deodar and pine forests with tranquil air",
+      "Ideal intermediate acclimatization stop between Kathgodam and Dharchula"
+    ],
+    description: "Nestled amidst tea gardens and fragrant pine ridges in Chaukori, offering jaw-dropping unobstructed panoramas of Nanda Devi and Panchachuli."
+  },
+  {
+    id: "garbyang-heritage-lodge",
+    name: "Garbyang Heritage Travelers Lodge",
+    hindiName: "गर्ब्यांग हेरिटेज ट्रेवलर्स लॉज",
+    tier: "standard",
+    tierBadge: "Standard Mountain Lodge",
+    location: "Garbyang Village",
+    altitude: "7,800 FT",
+    image: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=720&q=75&fm=webp",
+    rating: 4.7,
+    reviewsCount: 95,
+    packageInclusion: "Included in Standard Yatra Package",
+    roomType: "Traditional Pine Bedded Rooms",
+    sharingType: "Triple / Quad Sharing",
+    amenities: [
+      "Heavy Woolen Blankets",
+      "Attached Clean Bathroom",
+      "Warm Herbal Ginger Tea",
+      "Home-Style Thali Service",
+      "Solar Lighting Backup",
+      "Medical First-Aid Kit"
+    ],
+    keyHighlights: [
+      "Historic halt in the legendary 'Sinking Village' of Kumaon with unique geology",
+      "Warm wooden interior panels shielding against mountain winds",
+      "Piping hot fresh dinner cooked by local family hosts"
+    ],
+    description: "An authentic alpine stopover steeped in Indo-Tibetan trade history. Offers sturdy timber architecture, clean beds, and nourishing hot meals."
+  },
+  {
+    id: "budhi-pine-yatri-camp",
+    name: "Budhi High-Pine Homestay & Yatri Halt",
+    hindiName: "बूढ़ी हाई-पाइन होमस्टे एवं यात्री पड़ाव",
+    tier: "standard",
+    tierBadge: "Standard Transit Stay",
+    location: "Budhi Ascent Halt",
+    altitude: "8,900 FT",
+    image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=720&q=75&fm=webp",
+    rating: 4.6,
+    reviewsCount: 88,
+    packageInclusion: "Included in Standard Yatra Package",
+    roomType: "Cozy Wooden Bunk & Family Rooms",
+    sharingType: "Triple / Multi Sharing",
+    amenities: [
+      "Quilted Thermal Bedding",
+      "Clean Western Toilet",
+      "Hot Bucket Water",
+      "Wood Fire Dining Area",
+      "Mineral Spring Water",
+      "ITBP Coordination Desk"
+    ],
+    keyHighlights: [
+      "Vital acclimatization stop located right before the steep Chhialekh climb",
+      "Calming sounds of gushing glacial stream and towering pine canopies",
+      "Nourishing hot Dal, Rice, Subzi, and Phulkas served continuously"
+    ],
+    description: "Peaceful alpine haven positioned at the base of the thrilling Chhialekh zig-zag pass, providing crucial rest and hydration before climbing past 10,000 feet."
+  },
+  {
+    id: "dharchula-kailash-yatri-bhawan",
+    name: "Dharchula Kailash Yatri Bhawan",
+    hindiName: "धारचूला कैलाश यात्री भवन",
+    tier: "standard",
+    tierBadge: "Standard Pilgrim Bhawan",
+    location: "Dharchula Market",
+    altitude: "3,000 FT",
+    image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=720&q=75&fm=webp",
+    rating: 4.7,
+    reviewsCount: 160,
+    packageInclusion: "Included in Standard Yatra Package",
+    roomType: "Clean Double & Triple Sharing Rooms",
+    sharingType: "Triple Sharing",
+    amenities: [
+      "Western Clean Bathrooms",
+      "24/7 Running Water & Geyser",
+      "Large Satsang / Prayer Hall",
+      "Sattvik Pure Veg Kitchen",
+      "Permit Verification Counter",
+      "Luggage Storage"
+    ],
+    keyHighlights: [
+      "Walkable distance to SDM Dharchula permit office and local market",
+      "Specialized prayer hall for Morning Shiv Aarti before departures",
+      "Sanitized rooms with dedicated locker storage for non-trekking gear"
+    ],
+    description: "Clean, purpose-built pilgrim accommodation in Dharchula town offering comfortable beds, dependable hot water, and a peaceful prayer hall for yatris."
+  },
+  {
+    id: "kalapani-border-view-rest",
+    name: "Kalapani Kali Mandir Pilgrim Rest",
+    hindiName: "कालापानी काली मंदिर विश्राम गृह",
+    tier: "standard",
+    tierBadge: "High-Altitude Sacred Stay",
+    location: "Kalapani Kali Temple",
+    altitude: "11,800 FT",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=720&q=75&fm=webp",
+    rating: 4.8,
+    reviewsCount: 115,
+    packageInclusion: "Included in All Adi Kailash & Om Parvat Yatras",
+    roomType: "Alpine Insulated Yatri Dormitory",
+    sharingType: "Multi-Bed Heated Dorm",
+    amenities: [
+      "Thick Feather Quilts",
+      "24/7 ITBP Medical Post Nearby",
+      "Hot Kali Spring Darshan Access",
+      "Fresh Khichdi & Halwa Prasad",
+      "Oxygen Concentrators on Standby",
+      "Sacred Temple Aarti Entry"
+    ],
+    keyHighlights: [
+      "Located adjacent to the divine origin shrine of the sacred Kali River",
+      "Immediate assistance from ITBP high-altitude paramedical staff",
+      "Magnificent vistas of Mount Vyas and the historic ancient pine groves"
+    ],
+    description: "A deeply spiritual high-altitude transit stay next to the sacred Kali Temple origin spring at 11,800 ft, featuring warm thermal quilts and emergency oxygen readiness."
   }
 ];
 

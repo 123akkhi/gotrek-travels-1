@@ -21,10 +21,23 @@ export function registerServiceWorker() {
       }, 2000);
     }
 
+    // Purge old cache storage versions immediately
+    if (typeof window !== 'undefined' && 'caches' in window) {
+      caches.keys().then((keys) => {
+        keys.forEach((key) => {
+          if (key !== 'gotrek-trek-cache-v5-real-reviews') {
+            caches.delete(key);
+          }
+        });
+      }).catch(() => {});
+    }
+
     navigator.serviceWorker
       .register('/sw.js')
       .then((registration) => {
         console.log('[GoTrek SW] Registered successfully with scope:', registration.scope);
+        // Force immediate check for worker updates
+        registration.update().catch(() => {});
 
         // Check for updates periodically
         registration.onupdatefound = () => {

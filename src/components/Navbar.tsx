@@ -34,6 +34,8 @@ export interface NavbarProps {
   onOpenMemoriesPage?: () => void;
   onSelectPithoragarhFlights?: () => void;
   onOpenMedicalFitness?: () => void;
+  onOpenHotelsPage?: () => void;
+  onOpenWomenBatchPage?: () => void;
   onGoHome?: () => void;
   onOpenSearch?: () => void;
   activePage?: string;
@@ -57,7 +59,7 @@ interface PackageShowcaseCard {
   category: 'all' | 'adi-kailash' | 'mansarovar' | 'flowers' | 'chardham' | 'dodham' | 'himachal';
   image: string;
   highlights: string[];
-  type: 'destination' | 'package';
+  type: 'destination' | 'packages';
 }
 
 const DESTINATION_ITEMS: DropdownItem[] = [
@@ -230,7 +232,7 @@ const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
     badge: "Himachal Must-Visit",
     destSlug: "spiti-valley",
     category: "himachal",
-    image: "/images/destinations/spiti-valley.webp",
+    image: "/images/memories/chandratal-lake.webp",
     highlights: ["1000-Yr Key Gompa & Tabo", "Moon Lake Chandratal Camp", "World's Highest Post Office Hikkim"],
     type: "destination",
   },
@@ -241,7 +243,7 @@ const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
     badge: "Snow & Adventure",
     destSlug: "manali-solang-lahaul",
     category: "himachal",
-    image: "/images/destinations/manali-snowfall.webp",
+    image: "/images/destinations/manali-solang.webp",
     highlights: ["Atal Tunnel Engineering Marvel", "Solang Valley Paragliding", "Hadimba Temple & Vashisht Baths"],
     type: "destination",
   },
@@ -263,7 +265,7 @@ const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
     badge: "Little Lhasa",
     destSlug: "dharamshala-mcleodganj",
     category: "himachal",
-    image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80",
+    image: "/images/destinations/triund-trek-mcleodganjh.webp",
     highlights: ["Dalai Lama Main Temple Complex", "Triund Snow Wall Trek (9,350 ft)", "Bhagsunag Waterfall & Shiva Cafe"],
     type: "destination",
   },
@@ -274,7 +276,7 @@ const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
     badge: "Parvati & Tirthan",
     destSlug: "kasol-manikaran-jibhi",
     category: "himachal",
-    image: "/images/memories/manikaran",
+    image: "/images/destinations/kasol.webp",
     highlights: ["Manikaran Hot Springs & Langar", "Tosh Traditional Wooden Village", "Jibhi Waterfall & Serolsar Lake"],
     type: "destination",
   },
@@ -285,7 +287,7 @@ const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
     badge: "Last Indian Village",
     destSlug: "kinnaur-kalpa-sangla",
     category: "himachal",
-    image: "https://images.unsplash.com/photo-1519681393784-d120277933ba?auto=format&fit=crop&w=600&q=80",
+    image: "/images/destinations/kinnaur.webp",
     highlights: ["Chitkul Indo-Tibet Border Village", "Kinner Kailash Sacred Rock View", "Sangla Baspa River Green Meadows"],
     type: "destination",
   },
@@ -296,7 +298,7 @@ const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
     badge: "Mini Switzerland & Paragliding",
     destSlug: "dalhousie-khajjiar-bir",
     category: "himachal",
-    image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80",
+    image: "/images/memories/khajjar.webp",
     highlights: ["Khajjiar Alpine Cedar Meadows", "Bir Billing World #2 Paragliding", "Dainkund Peak 360° View & Baijnath"],
     type: "destination",
   },
@@ -307,7 +309,7 @@ const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
     badge: "Popular Do Dham",
     destSlug: "do-dham-kedarnath-badrinath",
     category: "dodham",
-    image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80",
+    image: "/images/temples/kedarnath.webp",
     highlights: ["Kedarnath Night Stay", "Badrinath Swarna Aarti", "Mana Village & Saraswati River"],
     type: "destination",
   },
@@ -318,7 +320,7 @@ const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
     badge: "VIP Heli Shuttle",
     destSlug: "do-dham-kedarnath-badrinath",
     category: "dodham",
-    image: "https://images.unsplash.com/photo-1519681393784-d120277933ba?auto=format&fit=crop&w=600&q=80",
+    image: "/images/temples/badrinath.webp",
     highlights: ["Direct Helipad Priority Darshan", "VIP Temple Fast-Track Pass", "4-Star Mountain Stays"],
     type: "destination",
   },
@@ -329,7 +331,7 @@ const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
     badge: "Holy River Sources",
     destSlug: "yamunotri-dham",
     category: "dodham",
-    image: "https://images.unsplash.com/photo-1596401057633-54a8fe8ef647?auto=format&fit=crop&w=600&q=80",
+    image: "/images/temples/yamunotri.webp",
     highlights: ["Surya Kund Thermal Spring Dip", "Gangotri Aarti", "Harsil Valley Apple Stays"],
     type: "destination",
   },
@@ -340,7 +342,7 @@ const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
     badge: "All 4 Dhams",
     destSlug: "chardham-yatra",
     category: "chardham",
-    image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80",
+    image: "/images/destinations/char-dham.webp",
     highlights: ["Yamunotri & Gangotri Darshan", "Kedarnath Jyotirlinga Trek", "Badrinath Temple Swarna Aarti"],
     type: "destination",
   },
@@ -351,7 +353,7 @@ const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
     badge: "5-Star Heli Tour",
     destSlug: "chardham-yatra",
     category: "chardham",
-    image: "https://images.unsplash.com/photo-1519681393784-d120277933ba?auto=format&fit=crop&w=600&q=80",
+    image: "/images/destinations/char-dham.webp",
     highlights: ["Sahastradhara Helipad Direct", "VIP Darshan Passes", "Luxury 5-Star Accommodations"],
     type: "destination",
   },
@@ -363,9 +365,9 @@ const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
     destSlug: "adi-kailash",
     packageSlug: "adi-kailash-yatra-standard",
     category: "adi-kailash",
-    image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80",
+    image: "/images/destinations/adi-kailash2.webp",
     highlights: ["4x4 Bolero Fleet", "SDM Permits in 48h", "Homestay & Sattvik Meals"],
-    type: "package",
+    type: "packages",
   },
   {
     title: "Premium Spiritual Expedition",
@@ -375,9 +377,9 @@ const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
     destSlug: "adi-kailash",
     packageSlug: "adi-kailash-spiritual-expedition-premium",
     category: "adi-kailash",
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+    image: "/images/destinations/adi-kailash3.webp",
     highlights: ["Luxury Isuzu 4x4", "Private Cottages Nabi", "Medical Oxygen Backup"],
-    type: "package",
+    type: "packages",
   },
   {
     title: "VIP Helicopter Darshan",
@@ -387,9 +389,9 @@ const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
     destSlug: "adi-kailash",
     packageSlug: "adi-kailash-vip-luxury-helicopter",
     category: "adi-kailash",
-    image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80",
+    image: "/images/destinations/adi-kailash5.webp",
     highlights: ["Pithoragarh Helipad", "Gunji Direct Fly", "Senior Devotee Friendly"],
-    type: "package",
+    type: "packages",
   },
   {
     title: "Kailash Mansarovar (Old Lipulekh)",
@@ -398,7 +400,7 @@ const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
     badge: "No China Visa",
     destSlug: "kailash-mansarovar",
     category: "mansarovar",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80",
+    image: "/images/destinations/kailash-mansarovar.webp",
     highlights: ["Direct Peak Darshan", "Om Parvat Included", "100% Indian Territory"],
     type: "destination",
   },
@@ -409,7 +411,7 @@ const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
     badge: "UNESCO Heritage",
     destSlug: "valley-of-flowers",
     category: "flowers",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80",
+    image: "/images/destinations/valley-of-flowers.webp",
     highlights: ["500+ Alpine Flowers", "Holy Hemkund Sahib", "Govindghat Logistics"],
     type: "destination",
   },
@@ -420,7 +422,7 @@ const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
     badge: "Delhi Pickup",
     destSlug: "adi-kailash-from-delhi",
     category: "adi-kailash",
-    image: "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=600&q=80",
+    image: "/images/destinations/adi-kailash.webp",
     highlights: ["AC Pushback Transit", "Kathgodam Escort", "All Meals & Permits"],
     type: "destination",
   },
@@ -431,7 +433,7 @@ const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
     badge: "Train Connect",
     destSlug: "adi-kailash-yatra-from-haldwani",
     category: "adi-kailash",
-    image: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=600&q=80",
+    image: "/images/destinations/adi-kailash5.webp",
     highlights: ["Kathgodam Railway Join", "Direct 4x4 Transfer", "Local Kumaoni Host"],
     type: "destination",
   }
@@ -607,6 +609,8 @@ export const Navbar = memo(function Navbar({
   onOpenMemoriesPage,
   onSelectPithoragarhFlights,
   onOpenMedicalFitness,
+  onOpenHotelsPage,
+  onOpenWomenBatchPage,
   onGoHome,
   onOpenSearch,
   activePage,
@@ -833,7 +837,7 @@ export const Navbar = memo(function Navbar({
   const handlePackageCardClick = (card: PackageShowcaseCard) => {
     setActiveDropdown(null);
     setMobileMenuOpen(false);
-    if (card.type === 'package' && card.packageSlug) {
+    if (card.type === 'packages' && card.packageSlug) {
       if (onSelectPackage) onSelectPackage(card.packageSlug);
     } else {
       if (onSelectDestination) onSelectDestination(card.destSlug);
@@ -1309,6 +1313,11 @@ export const Navbar = memo(function Navbar({
                       loading="lazy"
                       decoding="async"
                       referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        const target = e.currentTarget as HTMLImageElement;
+                        target.onerror = null;
+                        target.src = "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80";
+                      }}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <span className="absolute bottom-0.5 left-0.5 right-0.5 text-[8px] font-black bg-black/80 text-amber-300 text-center rounded-xs py-0.2">
@@ -1348,16 +1357,27 @@ export const Navbar = memo(function Navbar({
                     <span className="text-[9px] text-slate-500">/ person</span>
                   </div>
 
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setActiveDropdown(null);
-                      onOpenInquiry(pkg.title);
-                    }}
-                    className="px-3 py-1.5 rounded-lg bg-amber-400 hover:bg-amber-500 active:scale-95 text-slate-950 font-black text-xs transition-all cursor-pointer shadow-xs whitespace-nowrap shrink-0"
-                  >
-                    Book
-                  </button>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handlePackageCardClick(pkg);
+                      }}
+                      className="px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 active:scale-95 text-amber-300 font-black text-xs transition-all cursor-pointer shadow-xs whitespace-nowrap shrink-0"
+                    >
+                      Details
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveDropdown(null);
+                        onOpenInquiry(pkg.title);
+                      }}
+                      className="px-2.5 py-1.5 rounded-lg bg-amber-400 hover:bg-amber-500 active:scale-95 text-slate-950 font-black text-xs transition-all cursor-pointer shadow-xs whitespace-nowrap shrink-0"
+                    >
+                      Book
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -1861,6 +1881,42 @@ export const Navbar = memo(function Navbar({
             Valley of Flowers
           </button>
 
+          {/* Hotels & Stays (15 Verified Properties) */}
+          <button
+            onClick={() => {
+              setActiveDropdown(null);
+              if (onOpenHotelsPage) {
+                onOpenHotelsPage();
+              }
+            }}
+            className="px-2.5 py-1.5 rounded-lg hover:bg-white/15 hover:text-amber-200 transition-colors cursor-pointer text-white flex items-center gap-1 shrink-0"
+            title="Explore 15 Standard & Premium Accommodations"
+          >
+            <Building2 size={13} className="text-amber-300" />
+            <span>Hotels & Stays</span>
+            <span className="text-[9px] bg-amber-400 text-slate-950 font-black px-1.5 py-0.2 rounded-full shadow-xs">
+              15
+            </span>
+          </button>
+
+          {/* Women Special Batch 2027 (Pinkish Himalayan Buransh Theme) */}
+          <button
+            onClick={() => {
+              setActiveDropdown(null);
+              if (onOpenWomenBatchPage) {
+                onOpenWomenBatchPage();
+              }
+            }}
+            className="px-2.5 py-1.5 rounded-lg bg-rose-950/70 hover:bg-rose-900 border border-rose-400/50 text-rose-100 hover:text-white transition-all cursor-pointer flex items-center gap-1.5 shrink-0 shadow-xs ring-1 ring-rose-400/20"
+            title="Adi Kailash Women Special Batch 2027 • 100% Women-Led • Certified Lady Guides & Medics"
+          >
+            <span className="text-xs">🌸</span>
+            <span className="font-bold text-rose-100">Women Batch</span>
+            <span className="text-[9px] bg-rose-400 text-rose-950 font-black px-1.5 py-0.2 rounded-full shadow-xs">
+              2027
+            </span>
+          </button>
+
           {/* Guides & Permits Dropdown */}
           <div className="relative">
             <button
@@ -2079,6 +2135,57 @@ export const Navbar = memo(function Navbar({
                   Search
                 </span>
               </button>
+
+              {/* 0. Women Special Batch 2027 (Himalayan Buransh Pinkish Theme) */}
+              <div 
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  if (onOpenWomenBatchPage) onOpenWomenBatchPage();
+                }}
+                className="p-3.5 rounded-2xl bg-gradient-to-r from-rose-900 via-rose-800 to-pink-900 text-white flex items-center justify-between shadow-md border border-rose-400/40 cursor-pointer active:scale-[0.98] transition-all"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">🌸</span>
+                  <div>
+                    <div className="text-xs font-black uppercase tracking-wider text-rose-200">
+                      Women Special Batch 2027
+                    </div>
+                    <div className="text-[11px] text-white font-medium">
+                      100% Women-Led • Lady Guide & Medic
+                    </div>
+                  </div>
+                </div>
+                <ChevronRight size={18} className="text-rose-200 shrink-0" />
+              </div>
+
+              {/* 0.5 Hotels & Accommodations (15 Verified Properties) */}
+              <div 
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  if (onOpenHotelsPage) onOpenHotelsPage();
+                }}
+                className="p-3.5 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-800 to-amber-950 text-white flex items-center justify-between shadow-md border border-amber-400/40 cursor-pointer active:scale-[0.98] transition-all"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center shrink-0 border border-amber-400/30">
+                    <Building2 size={20} />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-black uppercase tracking-wider text-amber-300">
+                        Hotels & Stays
+                      </span>
+                      <span className="text-[9px] bg-amber-400 text-slate-950 font-black px-1.5 py-0.2 rounded-full">
+                        15 Stays
+                      </span>
+                    </div>
+                    <div className="text-[11px] text-slate-300 font-medium">
+                      Standard & Premium • Dharchula, Nabi, Gunji
+                    </div>
+                  </div>
+                </div>
+                <ChevronRight size={18} className="text-amber-300 shrink-0" />
+              </div>
 
               {/* 1. Home Card */}
               <button

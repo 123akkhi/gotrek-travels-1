@@ -21,7 +21,7 @@ const RazorpayCheckoutModal = lazy(() =>
   import('./RazorpayCheckoutModal').then(m => ({ default: m.RazorpayCheckoutModal }))
 );
 const HotelsAccommodationSection = lazy(() =>
-  import('./HotelsAccommodationSection').then(m => ({ default: m.HotelsAccommodationSection }))
+  import('./HotelsAccommodationSection')
 );
 const YatraWeatherCard = lazy(() =>
   import('./YatraWeatherCard').then(m => ({ default: m.YatraWeatherCard }))
@@ -746,7 +746,7 @@ export const DestinationDetailPage: React.FC<DestinationDetailPageProps> = ({
           {activeTab === 'hotels' && isAdiKailash && (
             <div className="animate-in fade-in duration-300">
               <Suspense fallback={<div className="h-64 rounded-2xl bg-amber-50/50 animate-pulse" />}>
-                <HotelsAccommodationSection />
+                <HotelsAccommodationSection onBack={onBack} />
               </Suspense>
             </div>
           )}

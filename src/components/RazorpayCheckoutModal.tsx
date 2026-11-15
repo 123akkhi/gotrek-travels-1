@@ -28,6 +28,7 @@ import { WhatsAppIcon } from './WhatsAppIcon';
 import { GmailIcon } from './GmailIcon';
 import { YATRA_DESTINATIONS, PICKUP_LOCATIONS } from '../data/mockData';
 import { BookingReceiptData, downloadPdfReceipt } from '../utils/receiptGenerator';
+import { isFlexibleGroupCircuit } from './InquiryModal';
 
 export type BookingStep = 'personal' | 'destination' | 'payment';
 
@@ -83,7 +84,7 @@ export const RazorpayCheckoutModal: React.FC<RazorpayCheckoutModalProps> = ({
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
-  const [travellers, setTravellers] = useState(1);
+  const [travellers, setTravellers] = useState(() => (isFlexibleGroupCircuit(destinationTitle) ? 1 : 4));
   const [travelDate, setTravelDate] = useState('2027-05-10');
   const [customAmount, setCustomAmount] = useState(defaultAmount);
   const [loading, setLoading] = useState(false);
@@ -114,8 +115,18 @@ export const RazorpayCheckoutModal: React.FC<RazorpayCheckoutModalProps> = ({
   useEffect(() => {
     if (destinationTitle) {
       setSelectedDestination(destinationTitle);
+      if (!isFlexibleGroupCircuit(destinationTitle) && travellers < 4) {
+        setTravellers(4);
+      }
     }
   }, [destinationTitle]);
+
+  // Enforce minimum 4 travellers for circuits other than Adi Kailash, Darma Valley, and Khaliya Top
+  useEffect(() => {
+    if (!isFlexibleGroupCircuit(selectedDestination) && travellers < 4) {
+      setTravellers(4);
+    }
+  }, [selectedDestination]);
 
   if (!isOpen) return null;
 
@@ -921,21 +932,56 @@ export const RazorpayCheckoutModal: React.FC<RazorpayCheckoutModalProps> = ({
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="font-bold text-[#1E293B] flex items-center gap-1">
-                        <Users size={13} className="text-amber-800" />
-                        <span>Total Travelers</span>
-                      </label>
+                      <div className="flex items-center justify-between">
+                        <label className="font-bold text-[#1E293B] flex items-center gap-1">
+                          <Users size={13} className="text-amber-800" />
+                          <span>Total Travelers *</span>
+                        </label>
+                        {!isFlexibleGroupCircuit(selectedDestination) && (
+                          <span className="text-[10px] font-bold text-amber-900 bg-amber-100/90 border border-amber-300 px-2 py-0.5 rounded-full flex items-center gap-1 shadow-2xs">
+                            Min. 4 Pax Required
+                          </span>
+                        )}
+                      </div>
                       <select
                         value={travellers}
-                        onChange={(e) => setTravellers(Number(e.target.value))}
+                        onChange={(e) => {
+                          const val = Number(e.target.value);
+                          if (!isFlexibleGroupCircuit(selectedDestination) && val < 4) {
+                            setTravellers(4);
+                          } else {
+                            setTravellers(val);
+                          }
+                        }}
                         className="w-full bg-white border border-[#E6E2D3] rounded-xl px-3.5 py-2.5 text-[#1E293B] font-semibold text-[16px] sm:text-xs focus:border-amber-800 focus:ring-2 focus:ring-amber-800/20 outline-none transition-all cursor-pointer shadow-2xs"
                       >
-                        <option value={1}>1 Person (Solo Yatri)</option>
-                        <option value={2}>2 Persons (Couple / Pair)</option>
-                        <option value={4}>4 Persons (Family Group)</option>
-                        <option value={6}>6 Persons (Full Dedicated Bolero/Scorpio)</option>
-                        <option value={8}>8+ Persons (VIP Group Batch)</option>
+                        {isFlexibleGroupCircuit(selectedDestination) ? (
+                          <>
+                            <option value={1}>1 Person (Solo Yatri)</option>
+                            <option value={2}>2 Persons (Couple / Pair)</option>
+                            <option value={4}>4 Persons (Family Group)</option>
+                            <option value={6}>6 Persons (Full Dedicated Bolero/Scorpio)</option>
+                            <option value={8}>8+ Persons (VIP Group Batch)</option>
+                          </>
+                        ) : (
+                          <>
+                            <option value={4}>4 Persons (Minimum Group Size)</option>
+                            <option value={5}>5 Persons</option>
+                            <option value={6}>6 Persons (Full Dedicated Bolero/Scorpio)</option>
+                            <option value={8}>8+ Persons (VIP Group Batch)</option>
+                            <option value={12}>12+ Persons (Large Sangha Batch)</option>
+                          </>
+                        )}
                       </select>
+                      {!isFlexibleGroupCircuit(selectedDestination) ? (
+                        <p className="text-[10px] text-amber-900 leading-tight">
+                          Minimum 4 persons required for this circuit. (Solo / pairs available for Adi Kailash, Darma Valley & Khaliya Top).
+                        </p>
+                      ) : (
+                        <p className="text-[10px] text-emerald-800 leading-tight">
+                          ✓ Solo & Duo pilgrims welcomed on this sacred expedition.
+                        </p>
+                      )}
                     </div>
                   </div>
 
@@ -1343,22 +1389,24 @@ export const RazorpayCheckoutModal: React.FC<RazorpayCheckoutModalProps> = ({
                           return;
                         }
 
+                        const leadPayload = {
+                          fullName,
+                          phone,
+                          email,
+                          destination: selectedDestination,
+                          pickupLocation: resolvedPickup,
+                          travellers: Number(travellers) || 1,
+                          month: `${formattedTravelDate} (${travelDate})`,
+                          travelDate,
+                          notes: `WhatsApp Payment Request for ₹${customAmount} advance deposit for departure date ${formattedTravelDate}. Pickup: ${resolvedPickup}`,
+                        };
+
                         try {
                           await fetch('/api/leads', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                              fullName,
-                              phone,
-                              email,
-                              destination: selectedDestination,
-                              pickupLocation: resolvedPickup,
-                              travellers,
-                              month: `${formattedTravelDate} (${travelDate})`,
-                              travelDate,
-                              notes: `WhatsApp Payment Request for ₹${customAmount} advance deposit for departure date ${formattedTravelDate}. Pickup: ${resolvedPickup}`,
-                            }),
-                          });
+                            body: JSON.stringify(leadPayload),
+                          }).catch((apiErr) => console.warn("API write notice:", apiErr));
                           window.dispatchEvent(
                             new CustomEvent("gotrek:lead-created", {
                               detail: {

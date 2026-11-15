@@ -73,7 +73,7 @@ const BASE_STATIONS: BaseStation[] = [
     badge: "Yatri Welcome Desk",
     description: "Our southern transit base where yatris are received from Delhi/Dehradun trains, briefed with high-altitude kits, and boarded into sanitized 4x4 Boleros.",
     facilities: ["24/7 Train Station Reception", "Secure Luggage Cloakroom", "Pre-Trek Medical Briefing", "Pushback AC Transit Fleet"],
-    image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80"
+    image: "/images/destinations/adi-kailash7.webp"
   },
   {
     id: "pithoragarh",
@@ -84,18 +84,18 @@ const BASE_STATIONS: BaseStation[] = [
     badge: "Administrative HQ",
     description: "The main administrative headquarters managing government liaison with the District Magistrate, emergency reserves, backup 4x4 vehicles, and medical supply caches.",
     facilities: ["District Magistrate Liaison Desk", "24/7 High-Altitude Radio Desk", "Automotive Maintenance Yard", "Medical Oxygen Reserve Stock"],
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
+    image: "/images/destinations/adi-kailash5.webp"
   },
   {
-    id: "dharchula",
-    name: "Dharchula Border & Permit Command Office",
+    id: "Pithoragarh",
+    name: "Pithoragarh & Permit Command Office",
     altitude: "3,100 ft (945 m)",
     role: "SDM & ITBP Inner Line Permit Hub",
     location: "Near SDM Court & ITBP Post, Dharchula",
     badge: "Permit Desk",
     description: "Located right next to the SDM Office, this station manages biometric registrations, police verification clearances, physical medical fitness tests, and ITBP checkpoint tokens.",
     facilities: ["100% Direct SDM ILP Processing", "On-Spot Medical Fitness Desk", "Border Police Clearance", "Local Mountain Driver Briefing"],
-    image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80"
+    image: "/images/memories/group-memory-08.webp"
   },
   {
     id: "nabhi",
@@ -106,7 +106,7 @@ const BASE_STATIONS: BaseStation[] = [
     badge: "Heritage Stay",
     description: "Traditional wooden homestays operated in direct partnership with native Rung Bhotiya families. Yatris acclimatize comfortably with solar-heated water, thermal beds, and sattvik meals.",
     facilities: ["Insulated Wooden Cottages", "Attached Western Washrooms", "Solar Heated Running Water", "Oxygen Concentrator Station"],
-    image: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=600&q=80"
+    image: "/images/memories/group-memory-04.webp"
   },
   {
     id: "gunji",
@@ -117,7 +117,7 @@ const BASE_STATIONS: BaseStation[] = [
     badge: "High-Altitude Base",
     description: "The strategic junction where the road splits toward Jolingkong (Adi Kailash / Parvati Sarovar) and Lipulekh Pass (Old Lipulekh Kailash Mansarovar View).",
     facilities: ["ITBP Coordination Post", "Emergency Medical First-Aid Post", "Hot Sattvik Mountain Kitchen", "4x4 High-Clearance Standby Fleet"],
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80"
+    image: "/images/memories/group-memory-06.webp"
   }
 ];
 
@@ -432,7 +432,7 @@ export const AboutUsPage = memo(({
               <div className="lg:col-span-5 space-y-4">
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white h-80">
                   <BlurUpImage
-                    src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80"
+                    src="/images/memories/group-memory-05.webp"
                     blurDataURL={getDestinationBlurPlaceholder("adi-kailash")}
                     alt="Adi Kailash Sacred Mountain"
                     loading="lazy"

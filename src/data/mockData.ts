@@ -27,7 +27,7 @@ export const HERO_SLIDES = [
     slug: "om-parvat",
     subtitle: "The Divine 'ॐ' Carved in Snow by Nature Itself",
     tag: "Witness the Sacred OM Symbol at 14,000 ft",
-    image: "https://images.unsplash.com/photo-1519681393784-d120277933ba?auto=format&fit=crop&w=1280&q=80",
+    image: "/images/destinations/om-parvat1.webp",
   },
   {
     title: "Kailash Mansarovar",
@@ -48,28 +48,28 @@ export const HERO_SLIDES = [
     slug: "khaliya-top",
     subtitle: "Alpine Meadows (11,500 ft) · Zero Point 360° Panchachuli Summit",
     tag: "Little Kashmir of Uttarakhand",
-    image: "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=1280&q=80",
+    image: "/images/destinations/khaliya-top.webp",
   },
   {
     title: "Kumaon Darshan Circuit",
     slug: "kumaon-darshan",
     subtitle: "Kainchi Dham · Jageshwar 124 Jyotirlinga · Chitai Golu Devta · Patal Bhuvaneshwar",
     tag: "Complete Sacred Heritage Tour",
-    image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1280&q=80",
+    image: "/images/destinations/adi-kailash3.webp",
   },
   {
     title: "Spiti Valley & Chandratal",
     slug: "spiti-valley",
     subtitle: "Key Gompa · Tabo Monastery · Hikkim · Chicham Bridge · Moon Lake",
     tag: "The Middle Land Cold Desert Expedition 2027",
-    image: "https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=1280&q=80",
+    image: "h/images/destinations/spiti-valley.webp",
   },
   {
     title: "Manali & Solang Valley",
     slug: "manali-solang-lahaul",
     subtitle: "Atal Highway Tunnel · Rohtang Snow Point · Hadimba & Vashisht",
     tag: "Himachal's Premier Alpine Gateway",
-    image: "https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=1280&q=80",
+    image: "/images/destinations/manali-solang.webp",
   },
 ];
 

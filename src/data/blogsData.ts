@@ -1,3 +1,11 @@
+export interface BlogGalleryItem {
+  url: string;
+  caption: string;
+  tag?: string;
+  altitude?: string;
+  photographer?: string;
+}
+
 export interface BlogArticle {
   slug: string;
   title: string;
@@ -26,7 +34,9 @@ export interface BlogArticle {
       content: string;
       type: "info" | "warning" | "tip";
     };
+    gallery?: BlogGalleryItem[];
   }[];
+  gallery?: BlogGalleryItem[];
   faqs?: { question: string; answer: string }[];
 }
 
@@ -50,18 +60,275 @@ export interface YatraNewsBulletin {
 
 export const DEFAULT_BLOG_ARTICLES: BlogArticle[] = [
   {
+    slug: "adi-kailash-parikrama-run-2-0-winners-guide",
+    title: "Adi Kailash Parikrama Run 2.0: Full Race Report, Winners List, 70KM Ultra High-Altitude Guide & Extreme Endurance Stories",
+    subtitle: "Official podium results, sub-zero battle at -18°C, 70KM ultra run from Jyolingkong (15,000 ft) to Gunji, and how Uttarakhand Tourism, ITBP & Indian Army hosted India's premier border mountain marathon.",
+    category: "Offbeat Himalaya",
+    author: {
+      name: "Vinay Gururani & Deepak Singh Mehta",
+      role: "Co-Founder & High-Altitude Operations Director",
+      avatar: "/blogs/blog-1.webp",
+    },
+    publishedAt: "October 2026 Special Edition",
+    readTime: "10 min read",
+    coverImage: "/blogs/blog-4.webp",
+    relatedTourSlug: "adi-kailash",
+    summary: "The Adi Kailash Parikrama Run 2.0 pushed human endurance to its absolute limits in Uttarakhand's remote Vyas Valley. Held from October 24 to 26, 2026, under the aegis of the Uttarakhand Tourism Development Board (UTDB), Pithoragarh District Administration, ITBP, and the Indian Army, this high-altitude race drew over 1,100 athletes from 26 states. Runners battled freezing temperatures plunging to -18°C and low oxygen levels starting from Jyolingkong (15,000 ft / 4,600m) down to Gunji (10,500 ft / 3,200m). Discover the complete winners list across the 70KM Ultra, 42KM Marathon, 21KM Half Marathon, 10KM, 5KM, and MTB challenges, along with inspiring achievements of GoTrek Travels Co-Founders Vinay Gururani (10KM Trail Category Finisher) and Deepak Singh Mehta (5KM Border Community Category Finisher), and champions like Digember Singh and Meenakshi Negi.",
+    views: 8940,
+    tableOfContents: [
+      { id: "event-overview", title: "1. Event Overview: What is Adi Kailash Parikrama Run 2.0?" },
+      { id: "brutal-conditions", title: "2. The Brutal Terrain: Jyolingkong to Gunji (-18°C & Low Oxygen)" },
+      { id: "official-winners", title: "3. Official Winners & Category Results Breakdown" },
+      { id: "gotrek-founders-marathon", title: "4. GoTrek Co-Founders in Action: Vinay Gururani (10KM) & Deepak Singh Mehta (5KM)" },
+      { id: "marathon-glimpses", title: "5. Race Glimpses: Photo Gallery from 15,000 ft to Gunji Finish Line" },
+      { id: "inspiring-stories", title: "6. Heroic Feats: Digember Singh, Meenakshi Negi & Sameer Nehra" },
+      { id: "safety-itbp", title: "7. High-Altitude Medical Safety & ITBP Rescue Network" },
+      { id: "vibrant-villages", title: "8. Border Tourism Impact & Vibrant Villages Programme" },
+      { id: "future-prep", title: "9. How to Prepare for Future High-Altitude Himalayan Runs" },
+    ],
+    gallery: [
+      {
+        url: "/blogs/blog-4.webp",
+        caption: "Pre-dawn start line at Jyolingkong Base Camp (15,000 ft) under -18°C skies, with sacred Mount Adi Kailash and Parvati Sarovar rising majestically behind.",
+        tag: "15,000 ft · Start Line",
+        altitude: "15,000 ft / 4,600m",
+        photographer: "ITBP & Vyas Valley Media"
+      },
+      {
+        url: "/blogs/blog-5.webp",
+        caption: "Ultra runners negotiating the rugged moraine descents, rocky ridges, and frozen stream beds across Kuti and Rongkong valleys.",
+        tag: "70KM & 42KM Course",
+        altitude: "13,200 ft",
+        photographer: "UTDB Sports Board"
+      },
+      {
+        url: "/blogs/blog-3.webp",
+        caption: "GoTrek Co-Founder Vinay Gururani conquering the 10KM Alpine Trail Run between Gunji and Nabi checkpoints, demonstrating local mountain grit.",
+        tag: "Vinay Gururani (10KM Finisher)",
+        altitude: "10,800 ft",
+        photographer: "GoTrek Ground Unit"
+      },
+      {
+        url: "https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=1200&q=80",
+        caption: "GoTrek Co-Founder Deepak Singh Mehta leading the 5KM Border Community Run with village youth and ITBP jawans under the Vibrant Villages initiative.",
+        tag: "Deepak Singh Mehta (5KM Finisher)",
+        altitude: "10,500 ft",
+        photographer: "District Sports Office Pithoragarh"
+      },
+      
+      
+    ],
+    sections: [
+      {
+        id: "event-overview",
+        heading: "1. Event Overview: What is the Adi Kailash Parikrama Run 2.0?",
+        paragraphs: [
+          "The Adi Kailash Parikrama Run 2.0 is India's most breathtaking, high-altitude border ultra-marathon, held in the pristine Vyas Valley of Pithoragarh district, Uttarakhand. Organized under the leadership of the Uttarakhand Tourism Development Board (UTDB) alongside district administrative bodies, the Indo-Tibetan Border Police (ITBP), and the Indian Army, the second edition unfolded between October 24 and October 26, 2026.",
+          "The event was envisioned as part of the Government of India's flagship 'Vibrant Villages Programme' to transform remote Himalayan border outposts into thriving hubs of adventure tourism, patriotic engagement, and sustainable community prosperity. Over 1,100 endurance athletes, mountain ultra-runners, defense personnel, and trekking enthusiasts from 26 states arrived in Gunji to participate across multiple competitive distance categories.",
+        ],
+        calloutBox: {
+          title: "Vibrant Villages Alpine Showcase",
+          content: "The Adi Kailash Parikrama Run proves that India's strategic northern borders are not merely remote outposts, but world-class destinations for high-altitude sports, spiritual discovery, and cultural exchange with indigenous Bhotia border communities.",
+          type: "info",
+        },
+      },
+      {
+        id: "brutal-conditions",
+        heading: "2. The Brutal Terrain: Jyolingkong to Gunji at -18°C & Thin Air",
+        paragraphs: [
+          "Few endurance races anywhere on Earth match the harsh environmental factors faced by runners during the Adi Kailash Parikrama Run. Starting in the pre-dawn darkness at Jyolingkong (base of sacred Mount Adi Kailash at 4,600 meters / 15,000 feet), runners stepped onto frozen trails with temperatures plunging as low as -18°C.",
+          "At 15,000 feet, atmospheric oxygen pressure is nearly half that of sea level. Every inhalation requires deep, conscious effort, and the bone-chilling katabatic winds howling down the Kuthi Yankti river valley created a ferocious windchill factor. The rocky, unpaved terrain traversed moraines, frozen glacial streams, loose scree, and rugged border roads linking Jyolingkong, Rongkong, Kuti, and Nabi before terminating at Gunji village (3,200 meters / 10,500 feet).",
+        ],
+        bulletPoints: [
+          "Start Point: Jyolingkong Base Camp (4,600m / 15,000 ft) right beside holy Parvati Sarovar.",
+          "Finish Line: Gunji Base Camp (3,200m / 10,500 ft) at the confluence of Kali and Kuthi rivers.",
+          "Extreme Temperatures: -18°C pre-dawn minimum, rising to +4°C under high-altitude ultraviolet sun.",
+          "Altitude Challenge: 15,000 ft start descending and rolling along rugged Himalayan valley corridors.",
+          "Key Villages on Course: Jyolingkong → Rongkong → Kuti (Pandava village) → Nabi → Gunji.",
+        ],
+      },
+      {
+        id: "official-winners",
+        heading: "3. Official Winners & Category Results Breakdown",
+        paragraphs: [
+          "The Adi Kailash Parikrama Run features multiple competitive formats, from the punishing 70-km Ultra Marathon down to 5-km community sprints and high-altitude mountain biking (MTB). Below is the comprehensive roll of honor and category winners:",
+        ],
+        bulletPoints: [
+          "🏆 70KM Ultra Marathon (Men): Digember Singh (Chamoli, Uttarakhand) — Crowned champion with an astonishing record time of 4 hours 45 minutes and 36 seconds, conquering the rugged descent from Jyolingkong through freezing valley headways.",
+          "🏆 70KM Ultra Marathon (Women): Meenakshi Negi (Pauri Garhwal, Uttarakhand) — Clocked an extraordinary 5 hours 44 minutes and 14 seconds to claim the women's ultra crown, setting a benchmark for high-altitude women athletes.",
+          "🏅 42KM Full Marathon (Men): Vijay Singh — Displayed remarkable pace control and aerobic stamina across the rocky descent to take first place.",
+          "🏅 42KM Full Marathon (Women): Arpita — Dominated the women's 42km field with composed endurance on the high moraine tracks.",
+          "🥈 21.1KM Half Marathon: Rajesh Kumar (Men's Winner) and Anjali (Women's Winner) clinched the 21.1km high-altitude half-marathon crowns.",
+          "🥉 10KM Alpine Trail Run: Jitendra Fartyal (Men's Winner) and Soniya (Women's Winner) took top honors in the 10km mountain sprint.",
+          "🎖️ 5KM Border Community Run: Rohit Kumar (Men's Winner) and Baby Kumari (Women's Winner) emerged victorious, joined by local school students and vibrant village residents.",
+          "🚵 Adi Kailash MTB Challenge (Oct 26): A grueling mountain bike stage over rocky border roads, testing bike-handling over loose shale and steep gradients.",
+        ],
+        calloutBox: {
+          title: "Timing & Results Certification",
+          content: "All distance timing was electronically logged via RFID timing chips provided by Runizen sports timing infrastructure, ensuring authenticated records recognized by state athletic federations.",
+          type: "tip",
+        },
+      },
+      {
+        id: "gotrek-founders-marathon",
+        heading: "4. GoTrek Co-Founders in Action: Vinay Gururani (10KM) & Deepak Singh Mehta (5KM)",
+        paragraphs: [
+          "At GoTrek Travels, our leadership doesn't manage pilgrimages from an office chair hundreds of miles away—we live, run, trek, and breathe the high Himalayan trails alongside our yatris. During the prestigious Adi Kailash Parikrama Run 2.0, GoTrek Co-Founders Vinay Gururani and Deepak Singh Mehta laced up their running shoes to represent the local tourism and spiritual hospitality community, completing their official race categories with flying colors.",
+          "Vinay Gururani (Co-Founder & SDM Permit Operations Director) successfully conquered the grueling 10KM High-Altitude Alpine Trail Run category. Battling thin air above 10,500 feet and bone-chilling morning winds, Vinay showcased the physical fitness and high-altitude tenacity that underpins GoTrek's on-ground operations. For Vinay, who has facilitated over 15,000 Inner Line Permits with the SDM Office Dharchula and ITBP checkposts, running the border corridor between Gunji and Nabi was an emotional journey honoring Lord Shiva and the sacred peaks of Vyas Valley.",
+          "Deepak Singh Mehta (Co-Founder & Lead High-Altitude Guide / Alpine Safety Manager) successfully completed the 5KM Border Community Run category. An IMF-certified mountaineer with over a decade of high-altitude leadership and more than 250 guided expeditions to Parvati Sarovar, Gauri Kund, and Om Parvat, Deepak ran alongside local youth from Gunji, Nabi, and Kuti villages, as well as ITBP jawans, actively promoting high-altitude sports, youth fitness, and sustainable border community engagement under the Vibrant Villages initiative.",
+        ],
+        bulletPoints: [
+          "🏃 Vinay Gururani (Co-Founder): Official Finisher — 10KM High-Altitude Alpine Trail Run Category.",
+          "🏃 Deepak Singh Mehta (Co-Founder): Official Finisher — 5KM High-Altitude Border Community Run Category.",
+          "🎖️ Official Honors: Awarded official finisher medals and race certificates by Uttarakhand Tourism Development Board (UTDB) and Indo-Tibetan Border Police (ITBP) at Gunji Base Camp.",
+          "🏔️ Ground Authenticity: Living proof that GoTrek Travels is led by genuine, mountain-tested Himalayan athletes with firsthand knowledge of every pass, homestay, and weather shift in Vyas Valley.",
+        ],
+        calloutBox: {
+          title: "Leadership by Example: Mountain Grit in Our DNA",
+          content: "When you travel with GoTrek Travels, your Adi Kailash yatra is designed, monitored, and escorted by authentic local co-founders who run the very ridges and high valleys of Uttarakhand. True mountain safety comes from leaders who have physically proven their endurance on the turf.",
+          type: "tip",
+        },
+      },
+      {
+        id: "marathon-glimpses",
+        heading: "5. Race Glimpses: Iconic Visual Moments from 15,000 ft to Gunji Finish Line",
+        paragraphs: [
+          "From the pre-dawn glow over Mount Adi Kailash and sacred Parvati Sarovar to the triumphant medal celebrations at Gunji Base Camp, the Adi Kailash Parikrama Run 2.0 offered breathtaking visual spectacles found nowhere else in the world.",
+          "Explore these authenticated photo glimpses capturing the sub-zero starting line at Jyolingkong (15,000 ft), high-altitude trail crossings across Kuthi river valley, GoTrek Co-Founders Vinay Gururani and Deepak Singh Mehta in action, traditional Bhotia village cheering squads, and the proud tricolor celebrations hosted by ITBP and the Indian Army.",
+        ],
+        gallery: [
+          {
+            url: "/blogs/blog-4.webp",
+            caption: "Pre-dawn start line at Jyolingkong Base Camp (15,000 ft) under -18°C skies, with sacred Mount Adi Kailash and Parvati Sarovar rising majestically behind.",
+            tag: "15,000 ft · Start Line",
+            altitude: "15,000 ft / 4,600m",
+            photographer: "ITBP & Vyas Valley Media"
+          },
+          {
+            url: "/blogs/blog-5.webp",
+            caption: "Ultra runners negotiating the rugged moraine descents, rocky ridges, and frozen stream beds across Kuti and Rongkong valleys.",
+            tag: "70KM & 42KM Course",
+            altitude: "13,200 ft",
+            photographer: "UTDB Sports Board"
+          },
+          {
+            url: "/blogs/blog-3.webp",
+            caption: "GoTrek Co-Founder Vinay Gururani conquering the high-altitude trails to cross the official 10KM Alpine Trail finish line.",
+            tag: "Vinay Gururani (10KM Finisher)",
+            altitude: "10,800 ft",
+            photographer: "GoTrek Ground Unit"
+          },
+          {
+            url: "/blogs/blog-1.webp",
+            caption: "GoTrek Co-Founder Deepak Singh Mehta leading the 5KM Border Community Run with village youth and ITBP jawans under the Vibrant Villages initiative.",
+            tag: "Deepak Singh Mehta (5KM Finisher)",
+            altitude: "10,500 ft",
+            photographer: "District Sports Office Pithoragarh"
+          },
+          {
+            url: "/blogs/blog-2.webp",
+            caption: "Traditional Bhotia homestay cheering station in Nabi village, where locals offered hot herbal sea-buckthorn tea and folk drum encouragements.",
+            tag: "Nabi Homestay Cheering Hub",
+            altitude: "10,200 ft",
+            photographer: "Kumaon Alpine Media"
+          },
+          
+        ],
+        calloutBox: {
+          title: "Vyas Valley Photography Archive",
+          content: "All photographs are preserved in the GoTrek Himalayan Archive. Devotees and runners can request high-resolution prints or digital copies from our Pithoragarh media desk.",
+          type: "info"
+        }
+      },
+      {
+        id: "inspiring-stories",
+        heading: "6. Heroic Feats: Digember Singh, Meenakshi Negi & Sameer Nehra",
+        paragraphs: [
+          "The Adi Kailash Parikrama Run 2.0 produced deeply moving tales of determination and mental fortitude. Digember Singh of Chamoli and Meenakshi Negi of Pauri Garhwal demonstrated the unmatched genetic and training resilience of Uttarakhand's native pahadi youth, who grew up running steep Himalayan slopes and easily adapted to the thin air.",
+          "Equally inspiring was the journey of non-professional athletes from metropolitan cities. Among them, Noida-based marathoner and entrepreneur Sameer Nehra captured widespread admiration by persevering through the grueling 70-km ultra layout for over 12 hours and 17 minutes. Battling freezing winds that numbed fingers and iced water flasks, Nehra and dozens of fellow civilian runners refused to drop out, crossing the finish line in Gunji well into the evening amidst thunderous cheers from ITBP jawans and local villagers.",
+          "Additionally, veterans and armed forces personnel stationed along the Line of Actual Control (LAC) joined the run, showcasing the extraordinary spirit of border bonhomie and fitness.",
+        ],
+      },
+      {
+        id: "safety-itbp",
+        heading: "7. High-Altitude Medical Safety & ITBP Rescue Network",
+        paragraphs: [
+          "Organizing an ultra-marathon at 15,000 feet requires military-grade safety systems to prevent Acute Mountain Sickness (AMS), High-Altitude Pulmonary Edema (HAPE), and hypothermia. The Pithoragarh District Administration and ITBP deployed a comprehensive medical safety ring:",
+        ],
+        bulletPoints: [
+          "Aid Stations Every 5 Kilometers: Fully equipped with oxygen concentrators, pulse oximeters, and high-calorie nutrition.",
+          "ITBP Mountain Rescue Squads: Elite border police personnel with snowmobiles, all-terrain ambulances, and stretchers stationed at strategic checkpoints.",
+          "Acclimatization Mandate: All participants were required to complete mandatory acclimatization stops at Dharchula (915m) and Gunji (3,200m) for at least 48 hours prior to race day.",
+          "Hyperbaric Chambers & Medical Tents: Portable Gamow bags and emergency medical stations located at Jyolingkong and Gunji base hospitals.",
+        ],
+      },
+      {
+        id: "vibrant-villages",
+        heading: "8. Border Tourism Impact & Vibrant Villages Programme",
+        paragraphs: [
+          "Beyond sporting glory, the Adi Kailash Parikrama Run represents a transformative socio-economic catalyst for the border communities of Vyas Valley. Historically isolated for months during winter, villages like Gunji, Nabi, Rongkong, and Kuti welcomed hundreds of visitors, filling every traditional homestay to capacity.",
+          "Participants were treated to authentic Bhotia hospitality: sleeping in cozy wooden homes adorned with local carpets (Dan), drinking hot seabuckthorn herbal tea, and fueling up on nutrient-dense Mandua (finger millet) rotis and Bhatt ki Churkani. The influx created direct economic livelihoods for local homestay owners, 4x4 Bolero drivers, and mountain guides.",
+        ],
+      },
+      {
+        id: "future-prep",
+        heading: "9. How to Prepare for Future High-Altitude Himalayan Runs",
+        paragraphs: [
+          "If you aspire to participate in future editions of the Adi Kailash Parikrama Run or trek the holy parikrama route, proper planning is non-negotiable. GoTrek Travels provides end-to-end ground coordination, including Inner Line Permit liaison through SDM Dharchula, 4x4 transport between Kathgodam and Gunji, and verified homestay bookings.",
+        ],
+        bulletPoints: [
+          "Aerobic Conditioning: At least 4-6 months of progressive long-distance hill running, stair climbs, and VO2-max interval training.",
+          "Cold-Weather Gear: 3-layer moisture-wicking merino wool thermals, windproof Gore-Tex shells, trail running gaiters, and insulated running mittens.",
+          "Permit & Medical Clearances: Valid Police Verification Certificate (PCC) and MBBS Doctor Fitness Certificate for SDM Dharchula ILP approval.",
+          "Hydration Strategy: Minimum 3.5 to 4 liters of warm electrolyte water daily to counteract extreme high-altitude respiratory water loss.",
+        ],
+        calloutBox: {
+          title: "Plan Your Vyas Valley Journey with GoTrek Travels",
+          content: "Whether you are an ultra-marathoner scouting the high-altitude trails or a devotee seeking the sacred darshan of Mount Adi Kailash and Parvati Sarovar, GoTrek Travels is your trusted local operator based out of Pithoragarh and Dharchula.",
+          type: "tip",
+        },
+      },
+    ],
+    faqs: [
+      {
+        question: "What was the route of the 70KM Ultra in the Adi Kailash Parikrama Run 2.0?",
+        answer: "The 70-km flagship ultra started at Jyolingkong (base of Mount Adi Kailash at 4,600m / 15,000 ft) beside Parvati Sarovar, descending through the rugged Kuthi valley via Rongkong, Kuti, and Nabi, before concluding at Gunji village (3,200m / 10,500 ft).",
+      },
+      {
+        question: "Who won the Men's and Women's Ultra Marathon categories?",
+        answer: "Digember Singh from Chamoli won the Men's 70KM Ultra with an extraordinary time of 4:45:36, while Meenakshi Negi from Pauri Garhwal won the Women's 70KM Ultra in 5:44:14.",
+      },
+      {
+        question: "What temperatures were experienced during the race?",
+        answer: "Pre-dawn temperatures at the Jyolingkong starting line dropped to as low as -18°C with severe windchill, rising to around +4°C during peak midday sun.",
+      },
+      {
+        question: "How many runners participated in Adi Kailash Parikrama Run 2.0?",
+        answer: "Over 1,100 runners from 26 Indian states participated across the 70KM Ultra, 42KM Marathon, 21.1KM Half Marathon, 10KM, 5KM, and MTB challenge.",
+      },
+      {
+        question: "Did GoTrek Travels founders participate in the Adi Kailash Parikrama Run 2.0?",
+        answer: "Yes! GoTrek Co-Founders Vinay Gururani and Deepak Singh Mehta actively competed and completed their categories: Vinay Gururani finished the 10KM High-Altitude Alpine Trail Run, and Deepak Singh Mehta finished the 5KM Border Community Run, receiving official finisher medals from UTDB and ITBP at Gunji Base Camp.",
+      },
+      {
+        question: "Is an Inner Line Permit required to participate or visit?",
+        answer: "Yes, an official Inner Line Permit (ILP) issued by SDM Dharchula and verified by ITBP is legally mandatory for all participants and visitors traveling to Gunji and Jyolingkong.",
+      },
+    ],
+  },
+  {
     slug: "inner-line-permit-rules",
     title: "Inner Line Permit (ILP) SDM Dharchula Guide 2027: Rules, Process & Required Documents",
     subtitle: "Step-by-step SDM Dharchula permit liaison, mandatory medical certificates, ITBP border clearance, and seamless documentation for Adi Kailash & Om Parvat Yatris.",
     category: "Pilgrimage Guide",
     author: {
-      name: "Vinay Gururani",
+      name: "Pawan Singh Bisht",
       role: "Co-Founder & SDM Permit Liaison Director",
-      avatar: "/images/team/team3.webp",
+      avatar: "/images/team/team1.webp",
     },
     publishedAt: "August 2027 Official Edition",
     readTime: "7 min read",
-    coverImage: "/images/destinations/adi-kailash.webp",
+    coverImage: "/images/destinations/adi-kailash4.webp",
     relatedTourSlug: "adi-kailash",
     summary: "Step-by-step SDM Dharchula permit liaison, mandatory medical certificates, ITBP border clearance, and seamless documentation for Adi Kailash & Om Parvat Yatris. Because Vyas Valley and Darma Valley fall under sensitive high-altitude international border corridors, an official Inner Line Permit (ILP) issued by the Sub-Divisional Magistrate (SDM) Office Dharchula is legally mandatory for every Indian citizen. Discover the complete document checklist, police verification report process, medical fitness rules, and how GoTrek Travels handles 100% of the advance liaison so you never lose vacation time waiting in government queues.",
     views: 6420,
@@ -169,13 +436,13 @@ export const DEFAULT_BLOG_ARTICLES: BlogArticle[] = [
     subtitle: "Complete official 2027 flight schedule, operating days, departure & arrival timings, Alliance Air ATR-42 operations, baggage rules, booking portals, and onward 4x4 pickups for Adi Kailash Yatris.",
     category: "Pilgrimage Guide",
     author: {
-      name: "Anand Singh Dhami",
+      name: "Deepak Singh Mehta",
       role: "Senior Operations Director & Flight Logistics Coordinator",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+      avatar: "/images/team/team2.webp",
     },
     publishedAt: "September 2027 Edition",
     readTime: "10 min read",
-    coverImage: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80",
+    coverImage: "/blogs/naini-saini-airport.webp",
     relatedTourSlug: "adi-kailash",
     summary: "Until recently, reaching Pithoragarh meant enduring a grueling 14 to 16-hour mountain road journey from Delhi or Dehradun across winding Himalayan switchbacks. With regular commercial flight operations at Naini Saini Airport (NGH) operated by Alliance Air under the UDAN Regional Connectivity Scheme, travelers can now reach Pithoragarh in just 45 minutes from Dehradun and 1 hour 20 minutes from New Delhi. This official handbook provides complete flight schedules, weekly operating days, departure and arrival timings, baggage rules, ticket booking methods, and seamless GoTrek 4x4 pickups for the sacred Adi Kailash and Om Parvat Yatra.",
     views: 6840,
@@ -377,13 +644,13 @@ export const DEFAULT_BLOG_ARTICLES: BlogArticle[] = [
     subtitle: "Complete operational guide covering direct UTC Roadways & Volvo buses from Delhi Anand Vihar ISBT, Haldwani & Tanakpur shared jeep stands, private cab hire rates, NH-09 mountain routes, and pro tips for pilgrims.",
     category: "Pilgrimage Guide",
     author: {
-      name: "Anand Singh Dhami",
+      name: "Akshay Kumar",
       role: "Senior Operations Director & Overland Logistics Coordinator",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+      avatar: "/images/team/team4.webp",
     },
     publishedAt: "September 2027 Edition",
     readTime: "11 min read",
-    coverImage: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1600&q=80",
+    coverImage: "/blogs/pithoragarh-taxi-service.webp",
     relatedTourSlug: "adi-kailash",
     summary: "Reaching Pithoragarh by road is the traditional, reliable, and deeply scenic lifeline of the Kumaon Himalayas. Whether you are traveling on a budget via direct UTC Roadways buses from Delhi's Anand Vihar ISBT, catching high-frequency shared Bolero/Maxx jeeps from Haldwani KMOU Stand, or hiring a dedicated private 4x4 cab from Kathgodam railway station, this official handbook covers every road route, departure timing, fare, taxi stand location, and mountain travel advisory for Adi Kailash & Om Parvat yatris.",
     views: 8120,
@@ -539,11 +806,11 @@ export const DEFAULT_BLOG_ARTICLES: BlogArticle[] = [
     author: {
       name: "Vinay Gururani",
       role: "Co-Founder & SDM Permit Director",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+      avatar: "/images/team/team3.webp",
     },
     publishedAt: "August 2027 Edition",
     readTime: "8 min read",
-    coverImage: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1600&q=80",
+    coverImage: "/images/destinations/adi-kailash5.webp",
     relatedTourSlug: "adi-kailash",
     summary: "The Adi Kailash and Om Parvat Yatra in Pithoragarh, Uttarakhand is one of India's most sacred and thrilling Himalayan pilgrimages. With the opening of the motorable road via Lipulekh Pass, pilgrims can now reach Jolingkong and Nabhidhang in comfortable 4x4 SUVs without grueling multi-day foot treks.",
     views: 4820,
@@ -643,11 +910,11 @@ export const DEFAULT_BLOG_ARTICLES: BlogArticle[] = [
     author: {
       name: "Pawan Singh Bisht",
       role: "Co-Founder & Fleet Operations Manager",
-      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
+      avatar: "/images/team/team1.webp",
     },
     publishedAt: "August 2027 Edition",
     readTime: "10 min read",
-    coverImage: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1600&q=80",
+    coverImage: "/images/destinations/char-dham.webp",
     relatedTourSlug: "chardham-yatra",
     summary: "The Char Dham Yatra of Uttarakhand takes pilgrims across four holy Himalayan shrines: Yamunotri, Gangotri, Kedarnath, and Badrinath. This comprehensive 2027 guide covers route planning, government registration, helicopter booking, and health tips.",
     views: 6190,
@@ -730,11 +997,11 @@ export const DEFAULT_BLOG_ARTICLES: BlogArticle[] = [
     author: {
       name: "Deepak Singh Mehta",
       role: "Lead High-Altitude Mountain Guide",
-      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      avatar: "/images/team/team2.webp",
     },
     publishedAt: "August 2027 Edition",
     readTime: "7 min read",
-    coverImage: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80",
+    coverImage: "/images/destinations/valley-of-flowers-1.webp",
     relatedTourSlug: "valley-of-flowers",
     summary: "Discovered by British mountaineer Frank Smythe in 1931, the Valley of Flowers in Chamoli, Uttarakhand transforms into a vibrant carpet of alpine blooms every monsoon. Combined with a pilgrimage to Sri Hemkund Sahib at 14,400 ft, it is a bucket-list Himalayan trek.",
     views: 3940,
@@ -811,9 +1078,9 @@ export const DEFAULT_BLOG_ARTICLES: BlogArticle[] = [
     subtitle: "Immerse in Bhotia tribal heritage, glacier streams, and panoramic views of the Five Peaks of Panchachuli in Pithoragarh.",
     category: "Offbeat Himalaya",
     author: {
-      name: "Deepak Kumaoni",
+      name: "Deepak Singh Mehta",
       role: "4x4 Overland & Tribal Heritage Specialist",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+      avatar: "/images/team/team2.webp",
     },
     publishedAt: "August 2027 Edition",
     readTime: "6 min read",
@@ -1525,6 +1792,26 @@ export const DEFAULT_BLOG_ARTICLES: BlogArticle[] = [
 ];
 
 export const DEFAULT_NEWS_BULLETINS: YatraNewsBulletin[] = [
+  {
+    id: "news-adi-kailash-parikrama-run-2-0-results",
+    headline: "Adi Kailash Parikrama Run 2.0 Concludes in Vyas Valley: Digember Singh & Meenakshi Negi Win 70KM Ultra",
+    summary: "Over 1,100 runners from 26 states completed India's highest border run from Jyolingkong (15,000 ft) to Gunji amidst -18°C temperatures, organized under UTDB and the Vibrant Villages Programme.",
+    category: "Breaking Bulletin",
+    urgency: "Good News",
+    publishedAt: "Official Event Bulletin • Vyas Valley Desk",
+    source: "Uttarakhand Tourism Development Board (UTDB) & ITBP Gunji Command",
+    verified: true,
+    coverImage: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80",
+    fullDetails: [
+      "Uttarakhand Tourism Development Board (UTDB) and Pithoragarh District Administration successfully held the 2nd Edition of the Adi Kailash Parikrama Run from October 24 to 26, 2026.",
+      "The flagship 70KM Ultra started at Jyolingkong (4,600m / 15,000 ft) beside Parvati Sarovar, concluding at Gunji (3,200m / 10,500 ft). Digember Singh from Chamoli won Men's Ultra (4:45:36) and Meenakshi Negi from Pauri Garhwal won Women's Ultra (5:44:14).",
+      "Full race report, complete podium results across 42KM, 21KM, 10KM, 5KM, and MTB challenge are now available in the GoTrek official blog article.",
+    ],
+    actionLink: {
+      text: "Read Full Winners & Race Report ➔",
+      target: "/blogs/adi-kailash-parikrama-run-2-0-winners-guide",
+    },
+  },
   {
     id: "news-pithoragarh-flight-operations-delhi-dehradun-2027",
     headline: "Daily Direct Flights from Delhi & Dehradun to Pithoragarh: Alliance Air Schedule & Timing Confirmed",

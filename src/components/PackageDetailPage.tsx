@@ -31,7 +31,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { generateItineraryPdf } from "../utils/pdfGenerator";
-import { HotelsAccommodationSection } from "./HotelsAccommodationSection";
+import HotelsAccommodationSection from "./HotelsAccommodationSection";
 import { RelatedPackagesSection } from "./RelatedPackagesSection";
 import { CostCalculator } from "./CostCalculator";
 import { YatraWeatherCard } from "./YatraWeatherCard";
@@ -1165,7 +1165,7 @@ export const PackageDetailPage = memo(({
 
           {activeTab === "accommodations" && isAdiKailashPackage && (
             <div className="animate-in fade-in duration-300">
-              <HotelsAccommodationSection onOpenInquiry={onOpenInquiry} />
+              <HotelsAccommodationSection onBack={onBack} onOpenInquiry={onOpenInquiry} />
             </div>
           )}
         </div>

@@ -658,9 +658,29 @@ export const HeroSlider = memo(({ onOpenInquiry, onOpenAiConsultant, onSelectDes
                     custom={direction}
                     className="space-y-2.5"
                   >
-                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-amber-500/25 via-amber-600/20 to-red-600/15 border border-amber-400/60 text-amber-300 text-[11px] font-black uppercase tracking-wider shadow-[0_2px_12px_rgba(245,158,11,0.25)] backdrop-blur-md">
-                      <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                      <span>{currentTagline}</span>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-amber-500/25 via-amber-600/20 to-red-600/15 border border-amber-400/60 text-amber-300 text-[11px] font-black uppercase tracking-wider shadow-[0_2px_12px_rgba(245,158,11,0.25)] backdrop-blur-md">
+                        <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                        <span>{currentTagline}</span>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const targetPath = '/women-special';
+                          if (window.location.pathname !== targetPath) {
+                            window.history.pushState({}, '', targetPath);
+                            window.dispatchEvent(new PopStateEvent('popstate'));
+                          }
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-rose-950/80 hover:bg-rose-900 border border-rose-400/50 text-rose-200 hover:text-white text-[11px] font-black uppercase tracking-wider shadow-sm transition-all cursor-pointer backdrop-blur-md active:scale-95"
+                        title="Explore 100% Women-Led Adi Kailash Special Batch"
+                      >
+                        <span>🌸</span>
+                        <span>Women Special Batch</span>
+                        <ChevronRight size={12} className="text-rose-300" />
+                      </button>
                     </div>
 
                     <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight uppercase leading-[1.12] drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
@@ -773,12 +793,12 @@ export const HeroSlider = memo(({ onOpenInquiry, onOpenAiConsultant, onSelectDes
                       height={360}
                       fallbackSrc={
                         currentSlide.id === "promise-apart"
-                          ? "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=720&q=75&fm=webp"
+                          ? "/images/destinations/adi-kaialsh6.webp"
                           : currentSlide.id === "adi-kailash-2027"
-                          ? "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=720&q=75&fm=webp"
+                          ? "/images/destinations/kailash-mansarovar.webp"
                           : currentSlide.id === "kailash-lipulekh"
-                          ? "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=720&q=75&fm=webp"
-                          : "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=720&q=75&fm=webp"
+                          ? "/images/destinations/kailash-mansarovar-1.webp"
+                          : "/images/destinations/kaialsh-mansarovar.webp"
                       }
                       containerClassName="w-full h-56 sm:h-72"
                       className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"

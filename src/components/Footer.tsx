@@ -442,11 +442,21 @@ export const Footer = memo(({
               <li>
                 <button
                   type="button"
-                  onClick={() => onSelectPackage && onSelectPackage('adi-kailash-yatra-standard')}
-                  className="w-full text-left text-slate-200 hover:text-amber-300 font-medium flex items-center gap-2 group cursor-pointer transition-colors py-0.5"
+                  onClick={() => {
+                    const targetPath = '/women-special';
+                    if (window.location.pathname !== targetPath) {
+                      window.history.pushState({}, '', targetPath);
+                      window.dispatchEvent(new PopStateEvent('popstate'));
+                    }
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="w-full text-left text-rose-300 hover:text-rose-200 font-bold flex items-center gap-2 group cursor-pointer transition-colors py-0.5"
                 >
-                  <ChevronRight size={13} className="text-amber-400 group-hover:translate-x-0.5 transition-transform" />
-                  <span>{translate("Adi Kailash 6D/5N")}</span>
+                  <span className="text-xs">🌸</span>
+                  <span>Women Special Batch 2027</span>
+                  <span className="text-[8px] bg-rose-500/30 text-rose-200 border border-rose-400/40 px-1.5 py-0.2 rounded-full font-black">
+                    100% Women-Led
+                  </span>
                 </button>
               </li>
               <li>
