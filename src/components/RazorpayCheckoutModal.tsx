@@ -28,6 +28,7 @@ import { WhatsAppIcon } from './WhatsAppIcon';
 import { GmailIcon } from './GmailIcon';
 import { YATRA_DESTINATIONS, PICKUP_LOCATIONS } from '../data/mockData';
 import { BookingReceiptData, downloadPdfReceipt } from '../utils/receiptGenerator';
+
 import { isFlexibleGroupCircuit } from './InquiryModal';
 
 export type BookingStep = 'personal' | 'destination' | 'payment';
@@ -47,16 +48,41 @@ const loadRazorpayScript = (): Promise<boolean> => {
       resolve(true);
       return;
     }
-    const existing = document.querySelector('script[src*="checkout.razorpay.com"]');
+    const existing = document.querySelector('script[src*="checkout.razorpay.com"]') as HTMLScriptElement | null;
     if (existing) {
-      existing.addEventListener('load', () => resolve(true));
-      return;
+      if (existing.dataset.rzpState === 'loaded') {
+        resolve(typeof (window as any).Razorpay !== 'undefined');
+        return;
+      }
+      if (existing.dataset.rzpState === 'error') {
+        existing.remove();
+      } else {
+        const timer = setTimeout(() => resolve(typeof (window as any).Razorpay !== 'undefined'), 8000);
+        existing.addEventListener('load', () => {
+          clearTimeout(timer);
+          resolve(typeof (window as any).Razorpay !== 'undefined');
+        }, { once: true });
+        existing.addEventListener('error', () => {
+          clearTimeout(timer);
+          resolve(false);
+        }, { once: true });
+        return;
+      }
     }
     const script = document.createElement('script');
     script.src = 'https://checkout.razorpay.com/v1/checkout.js';
     script.async = true;
-    script.onload = () => resolve(true);
-    script.onerror = () => resolve(false);
+    const timer = setTimeout(() => resolve(typeof (window as any).Razorpay !== 'undefined'), 8000);
+    script.onload = () => {
+      clearTimeout(timer);
+      script.dataset.rzpState = 'loaded';
+      resolve(typeof (window as any).Razorpay !== 'undefined');
+    };
+    script.onerror = () => {
+      clearTimeout(timer);
+      script.dataset.rzpState = 'error';
+      resolve(false);
+    };
     document.head.appendChild(script);
   });
 };
@@ -240,14 +266,26 @@ export const RazorpayCheckoutModal: React.FC<RazorpayCheckoutModalProps> = ({
         }),
       });
 
-      const orderData = await orderRes.json();
-
-      if (!orderData.success) {
-        throw new Error(orderData.error || 'Failed to initialize payment');
+      const orderRawText = await orderRes.text();
+      let orderData: any = {};
+      try {
+        orderData = JSON.parse(orderRawText);
+      } catch {
+        throw new Error(`Payment server returned non-JSON response (HTTP ${orderRes.status}). Make sure latest vercel.json & /api routes are pushed to GitHub.`);
       }
 
-      // Check if real Razorpay script is available in window
-      if (typeof (window as any).Razorpay !== 'undefined' && orderData.isLiveKey) {
+      if (!orderRes.ok || !orderData.success) {
+        throw new Error(orderData.error || `Failed to initialize payment (HTTP ${orderRes.status})`);
+      }
+
+      // Ensure Razorpay checkout.js has finished loading before opening live gateway
+      const scriptLoaded = await loadRazorpayScript();
+
+      if (orderData.isLiveKey) {
+        if (!scriptLoaded || typeof (window as any).Razorpay === 'undefined') {
+          throw new Error('Unable to load Razorpay Checkout script (checkout.razorpay.com). Check your internet connection or disable ad-blockers and retry.');
+        }
+
         const options = {
           key: orderData.keyId,
           amount: orderData.amount,
@@ -256,6 +294,7 @@ export const RazorpayCheckoutModal: React.FC<RazorpayCheckoutModalProps> = ({
           description: `Yatra Deposit: ${selectedDestination}`,
           order_id: orderData.orderId,
           handler: async (response: any) => {
+            setLoading(true);
             await verifyPaymentOnServer(
               response.razorpay_order_id,
               response.razorpay_payment_id,
@@ -267,16 +306,26 @@ export const RazorpayCheckoutModal: React.FC<RazorpayCheckoutModalProps> = ({
             email: email,
             contact: phone,
           },
+          modal: {
+            ondismiss: () => {
+              setLoading(false);
+            },
+          },
           theme: {
             color: '#5A5A40',
           },
         };
 
         const rzp = new (window as any).Razorpay(options);
+        rzp.on('payment.failed', (failureResp: any) => {
+          const reason = failureResp?.error?.description || failureResp?.error?.reason || 'Razorpay payment failed';
+          setStepError(`Payment failed: ${reason}`);
+          setLoading(false);
+        });
         rzp.open();
         setLoading(false);
       } else {
-        // Simulated Interactive Razorpay Sandbox Mode (works smoothly in preview)
+        // Simulated Interactive Razorpay Sandbox Mode (only when no Razorpay keys are configured)
         setTimeout(async () => {
           const demoPayId = `pay_rzp_${Date.now()}_${Math.floor(
             Math.random() * 8999 + 1000
@@ -321,7 +370,14 @@ export const RazorpayCheckoutModal: React.FC<RazorpayCheckoutModalProps> = ({
         }),
       });
 
-      const verifyData = await verifyRes.json();
+      const verifyRawText = await verifyRes.text();
+      let verifyData: any = {};
+      try {
+        verifyData = JSON.parse(verifyRawText);
+      } catch {
+        setStepError(`Payment verification server returned HTTP ${verifyRes.status} instead of JSON.`);
+        return;
+      }
 
       if (verifyData.success) {
         const confirmedBookingData: BookingReceiptData = {
@@ -1359,6 +1415,12 @@ export const RazorpayCheckoutModal: React.FC<RazorpayCheckoutModalProps> = ({
 
                   {/* Submit Pay Buttons */}
                   <div className="space-y-2 pt-1">
+                    {stepError && (
+                      <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 flex items-start gap-2">
+                        <AlertCircle size={15} className="text-rose-600 shrink-0 mt-0.5" />
+                        <div className="flex-1 text-xs font-medium">{stepError}</div>
+                      </div>
+                    )}
                     <button
                       type="submit"
                       disabled={loading}

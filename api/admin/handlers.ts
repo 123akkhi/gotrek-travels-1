@@ -1,25 +1,8 @@
-import { initializeApp, getApps, getApp } from "firebase/app";
-import { initializeFirestore, getFirestore, doc, setDoc, getDocs, collection, deleteDoc } from "firebase/firestore";
-import firebaseConfig from "../../firebase-applet-config.json";
+import { doc, setDoc, getDocs, collection, deleteDoc } from "firebase/firestore";
+import { getServerlessDb } from "../_lib/firebase.js";
+import { parseBody } from "../_lib/parseBody.js";
 
-let db: any = null;
-try {
-  const firebaseApp = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-  const resolvedDbId = (firebaseConfig.firestoreDatabaseId && firebaseConfig.firestoreDatabaseId !== "(default)")
-    ? firebaseConfig.firestoreDatabaseId
-    : (firebaseConfig.projectId === "gotrek-travels" ? "default" : undefined);
-  try {
-    db = resolvedDbId
-      ? initializeFirestore(firebaseApp, { ignoreUndefinedProperties: true }, resolvedDbId)
-      : initializeFirestore(firebaseApp, { ignoreUndefinedProperties: true });
-  } catch {
-    db = resolvedDbId
-      ? getFirestore(firebaseApp, resolvedDbId)
-      : getFirestore(firebaseApp);
-  }
-} catch (e) {
-  console.warn("Vercel Firebase initialization warning:", e);
-}
+const db = getServerlessDb();
 
 const DEFAULT_HANDLERS = [
   {
@@ -99,7 +82,6 @@ export default async function handler(req: any, res: any) {
     return res.status(200).end();
   }
 
-  // GET: Fetch handlers
   if (req.method === "GET") {
     try {
       if (db) {
@@ -121,12 +103,11 @@ export default async function handler(req: any, res: any) {
     }
   }
 
-  // POST: Create new handler
   if (req.method === "POST") {
     try {
-      const body = req.body || {};
+      const body = parseBody(req);
       const newId = body.id || `HND-${Math.floor(10 + Math.random() * 90)}`;
-      const handlerData = {
+      const handlerData: Record<string, any> = {
         ...body,
         id: newId,
         status: body.status || "Active",
@@ -144,12 +125,12 @@ export default async function handler(req: any, res: any) {
     }
   }
 
-  // DELETE: Delete handler
   if (req.method === "DELETE") {
     try {
-      const id = req.query?.id || req.body?.id || req.url?.split("/").pop();
+      const body = parseBody(req);
+      const id = String(req.query?.id || body?.id || req.url?.split("?")[0]?.split("/").pop() || "").trim();
       if (id && db) {
-        await deleteDoc(doc(db, "handlers", String(id)));
+        await deleteDoc(doc(db, "handlers", id));
       }
       return res.status(200).json({ success: true, message: `Handler ${id} deleted` });
     } catch (err: any) {

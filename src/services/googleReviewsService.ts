@@ -306,7 +306,7 @@ export async function fetchGoogleReviews(options: FetchReviewsOptions = {}): Pro
       if (data.success && Array.isArray(data.reviews) && data.reviews.length > 0) {
         const normalized: GoogleReviewsResponse = {
           success: true,
-          source: data.source === "google_places_api" ? "google_places_api" : "verified_google_store",
+          source: typeof data.source === "string" && data.source.startsWith("google_places_api") ? "google_places_api" : "verified_google_store",
           placeName: data.placeName || "Gotrek Travels",
           rating: typeof data.rating === "number" ? data.rating : 4.7,
           totalReviews: typeof data.totalReviews === "number" ? data.totalReviews : 230,

@@ -1,9 +1,45 @@
 import crypto from "crypto";
-import { doc, setDoc } from "firebase/firestore";
-import * as firebaseServer from "../../src/server/vercelFirebase";
+import { initializeApp, getApps, getApp } from "firebase/app";
+import { initializeFirestore, getFirestore, doc, setDoc } from "firebase/firestore";
 
-const getServerlessDb = (firebaseServer as any).getServerlessDb;
-const db = typeof getServerlessDb === "function" ? getServerlessDb() : null;
+const FIREBASE_CONFIG = {
+  projectId: "gotrek-travels",
+  appId: "1:42157767715:web:8383d5f8a3374d9b434596",
+  apiKey: "AIzaSyCuCFgHEMNPO3YUdCHUaZ1K32_Fx1Owxm8",
+  authDomain: "gotrek-travels.firebaseapp.com",
+  firestoreDatabaseId: "default",
+  storageBucket: "gotrek-travels.firebasestorage.app",
+  messagingSenderId: "42157767715",
+  measurementId: "G-KFHH5B8EKH",
+};
+
+function getDb() {
+  try {
+    const app = !getApps().length ? initializeApp(FIREBASE_CONFIG) : getApp();
+    try {
+      return initializeFirestore(app, { ignoreUndefinedProperties: true }, "default");
+    } catch {
+      return getFirestore(app, "default");
+    }
+  } catch (err) {
+    console.warn("Vercel Firebase initialization warning:", err);
+    return null;
+  }
+}
+
+function parseJsonBody(req: any): Record<string, any> {
+  if (!req || req.body == null) return {};
+  if (typeof req.body === "string") {
+    try {
+      return JSON.parse(req.body) || {};
+    } catch {
+      return {};
+    }
+  }
+  return typeof req.body === "object" ? req.body : {};
+}
+
+const db = getDb();
 
 export default async function handler(req: any, res: any) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -33,14 +69,16 @@ export default async function handler(req: any, res: any) {
       travelDate,
       amountPaid,
       notes,
-    } = req.body || {};
+    } = parseJsonBody(req);
 
     if (!fullName || !phone || !destination) {
       return res.status(400).json({ success: false, error: "Missing mandatory pilgrim booking fields" });
     }
 
     const keySecret = (process.env.RAZORPAY_KEY_SECRET || "").trim();
-    const isSimulated = razorpay_signature === "simulated_sig_ok" || String(razorpay_order_id || "").startsWith("order_demo_");
+    const isSimulated =
+      razorpay_signature === "simulated_sig_ok" ||
+      String(razorpay_order_id || "").startsWith("order_demo_");
 
     if (keySecret && !isSimulated && razorpay_order_id && razorpay_payment_id && razorpay_signature) {
       const hmac = crypto.createHmac("sha256", keySecret);
@@ -68,7 +106,7 @@ export default async function handler(req: any, res: any) {
       destination,
       pickupLocation: pickupLocation || "Kathgodam / Haldwani (Railway Station Hub)",
       travellers: Number(travellers) || 1,
-      month: month || "May 2027",
+      month: month || travelDate || "May 2027",
       vehiclePreference: "suv",
       status: "Approved & Booked",
       tripStatus: "Confirmed",
@@ -102,11 +140,6 @@ export default async function handler(req: any, res: any) {
       `🙏 *GoTrek Travels — Yatra Booking Confirmed*\nBooking ID: ${newId}\nPayment ID: ${paymentId}\nCircuit: ${destination}\nDeposit Paid: ₹${paidAmountNum.toLocaleString("en-IN")}\nPass: ${receiptUrl}`
     );
 
-    let emailResult: any = { success: false, mode: "skipped" };
-    if (email) {
-      emailResult = { success: false, mode: "unavailable" };
-    }
-
     return res.status(200).json({
       success: true,
       bookingId: confirmedLead.id,
@@ -116,8 +149,8 @@ export default async function handler(req: any, res: any) {
       notifications: {
         whatsappWebLink: `https://api.whatsapp.com/send?phone=${targetWaPhone}&text=${waText}`,
         waMeLink: `https://wa.me/${targetWaPhone}?text=${waText}`,
-        emailSent: Boolean(emailResult?.success),
-        emailMode: emailResult?.mode || "skipped",
+        emailSent: false,
+        emailMode: "skipped",
       },
     });
   } catch (err: any) {
