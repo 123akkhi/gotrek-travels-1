@@ -1,26 +1,14 @@
-import { initializeApp, getApps, getApp } from "firebase/app";
-import { initializeFirestore, getFirestore, doc, setDoc, getDocs, collection, deleteDoc } from "firebase/firestore";
-import firebaseConfig from "../../firebase-applet-config.json";
-import { DEFAULT_BLOG_ARTICLES } from "../../src/data/blogsData";
+import { doc, setDoc, getDocs, collection, deleteDoc } from "firebase/firestore";
+import * as vercelFirebase from "../src/server/vercelFirebase";
+import { DEFAULT_BLOG_ARTICLES } from "../src/data/blogsData";
 
-let db: any = null;
-try {
-  const firebaseApp = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-  const resolvedDbId = (firebaseConfig.firestoreDatabaseId && firebaseConfig.firestoreDatabaseId !== "(default)")
-    ? firebaseConfig.firestoreDatabaseId
-    : (firebaseConfig.projectId === "gotrek-travels" ? "default" : undefined);
-  try {
-    db = resolvedDbId
-      ? initializeFirestore(firebaseApp, { ignoreUndefinedProperties: true }, resolvedDbId)
-      : initializeFirestore(firebaseApp, { ignoreUndefinedProperties: true });
-  } catch {
-    db = resolvedDbId
-      ? getFirestore(firebaseApp, resolvedDbId)
-      : getFirestore(firebaseApp);
-  }
-} catch (e) {
-  console.warn("Vercel Firebase initialization warning:", e);
-}
+const firebaseExports = vercelFirebase as any;
+const db =
+  firebaseExports.getServerlessDb?.() ??
+  firebaseExports.getFirestoreDb?.() ??
+  firebaseExports.getDb?.() ??
+  firebaseExports.db ??
+  (typeof firebaseExports.default === "function" ? firebaseExports.default() : null);
 
 export default async function handler(req: any, res: any) {
   res.setHeader("Access-Control-Allow-Origin", "*");

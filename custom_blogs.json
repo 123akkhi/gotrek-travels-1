@@ -1,0 +1,2026 @@
+[
+  {
+    "publishedAt": "October 2026 Special Edition",
+    "tableOfContents": [
+      {
+        "title": "1. Event Overview: What is Adi Kailash Parikrama Run 2.0?",
+        "id": "event-overview"
+      },
+      {
+        "id": "brutal-conditions",
+        "title": "2. The Brutal Terrain: Jyolingkong to Gunji (-18°C & Low Oxygen)"
+      },
+      {
+        "id": "official-winners",
+        "title": "3. Official Winners & Category Results Breakdown"
+      },
+      {
+        "title": "4. GoTrek Co-Founders in Action: Vinay Gururani (10KM) & Deepak Singh Mehta (5KM)",
+        "id": "gotrek-founders-marathon"
+      },
+      {
+        "title": "5. Race Glimpses: Photo Gallery from 15,000 ft to Gunji Finish Line",
+        "id": "marathon-glimpses"
+      },
+      {
+        "title": "6. Heroic Feats: Digember Singh, Meenakshi Negi & Sameer Nehra",
+        "id": "inspiring-stories"
+      },
+      {
+        "id": "safety-itbp",
+        "title": "7. High-Altitude Medical Safety & ITBP Rescue Network"
+      },
+      {
+        "id": "vibrant-villages",
+        "title": "8. Border Tourism Impact & Vibrant Villages Programme"
+      },
+      {
+        "id": "future-prep",
+        "title": "9. How to Prepare for Future High-Altitude Himalayan Runs"
+      }
+    ],
+    "author": {
+      "role": "Co-Founder & High-Altitude Operations Director",
+      "name": "Vinay Gururani & Deepak Singh Mehta",
+      "avatar": "/blogs/blog-1.webp"
+    },
+    "category": "Offbeat Himalaya",
+    "relatedTourSlug": "adi-kailash",
+    "views": 8940,
+    "readTime": "10 min read",
+    "coverImage": "/blogs/blog-4.webp",
+    "gallery": [
+      {
+        "photographer": "ITBP & Vyas Valley Media",
+        "caption": "Pre-dawn start line at Jyolingkong Base Camp (15,000 ft) under -18°C skies, with sacred Mount Adi Kailash and Parvati Sarovar rising majestically behind.",
+        "url": "/blogs/blog-4.webp",
+        "altitude": "15,000 ft / 4,600m",
+        "tag": "15,000 ft · Start Line"
+      },
+      {
+        "altitude": "13,200 ft",
+        "caption": "Ultra runners negotiating the rugged moraine descents, rocky ridges, and frozen stream beds across Kuti and Rongkong valleys.",
+        "tag": "70KM & 42KM Course",
+        "photographer": "UTDB Sports Board",
+        "url": "/blogs/blog-5.webp"
+      },
+      {
+        "caption": "GoTrek Co-Founder Vinay Gururani conquering the 10KM Alpine Trail Run between Gunji and Nabi checkpoints, demonstrating local mountain grit.",
+        "photographer": "GoTrek Ground Unit",
+        "tag": "Vinay Gururani (10KM Finisher)",
+        "altitude": "10,800 ft",
+        "url": "/blogs/blog-3.webp"
+      },
+      {
+        "caption": "GoTrek Co-Founder Deepak Singh Mehta leading the 5KM Border Community Run with village youth and ITBP jawans under the Vibrant Villages initiative.",
+        "url": "https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=1200&q=80",
+        "altitude": "10,500 ft",
+        "tag": "Deepak Singh Mehta (5KM Finisher)",
+        "photographer": "District Sports Office Pithoragarh"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What was the route of the 70KM Ultra in the Adi Kailash Parikrama Run 2.0?",
+        "answer": "The 70-km flagship ultra started at Jyolingkong (base of Mount Adi Kailash at 4,600m / 15,000 ft) beside Parvati Sarovar, descending through the rugged Kuthi valley via Rongkong, Kuti, and Nabi, before concluding at Gunji village (3,200m / 10,500 ft)."
+      },
+      {
+        "question": "Who won the Men's and Women's Ultra Marathon categories?",
+        "answer": "Digember Singh from Chamoli won the Men's 70KM Ultra with an extraordinary time of 4:45:36, while Meenakshi Negi from Pauri Garhwal won the Women's 70KM Ultra in 5:44:14."
+      },
+      {
+        "question": "What temperatures were experienced during the race?",
+        "answer": "Pre-dawn temperatures at the Jyolingkong starting line dropped to as low as -18°C with severe windchill, rising to around +4°C during peak midday sun."
+      },
+      {
+        "answer": "Over 1,100 runners from 26 Indian states participated across the 70KM Ultra, 42KM Marathon, 21.1KM Half Marathon, 10KM, 5KM, and MTB challenge.",
+        "question": "How many runners participated in Adi Kailash Parikrama Run 2.0?"
+      },
+      {
+        "question": "Did GoTrek Travels founders participate in the Adi Kailash Parikrama Run 2.0?",
+        "answer": "Yes! GoTrek Co-Founders Vinay Gururani and Deepak Singh Mehta actively competed and completed their categories: Vinay Gururani finished the 10KM High-Altitude Alpine Trail Run, and Deepak Singh Mehta finished the 5KM Border Community Run, receiving official finisher medals from UTDB and ITBP at Gunji Base Camp."
+      },
+      {
+        "answer": "Yes, an official Inner Line Permit (ILP) issued by SDM Dharchula and verified by ITBP is legally mandatory for all participants and visitors traveling to Gunji and Jyolingkong.",
+        "question": "Is an Inner Line Permit required to participate or visit?"
+      }
+    ],
+    "subtitle": "Official podium results, sub-zero battle at -18°C, 70KM ultra run from Jyolingkong (15,000 ft) to Gunji, and how Uttarakhand Tourism, ITBP & Indian Army hosted India's premier border mountain marathon.",
+    "sections": [
+      {
+        "heading": "1. Event Overview: What is the Adi Kailash Parikrama Run 2.0?",
+        "id": "event-overview",
+        "paragraphs": [
+          "The Adi Kailash Parikrama Run 2.0 is India's most breathtaking, high-altitude border ultra-marathon, held in the pristine Vyas Valley of Pithoragarh district, Uttarakhand. Organized under the leadership of the Uttarakhand Tourism Development Board (UTDB) alongside district administrative bodies, the Indo-Tibetan Border Police (ITBP), and the Indian Army, the second edition unfolded between October 24 and October 26, 2026.",
+          "The event was envisioned as part of the Government of India's flagship 'Vibrant Villages Programme' to transform remote Himalayan border outposts into thriving hubs of adventure tourism, patriotic engagement, and sustainable community prosperity. Over 1,100 endurance athletes, mountain ultra-runners, defense personnel, and trekking enthusiasts from 26 states arrived in Gunji to participate across multiple competitive distance categories."
+        ],
+        "calloutBox": {
+          "title": "Vibrant Villages Alpine Showcase",
+          "type": "info",
+          "content": "The Adi Kailash Parikrama Run proves that India's strategic northern borders are not merely remote outposts, but world-class destinations for high-altitude sports, spiritual discovery, and cultural exchange with indigenous Bhotia border communities."
+        }
+      },
+      {
+        "paragraphs": [
+          "Few endurance races anywhere on Earth match the harsh environmental factors faced by runners during the Adi Kailash Parikrama Run. Starting in the pre-dawn darkness at Jyolingkong (base of sacred Mount Adi Kailash at 4,600 meters / 15,000 feet), runners stepped onto frozen trails with temperatures plunging as low as -18°C.",
+          "At 15,000 feet, atmospheric oxygen pressure is nearly half that of sea level. Every inhalation requires deep, conscious effort, and the bone-chilling katabatic winds howling down the Kuthi Yankti river valley created a ferocious windchill factor. The rocky, unpaved terrain traversed moraines, frozen glacial streams, loose scree, and rugged border roads linking Jyolingkong, Rongkong, Kuti, and Nabi before terminating at Gunji village (3,200 meters / 10,500 feet)."
+        ],
+        "id": "brutal-conditions",
+        "heading": "2. The Brutal Terrain: Jyolingkong to Gunji at -18°C & Thin Air",
+        "bulletPoints": [
+          "Start Point: Jyolingkong Base Camp (4,600m / 15,000 ft) right beside holy Parvati Sarovar.",
+          "Finish Line: Gunji Base Camp (3,200m / 10,500 ft) at the confluence of Kali and Kuthi rivers.",
+          "Extreme Temperatures: -18°C pre-dawn minimum, rising to +4°C under high-altitude ultraviolet sun.",
+          "Altitude Challenge: 15,000 ft start descending and rolling along rugged Himalayan valley corridors.",
+          "Key Villages on Course: Jyolingkong → Rongkong → Kuti (Pandava village) → Nabi → Gunji."
+        ]
+      },
+      {
+        "id": "official-winners",
+        "calloutBox": {
+          "content": "All distance timing was electronically logged via RFID timing chips provided by Runizen sports timing infrastructure, ensuring authenticated records recognized by state athletic federations.",
+          "type": "tip",
+          "title": "Timing & Results Certification"
+        },
+        "bulletPoints": [
+          "🏆 70KM Ultra Marathon (Men): Digember Singh (Chamoli, Uttarakhand) — Crowned champion with an astonishing record time of 4 hours 45 minutes and 36 seconds, conquering the rugged descent from Jyolingkong through freezing valley headways.",
+          "🏆 70KM Ultra Marathon (Women): Meenakshi Negi (Pauri Garhwal, Uttarakhand) — Clocked an extraordinary 5 hours 44 minutes and 14 seconds to claim the women's ultra crown, setting a benchmark for high-altitude women athletes.",
+          "🏅 42KM Full Marathon (Men): Vijay Singh — Displayed remarkable pace control and aerobic stamina across the rocky descent to take first place.",
+          "🏅 42KM Full Marathon (Women): Arpita — Dominated the women's 42km field with composed endurance on the high moraine tracks.",
+          "🥈 21.1KM Half Marathon: Rajesh Kumar (Men's Winner) and Anjali (Women's Winner) clinched the 21.1km high-altitude half-marathon crowns.",
+          "🥉 10KM Alpine Trail Run: Jitendra Fartyal (Men's Winner) and Soniya (Women's Winner) took top honors in the 10km mountain sprint.",
+          "🎖️ 5KM Border Community Run: Rohit Kumar (Men's Winner) and Baby Kumari (Women's Winner) emerged victorious, joined by local school students and vibrant village residents.",
+          "🚵 Adi Kailash MTB Challenge (Oct 26): A grueling mountain bike stage over rocky border roads, testing bike-handling over loose shale and steep gradients."
+        ],
+        "paragraphs": [
+          "The Adi Kailash Parikrama Run features multiple competitive formats, from the punishing 70-km Ultra Marathon down to 5-km community sprints and high-altitude mountain biking (MTB). Below is the comprehensive roll of honor and category winners:"
+        ],
+        "heading": "3. Official Winners & Category Results Breakdown"
+      },
+      {
+        "bulletPoints": [
+          "🏃 Vinay Gururani (Co-Founder): Official Finisher — 10KM High-Altitude Alpine Trail Run Category.",
+          "🏃 Deepak Singh Mehta (Co-Founder): Official Finisher — 5KM High-Altitude Border Community Run Category.",
+          "🎖️ Official Honors: Awarded official finisher medals and race certificates by Uttarakhand Tourism Development Board (UTDB) and Indo-Tibetan Border Police (ITBP) at Gunji Base Camp.",
+          "🏔️ Ground Authenticity: Living proof that GoTrek Travels is led by genuine, mountain-tested Himalayan athletes with firsthand knowledge of every pass, homestay, and weather shift in Vyas Valley."
+        ],
+        "calloutBox": {
+          "type": "tip",
+          "title": "Leadership by Example: Mountain Grit in Our DNA",
+          "content": "When you travel with GoTrek Travels, your Adi Kailash yatra is designed, monitored, and escorted by authentic local co-founders who run the very ridges and high valleys of Uttarakhand. True mountain safety comes from leaders who have physically proven their endurance on the turf."
+        },
+        "id": "gotrek-founders-marathon",
+        "paragraphs": [
+          "At GoTrek Travels, our leadership doesn't manage pilgrimages from an office chair hundreds of miles away—we live, run, trek, and breathe the high Himalayan trails alongside our yatris. During the prestigious Adi Kailash Parikrama Run 2.0, GoTrek Co-Founders Vinay Gururani and Deepak Singh Mehta laced up their running shoes to represent the local tourism and spiritual hospitality community, completing their official race categories with flying colors.",
+          "Vinay Gururani (Co-Founder & SDM Permit Operations Director) successfully conquered the grueling 10KM High-Altitude Alpine Trail Run category. Battling thin air above 10,500 feet and bone-chilling morning winds, Vinay showcased the physical fitness and high-altitude tenacity that underpins GoTrek's on-ground operations. For Vinay, who has facilitated over 15,000 Inner Line Permits with the SDM Office Dharchula and ITBP checkposts, running the border corridor between Gunji and Nabi was an emotional journey honoring Lord Shiva and the sacred peaks of Vyas Valley.",
+          "Deepak Singh Mehta (Co-Founder & Lead High-Altitude Guide / Alpine Safety Manager) successfully completed the 5KM Border Community Run category. An IMF-certified mountaineer with over a decade of high-altitude leadership and more than 250 guided expeditions to Parvati Sarovar, Gauri Kund, and Om Parvat, Deepak ran alongside local youth from Gunji, Nabi, and Kuti villages, as well as ITBP jawans, actively promoting high-altitude sports, youth fitness, and sustainable border community engagement under the Vibrant Villages initiative."
+        ],
+        "heading": "4. GoTrek Co-Founders in Action: Vinay Gururani (10KM) & Deepak Singh Mehta (5KM)"
+      },
+      {
+        "gallery": [
+          {
+            "altitude": "15,000 ft / 4,600m",
+            "caption": "Pre-dawn start line at Jyolingkong Base Camp (15,000 ft) under -18°C skies, with sacred Mount Adi Kailash and Parvati Sarovar rising majestically behind.",
+            "tag": "15,000 ft · Start Line",
+            "url": "/blogs/blog-4.webp",
+            "photographer": "ITBP & Vyas Valley Media"
+          },
+          {
+            "photographer": "UTDB Sports Board",
+            "tag": "70KM & 42KM Course",
+            "url": "/blogs/blog-5.webp",
+            "altitude": "13,200 ft",
+            "caption": "Ultra runners negotiating the rugged moraine descents, rocky ridges, and frozen stream beds across Kuti and Rongkong valleys."
+          },
+          {
+            "caption": "GoTrek Co-Founder Vinay Gururani conquering the high-altitude trails to cross the official 10KM Alpine Trail finish line.",
+            "tag": "Vinay Gururani (10KM Finisher)",
+            "photographer": "GoTrek Ground Unit",
+            "url": "/blogs/blog-3.webp",
+            "altitude": "10,800 ft"
+          },
+          {
+            "url": "/blogs/blog-1.webp",
+            "caption": "GoTrek Co-Founder Deepak Singh Mehta leading the 5KM Border Community Run with village youth and ITBP jawans under the Vibrant Villages initiative.",
+            "photographer": "District Sports Office Pithoragarh",
+            "tag": "Deepak Singh Mehta (5KM Finisher)",
+            "altitude": "10,500 ft"
+          },
+          {
+            "tag": "Nabi Homestay Cheering Hub",
+            "caption": "Traditional Bhotia homestay cheering station in Nabi village, where locals offered hot herbal sea-buckthorn tea and folk drum encouragements.",
+            "photographer": "Kumaon Alpine Media",
+            "altitude": "10,200 ft",
+            "url": "/blogs/blog-2.webp"
+          }
+        ],
+        "paragraphs": [
+          "From the pre-dawn glow over Mount Adi Kailash and sacred Parvati Sarovar to the triumphant medal celebrations at Gunji Base Camp, the Adi Kailash Parikrama Run 2.0 offered breathtaking visual spectacles found nowhere else in the world.",
+          "Explore these authenticated photo glimpses capturing the sub-zero starting line at Jyolingkong (15,000 ft), high-altitude trail crossings across Kuthi river valley, GoTrek Co-Founders Vinay Gururani and Deepak Singh Mehta in action, traditional Bhotia village cheering squads, and the proud tricolor celebrations hosted by ITBP and the Indian Army."
+        ],
+        "heading": "5. Race Glimpses: Iconic Visual Moments from 15,000 ft to Gunji Finish Line",
+        "id": "marathon-glimpses",
+        "calloutBox": {
+          "title": "Vyas Valley Photography Archive",
+          "type": "info",
+          "content": "All photographs are preserved in the GoTrek Himalayan Archive. Devotees and runners can request high-resolution prints or digital copies from our Pithoragarh media desk."
+        }
+      },
+      {
+        "paragraphs": [
+          "The Adi Kailash Parikrama Run 2.0 produced deeply moving tales of determination and mental fortitude. Digember Singh of Chamoli and Meenakshi Negi of Pauri Garhwal demonstrated the unmatched genetic and training resilience of Uttarakhand's native pahadi youth, who grew up running steep Himalayan slopes and easily adapted to the thin air.",
+          "Equally inspiring was the journey of non-professional athletes from metropolitan cities. Among them, Noida-based marathoner and entrepreneur Sameer Nehra captured widespread admiration by persevering through the grueling 70-km ultra layout for over 12 hours and 17 minutes. Battling freezing winds that numbed fingers and iced water flasks, Nehra and dozens of fellow civilian runners refused to drop out, crossing the finish line in Gunji well into the evening amidst thunderous cheers from ITBP jawans and local villagers.",
+          "Additionally, veterans and armed forces personnel stationed along the Line of Actual Control (LAC) joined the run, showcasing the extraordinary spirit of border bonhomie and fitness."
+        ],
+        "id": "inspiring-stories",
+        "heading": "6. Heroic Feats: Digember Singh, Meenakshi Negi & Sameer Nehra"
+      },
+      {
+        "id": "safety-itbp",
+        "heading": "7. High-Altitude Medical Safety & ITBP Rescue Network",
+        "paragraphs": [
+          "Organizing an ultra-marathon at 15,000 feet requires military-grade safety systems to prevent Acute Mountain Sickness (AMS), High-Altitude Pulmonary Edema (HAPE), and hypothermia. The Pithoragarh District Administration and ITBP deployed a comprehensive medical safety ring:"
+        ],
+        "bulletPoints": [
+          "Aid Stations Every 5 Kilometers: Fully equipped with oxygen concentrators, pulse oximeters, and high-calorie nutrition.",
+          "ITBP Mountain Rescue Squads: Elite border police personnel with snowmobiles, all-terrain ambulances, and stretchers stationed at strategic checkpoints.",
+          "Acclimatization Mandate: All participants were required to complete mandatory acclimatization stops at Dharchula (915m) and Gunji (3,200m) for at least 48 hours prior to race day.",
+          "Hyperbaric Chambers & Medical Tents: Portable Gamow bags and emergency medical stations located at Jyolingkong and Gunji base hospitals."
+        ]
+      },
+      {
+        "paragraphs": [
+          "Beyond sporting glory, the Adi Kailash Parikrama Run represents a transformative socio-economic catalyst for the border communities of Vyas Valley. Historically isolated for months during winter, villages like Gunji, Nabi, Rongkong, and Kuti welcomed hundreds of visitors, filling every traditional homestay to capacity.",
+          "Participants were treated to authentic Bhotia hospitality: sleeping in cozy wooden homes adorned with local carpets (Dan), drinking hot seabuckthorn herbal tea, and fueling up on nutrient-dense Mandua (finger millet) rotis and Bhatt ki Churkani. The influx created direct economic livelihoods for local homestay owners, 4x4 Bolero drivers, and mountain guides."
+        ],
+        "heading": "8. Border Tourism Impact & Vibrant Villages Programme",
+        "id": "vibrant-villages"
+      },
+      {
+        "paragraphs": [
+          "If you aspire to participate in future editions of the Adi Kailash Parikrama Run or trek the holy parikrama route, proper planning is non-negotiable. GoTrek Travels provides end-to-end ground coordination, including Inner Line Permit liaison through SDM Dharchula, 4x4 transport between Kathgodam and Gunji, and verified homestay bookings."
+        ],
+        "calloutBox": {
+          "title": "Plan Your Vyas Valley Journey with GoTrek Travels",
+          "type": "tip",
+          "content": "Whether you are an ultra-marathoner scouting the high-altitude trails or a devotee seeking the sacred darshan of Mount Adi Kailash and Parvati Sarovar, GoTrek Travels is your trusted local operator based out of Pithoragarh and Dharchula."
+        },
+        "bulletPoints": [
+          "Aerobic Conditioning: At least 4-6 months of progressive long-distance hill running, stair climbs, and VO2-max interval training.",
+          "Cold-Weather Gear: 3-layer moisture-wicking merino wool thermals, windproof Gore-Tex shells, trail running gaiters, and insulated running mittens.",
+          "Permit & Medical Clearances: Valid Police Verification Certificate (PCC) and MBBS Doctor Fitness Certificate for SDM Dharchula ILP approval.",
+          "Hydration Strategy: Minimum 3.5 to 4 liters of warm electrolyte water daily to counteract extreme high-altitude respiratory water loss."
+        ],
+        "heading": "9. How to Prepare for Future High-Altitude Himalayan Runs",
+        "id": "future-prep"
+      }
+    ],
+    "title": "Adi Kailash Parikrama Run 2.0: Full Race Report, Winners List, 70KM Ultra High-Altitude Guide & Extreme Endurance Stories",
+    "summary": "The Adi Kailash Parikrama Run 2.0 pushed human endurance to its absolute limits in Uttarakhand's remote Vyas Valley. Held from October 24 to 26, 2026, under the aegis of the Uttarakhand Tourism Development Board (UTDB), Pithoragarh District Administration, ITBP, and the Indian Army, this high-altitude race drew over 1,100 athletes from 26 states. Runners battled freezing temperatures plunging to -18°C and low oxygen levels starting from Jyolingkong (15,000 ft / 4,600m) down to Gunji (10,500 ft / 3,200m). Discover the complete winners list across the 70KM Ultra, 42KM Marathon, 21KM Half Marathon, 10KM, 5KM, and MTB challenges, along with inspiring achievements of GoTrek Travels Co-Founders Vinay Gururani (10KM Trail Category Finisher) and Deepak Singh Mehta (5KM Border Community Category Finisher), and champions like Digember Singh and Meenakshi Negi.",
+    "slug": "adi-kailash-parikrama-run-2-0-winners-guide",
+    "isCustom": true
+  },
+  {
+    "slug": "inner-line-permit-rules",
+    "relatedTourSlug": "adi-kailash",
+    "views": 6420,
+    "tableOfContents": [
+      {
+        "title": "1. Why is an Inner Line Permit (ILP) Mandatory?",
+        "id": "why-ilp-needed"
+      },
+      {
+        "title": "2. Complete Document Checklist & Verification",
+        "id": "mandatory-docs"
+      },
+      {
+        "title": "3. Police Verification Certificate (PCC) Guide",
+        "id": "police-verification"
+      },
+      {
+        "id": "medical-fitness",
+        "title": "4. Medical Fitness Certificate & Doctor Checkup"
+      },
+      {
+        "id": "sdm-dharchula-process",
+        "title": "5. SDM Dharchula & ITBP Checkpost Clearance"
+      },
+      {
+        "id": "gotrek-priority-service",
+        "title": "6. How GoTrek Handles 100% of Your ILP Hassle-Free"
+      }
+    ],
+    "publishedAt": "August 2027 Official Edition",
+    "subtitle": "Step-by-step SDM Dharchula permit liaison, mandatory medical certificates, ITBP border clearance, and seamless documentation for Adi Kailash & Om Parvat Yatris.",
+    "sections": [
+      {
+        "id": "why-ilp-needed",
+        "heading": "Why is an Inner Line Permit (ILP) Mandatory for Adi Kailash & Om Parvat?",
+        "calloutBox": {
+          "title": "Legal Mandate",
+          "type": "warning",
+          "content": "Traveling beyond Dharchula checkpost without an official Inner Line Permit is a cognizable legal offense under the Bengal Eastern Frontier Regulation Act. No vehicle or trekker is permitted past Pangla and Chhiyalekh without an authorized permit token."
+        },
+        "paragraphs": [
+          "The sacred Vyas Valley and Darma Valley in Pithoragarh district of Uttarakhand run along strategic high-altitude international border zones. To ensure national security, regulate pilgrim inflow, and safeguard travelers in harsh Himalayan terrain, the Government of Uttarakhand and Ministry of Home Affairs enforce a strict Inner Line Permit (ILP) protocol.",
+          "Every Indian citizen traveling beyond Dharchula toward Gunji, Nabi, Jolingkong (Adi Kailash base), or Nabhidhang (Om Parvat viewpoint) must possess an authentic ILP stamped by the Sub-Divisional Magistrate (SDM) of Dharchula and counter-verified by the Indo-Tibetan Border Police (ITBP)."
+        ]
+      },
+      {
+        "bulletPoints": [
+          "Government Photo Identity: Original Aadhaar Card or Voter ID along with 4 clear self-attested photocopies.",
+          "Passport-Sized Photographs: 4 recent passport-size color photographs with a clean, light background.",
+          "Police Verification Certificate (PCC): Official character verification issued by your local Superintendent of Police (SP) office or authorized state police web portal.",
+          "Medical Fitness Certificate: Certificate signed and stamped by a registered MBBS doctor declaring physical capability to travel up to 15,000 ft altitude without acute cardiopulmonary contraindications.",
+          "Notarized Indemnity Undertaking: Self-declaration of voluntary high-altitude travel in the prescribed administrative format."
+        ],
+        "heading": "Complete Document Checklist for Inner Line Permit Application",
+        "paragraphs": [
+          "To obtain your Inner Line Permit smoothly, pilgrims must prepare the following mandatory documents well before arriving in Dharchula:"
+        ],
+        "id": "mandatory-docs"
+      },
+      {
+        "heading": "How to Obtain Police Verification Certificate (PCC) Online",
+        "id": "police-verification",
+        "calloutBox": {
+          "content": "Always initiate your online police verification at least 15 days before your yatra start date to account for local beat officer verification time.",
+          "title": "Advance Processing Tip",
+          "type": "tip"
+        },
+        "paragraphs": [
+          "A valid Police Verification Certificate (PCC) is mandatory to confirm that no criminal proceedings are pending against the applicant. Most state police departments in India now provide convenient online citizen portals to issue PCC within 3 to 7 business days.",
+          "You can apply on your respective state police portal (such as UP Police Citizen Portal, Delhi Police PCC Portal, MahaOnline, Gujarat Police Portal, etc.) under 'Character Verification for Travel / Pilgrimage'. Once generated, download the digitally signed PDF and share it with GoTrek."
+        ]
+      },
+      {
+        "paragraphs": [
+          "Because Adi Kailash (14,950 ft) and Om Parvat (14,000 ft) are situated in thin air zones with atmospheric oxygen levels approximately 40% lower than sea level, an MBBS doctor certificate is required by the Dharchula administration.",
+          "The medical certificate must verify normal resting blood pressure (under 140/90 mmHg), healthy heart rhythm, normal oxygen saturation (SpO2 > 95% at home altitude), and absence of severe chronic asthma, unstable angina, or recent major cardiovascular surgery."
+        ],
+        "id": "medical-fitness",
+        "heading": "Medical Fitness Certificate & Doctor Checkup Protocols"
+      },
+      {
+        "id": "sdm-dharchula-process",
+        "paragraphs": [
+          "Physical permit issuance takes place at the SDM Court and Tehsildar Office in Dharchula town. Government officers verify the applicant's physical identity, authenticate police reports, and stamp the numbered ILP document.",
+          "During the 4x4 mountain drive up Vyas Valley, your permit is officially recorded at several ITBP and Uttarakhand Police checkposts: first at Pangla, followed by the high ridge of Chhiyalekh, the garrison post at Garbyang, the administrative junction of Gunji, and the frontier post at Kalapani."
+        ],
+        "heading": "SDM Dharchula Administrative Procedure & ITBP Checkposts"
+      },
+      {
+        "id": "gotrek-priority-service",
+        "heading": "GoTrek Travels 100% Hassle-Free Priority Liaison Service",
+        "calloutBox": {
+          "title": "GoTrek Peace of Mind",
+          "type": "info",
+          "content": "100% permit clearance guarantee with zero standing in government lines. Our local team takes care of every document, stamp, and ITBP checkpoint manifest."
+        },
+        "paragraphs": [
+          "Independent travelers often spend 1 to 2 full days standing in bureaucratic government queues in Dharchula, navigating separate counters for police verification, hospital medical checks, and SDM endorsements.",
+          "When you travel with GoTrek Expeditions, our dedicated SDM Liaison Team based permanently in Dharchula coordinates your paperwork 7 to 10 days in advance. We pre-register your dossier, schedule priority doctor checkups, and have your verified Inner Line Permits ready upon your arrival in Dharchula so your yatra proceeds without delays."
+        ]
+      }
+    ],
+    "author": {
+      "avatar": "/images/team/team1.webp",
+      "name": "Pawan Singh Bisht",
+      "role": "Co-Founder & SDM Permit Liaison Director"
+    },
+    "faqs": [
+      {
+        "answer": "Under current Ministry of Home Affairs (MHA) border regulations, Inner Line Permits beyond Dharchula to Jolingkong and Nabhidhang are strictly granted to Indian citizens with valid Government IDs. Foreign nationals and OCI cardholders are welcome up to Dharchula and may explore other scenic Uttarakhand circuits like Munsiyari and Khaliya Top.",
+        "question": "Can foreign nationals or OCI cardholders get an Inner Line Permit for Adi Kailash?"
+      },
+      {
+        "answer": "Please share clear digital scans of your Aadhaar card, police verification certificate, and doctor medical certificate at least 7 to 10 days before your journey so our liaison team can file your batch application with the SDM Office in advance.",
+        "question": "How many days before my trip should I submit documents to GoTrek?"
+      },
+      {
+        "question": "Do I need to carry original identity cards during the yatra?",
+        "answer": "Yes, you must carry your original Aadhaar Card or Voter ID along with 4 physical passport-size photographs. ITBP border checkposts at Chhiyalekh, Gunji, and Kalapani conduct physical spot-checks of original identity cards."
+      },
+      {
+        "answer": "There is no rigid official age bar. Yatris between 9 and 80 years regularly travel with GoTrek provided their doctor certifies that they are physically fit for high-altitude travel up to 15,000 ft.",
+        "question": "Is there an age limit for getting an Inner Line Permit?"
+      }
+    ],
+    "readTime": "7 min read",
+    "title": "Inner Line Permit (ILP) SDM Dharchula Guide 2027: Rules, Process & Required Documents",
+    "coverImage": "/images/destinations/adi-kailash4.webp",
+    "category": "Pilgrimage Guide",
+    "summary": "Step-by-step SDM Dharchula permit liaison, mandatory medical certificates, ITBP border clearance, and seamless documentation for Adi Kailash & Om Parvat Yatris. Because Vyas Valley and Darma Valley fall under sensitive high-altitude international border corridors, an official Inner Line Permit (ILP) issued by the Sub-Divisional Magistrate (SDM) Office Dharchula is legally mandatory for every Indian citizen. Discover the complete document checklist, police verification report process, medical fitness rules, and how GoTrek Travels handles 100% of the advance liaison so you never lose vacation time waiting in government queues.",
+    "isCustom": true
+  },
+  {
+    "coverImage": "/blogs/naini-saini-airport.webp",
+    "category": "Pilgrimage Guide",
+    "relatedTourSlug": "adi-kailash",
+    "tableOfContents": [
+      {
+        "title": "1. Naini Saini Airport (NGH): High-Altitude Airstrip & Mountain Views",
+        "id": "overview-naini-saini"
+      },
+      {
+        "title": "2. Delhi to Pithoragarh Flight: Timings, Duration & Operating Days",
+        "id": "delhi-pithoragarh-flight"
+      },
+      {
+        "title": "3. Dehradun to Pithoragarh Flight: Timings, Duration & Operating Days",
+        "id": "dehradun-pithoragarh-flight"
+      },
+      {
+        "title": "4. Weekly Operating Pattern: Daily Routing & Aircraft Loops",
+        "id": "weekly-routing-loops"
+      },
+      {
+        "id": "airlines-and-fleet",
+        "title": "5. Operating Airlines & Fleet: Alliance Air ATR-42-600 & FlyBig"
+      },
+      {
+        "title": "6. Airfares, How to Book & Booking Window Guidelines",
+        "id": "airfares-booking-guide"
+      },
+      {
+        "id": "baggage-allowances",
+        "title": "7. Baggage Limits, Cabin Space & Weight Restrictions"
+      },
+      {
+        "title": "8. Mountain Weather, Visual Flight Rules (VFR) & Reliability",
+        "id": "weather-vfr-protocols"
+      },
+      {
+        "title": "9. Airport Arrival & GoTrek 4x4 Private Transfers to Dharchula",
+        "id": "gotrek-airport-pickup"
+      },
+      {
+        "id": "alternative-road-rail",
+        "title": "10. Alternative Road & Train Connections via Kathgodam/Tanakpur"
+      }
+    ],
+    "publishedAt": "September 2027 Edition",
+    "title": "How to Reach Pithoragarh by Flight: Delhi & Dehradun Schedules, Timings, Operating Days & Naini Saini Airport Guide",
+    "faqs": [
+      {
+        "question": "Which airline operates flights to Pithoragarh and from which airports?",
+        "answer": "Alliance Air operates scheduled commercial flights connecting Pithoragarh (Naini Saini Airport, NGH) directly to New Delhi (Indira Gandhi International Airport, DEL) and Dehradun (Jolly Grant Airport, DED). In addition, FlyBig operates 18-seater charter flights on selected regional days."
+      },
+      {
+        "answer": "The outbound flight departs Delhi (IGI Airport) at 11:00 AM and arrives at Pithoragarh (Naini Saini Airport) at 12:20 PM (1 hour 20 minutes duration). The return flight departs Pithoragarh at 02:10 PM and arrives in Delhi at 03:20 PM (1 hour 10 minutes duration).",
+        "question": "What are the exact flight timings from Delhi to Pithoragarh and return?"
+      },
+      {
+        "answer": "The outbound flight departs Dehradun (Jolly Grant Airport) at 01:55 PM and arrives at Pithoragarh at 02:40 PM (45 minutes duration). The return flight departs Pithoragarh at 12:45 PM and arrives in Dehradun at 01:30 PM (45 minutes duration).",
+        "question": "What are the flight timings from Dehradun to Pithoragarh and return?"
+      },
+      {
+        "answer": "The Delhi – Pithoragarh flight operates 6 days a week from Monday to Saturday (no flights on Sunday). The Dehradun – Pithoragarh flight operates 5 days a week from Tuesday to Saturday (no flights on Sunday and Monday).",
+        "question": "On which days of the week do the flights operate?"
+      },
+      {
+        "answer": "Passengers are allowed 15 kg of check-in baggage and 1 piece of cabin/hand baggage up to 5 kg. Due to high-altitude mountain takeoff weight restrictions on the 42-seater ATR-42 aircraft, strictly adhere to the 15 kg check-in allowance.",
+        "question": "What is the baggage limit allowed on the Pithoragarh flight?"
+      },
+      {
+        "question": "How far is Naini Saini Airport from Dharchula and how does GoTrek pick up yatris?",
+        "answer": "Naini Saini Airport is approximately 92 km from Dharchula (about a 3 to 3.5-hour scenic drive along the Kali River on NH-09). GoTrek arranges private 4x4 Bolero or Scorpio SUVs with personalized placards waiting right outside the terminal gate to transfer yatris directly to Dharchula."
+      },
+      {
+        "question": "Where can I book tickets for the Delhi or Dehradun to Pithoragarh flight?",
+        "answer": "Tickets can be booked directly on the official Alliance Air portal (allianceair.in), the Air India website, IRCTC Air, or popular travel portals like MakeMyTrip, EaseMyTrip, and Ixigo by searching for Origin 'DEL' or 'DED' and Destination 'NGH' (Pithoragarh)."
+      }
+    ],
+    "readTime": "10 min read",
+    "views": 6840,
+    "author": {
+      "avatar": "/images/team/team2.webp",
+      "name": "Deepak Singh Mehta",
+      "role": "Senior Operations Director & Flight Logistics Coordinator"
+    },
+    "summary": "Until recently, reaching Pithoragarh meant enduring a grueling 14 to 16-hour mountain road journey from Delhi or Dehradun across winding Himalayan switchbacks. With regular commercial flight operations at Naini Saini Airport (NGH) operated by Alliance Air under the UDAN Regional Connectivity Scheme, travelers can now reach Pithoragarh in just 45 minutes from Dehradun and 1 hour 20 minutes from New Delhi. This official handbook provides complete flight schedules, weekly operating days, departure and arrival timings, baggage rules, ticket booking methods, and seamless GoTrek 4x4 pickups for the sacred Adi Kailash and Om Parvat Yatra.",
+    "subtitle": "Complete official 2027 flight schedule, operating days, departure & arrival timings, Alliance Air ATR-42 operations, baggage rules, booking portals, and onward 4x4 pickups for Adi Kailash Yatris.",
+    "sections": [
+      {
+        "paragraphs": [
+          "Perched at an elevation of approximately 4,970 feet (1,515 meters) in the verdant Saur Valley of Pithoragarh, Naini Saini Airport (IATA: NGH / ICAO: VIDD) is Uttarakhand's premier border airstrip. The airport features a modern 1,600-meter asphalt runway framed by soaring Himalayan ridges, offering inbound passengers breathtaking panoramic vistas of Trishul, Nanda Devi, and Panchachuli peaks during final approach.",
+          "The launch of scheduled commercial flights under the Government of India's Regional Connectivity Scheme (UDAN - Ude Desh ka Aam Naagrik) has fundamentally revolutionized pilgrimage logistics. What used to be a two-day bone-jarring drive over mountain passes is now a swift, comfortable flight that lands pilgrims directly at the doorstep of the Vyas Valley pilgrimage corridor."
+        ],
+        "calloutBox": {
+          "type": "info",
+          "title": "Distance to Pithoragarh Town",
+          "content": "Naini Saini Airport is conveniently located just 5 kilometers (a 12 to 15-minute drive) from Pithoragarh city center, where comfortable heritage hotels, ATM facilities, and Kumaon Mandal Vikas Nigam (KMVN) tourist rest houses are situated."
+        },
+        "id": "overview-naini-saini",
+        "heading": "Naini Saini Airport (NGH): Gateway to the Sacred Inner Himalayas"
+      },
+      {
+        "paragraphs": [
+          "Alliance Air operates direct scheduled flights linking the national capital to Pithoragarh, departing from Indira Gandhi International Airport (Terminal 3 / T2 Alliance Air regional departures) directly to Naini Saini Airport.",
+          "This non-stop service operates 6 days a week, Monday through Saturday (with Sunday reserved for aircraft maintenance). Flights depart late morning, providing a stable mid-day weather window and allowing passengers from Mumbai, Bengaluru, Hyderabad, Chennai, and Kolkata to connect seamlessly onto the Pithoragarh flight after taking early morning feeder flights into Delhi."
+        ],
+        "bulletPoints": [
+          "Delhi to Pithoragarh (Outbound): Departure from New Delhi (DEL) at 11:00 AM → Arrival at Pithoragarh (NGH) at 12:20 PM",
+          "Total Flight Duration (Delhi to Pithoragarh): 1 hour 20 minutes (80 minutes) non-stop",
+          "Pithoragarh to Delhi (Inbound Return): Departure from Pithoragarh (NGH) at 02:10 PM → Arrival at New Delhi (DEL) at 03:20 PM",
+          "Total Flight Duration (Pithoragarh to Delhi): 1 hour 10 minutes (70 minutes)",
+          "Operating Frequency: 6 Days a Week (Monday, Tuesday, Wednesday, Thursday, Friday, Saturday; No flight on Sunday)"
+        ],
+        "calloutBox": {
+          "type": "tip",
+          "title": "Feeder Connection Advice for Delhi",
+          "content": "If flying into Delhi from southern or western India on the same day, ensure your inbound flight lands at IGI Airport by 08:30 AM to allow ample time for baggage collection and transit between terminals."
+        },
+        "id": "delhi-pithoragarh-flight",
+        "heading": "Delhi to Pithoragarh Flight: Timings, Duration & Operating Days"
+      },
+      {
+        "calloutBox": {
+          "title": "Char Dham to Adi Kailash Spiritual Circuit",
+          "type": "tip",
+          "content": "The 45-minute Dehradun-Pithoragarh hop makes it feasible to complete Kedarnath/Badrinath and transition directly to the Adi Kailash & Om Parvat circuit in under 2 hours without descending to the plains."
+        },
+        "id": "dehradun-pithoragarh-flight",
+        "paragraphs": [
+          "For travelers based in Uttarakhand, or pilgrims combining the Garhwal Char Dham (Kedarnath, Badrinath, Gangotri, Yamunotri) or Rishikesh spiritual retreats with the Adi Kailash Yatra, the direct aerial hop between Dehradun's Jolly Grant Airport (DED) and Pithoragarh (NGH) is a game changer.",
+          "The flight crosses the high ridges dividing Garhwal and Kumaon in just 45 minutes, replacing an arduous 16-hour mountain drive through Srinagar, Pauri, Karnaprayag, and Almora."
+        ],
+        "heading": "Dehradun to Pithoragarh Flight: Timings, Duration & Operating Days",
+        "bulletPoints": [
+          "Dehradun to Pithoragarh (Outbound): Departure from Jolly Grant Airport (DED) at 01:55 PM → Arrival at Pithoragarh (NGH) at 02:40 PM",
+          "Total Flight Duration (Dehradun to Pithoragarh): 45 minutes non-stop scenic mountain hop",
+          "Pithoragarh to Dehradun (Inbound Return): Departure from Pithoragarh (NGH) at 12:45 PM → Arrival at Dehradun (DED) at 01:30 PM",
+          "Total Flight Duration (Pithoragarh to Dehradun): 45 minutes",
+          "Operating Frequency: 5 Days a Week (Tuesday, Wednesday, Thursday, Friday, Saturday; No scheduled service Sunday & Monday)"
+        ]
+      },
+      {
+        "id": "weekly-routing-loops",
+        "bulletPoints": [
+          "Monday: Direct Delhi ↔ Pithoragarh shuttle only. Departs Delhi 11:00 AM, lands Pithoragarh 12:20 PM; returns from Pithoragarh 01:00 PM, lands Delhi 02:20 PM. (No Dehradun leg on Mondays).",
+          "Tuesday, Thursday, Friday & Saturday (Triangular Loop): Delhi (11:00 AM) → Pithoragarh (12:20 PM) | Pithoragarh (12:45 PM) → Dehradun (01:30 PM) | Dehradun (01:55 PM) → Pithoragarh (02:40 PM) | Pithoragarh (03:05 PM) → Delhi (04:20 PM).",
+          "Wednesday (Reverse Loop): Delhi (09:45 AM) → Dehradun (10:45 AM) | Dehradun (11:15 AM) → Pithoragarh (12:00 PM) | Pithoragarh (12:30 PM) → Dehradun (01:15 PM) | Dehradun (01:45 PM) → Delhi (02:45 PM).",
+          "Sunday: No commercial scheduled operations. Reserved for mandatory civil aviation maintenance and flight crew rest."
+        ],
+        "paragraphs": [
+          "To maximize aircraft utilization across high-altitude mountain airstrips, Alliance Air operates an optimized rotational loop linking Delhi, Pithoragarh, and Dehradun throughout the week.",
+          "Understanding this schedule helps yatris plan their exact dates for departure and return without confusion:"
+        ],
+        "heading": "Weekly Flight Routing Matrix: Days of Operation & Loops"
+      },
+      {
+        "paragraphs": [
+          "Alliance Air serves as the primary scheduled commercial carrier on the Pithoragarh route. Flights are operated using advanced ATR-42-600 turboprop aircraft, which accommodate 42 passengers in a comfortable 2x2 seating layout.",
+          "The ATR-42-600 is specifically designed for short-field takeoffs and landings (STOL) at high-elevation runways. Equipped with Pratt & Whitney Canada PW127M turboprops and glass-cockpit avionics, the aircraft offers superior climb performance and stability in Himalayan mountain air.",
+          "In addition, regional carrier FlyBig operates supplemental 18-seater DHC-6 Twin Otter aircraft on select peak-season slots between Dehradun, Pantnagar, and Pithoragarh under state aviation charters."
+        ],
+        "id": "airlines-and-fleet",
+        "heading": "Operating Airlines & Fleet: Alliance Air ATR-42-600 & FlyBig"
+      },
+      {
+        "calloutBox": {
+          "content": "GoTrek pilgrims can avail our dedicated flight concierge desk. When booking an Adi Kailash package, our operations managers can coordinate matching flight PNRs and schedule your 4x4 pickups seamlessly.",
+          "type": "tip",
+          "title": "GoTrek Flight Assistance Desk"
+        },
+        "heading": "Airfares, How to Book & Booking Window Guidelines",
+        "bulletPoints": [
+          "Official Airline Website: Book directly on www.allianceair.in for the lowest fare buckets and instant PNR generation.",
+          "Partner & OTA Portals: Available on Air India portal, IRCTC Air, MakeMyTrip, EaseMyTrip, Ixigo, and Goibibo.",
+          "Airport Search Code: Enter 'DEL' (Delhi) or 'DED' (Dehradun) as Origin, and 'NGH' or 'Pithoragarh' as Destination.",
+          "Advance Booking Window: With only 42 seats per flight, seats sell out quickly. We strongly recommend booking 20 to 30 days prior to your scheduled yatra batch date."
+        ],
+        "paragraphs": [
+          "Because flights to Naini Saini Airport are heavily supported under the central government's UDAN Regional Connectivity Scheme, one-way ticket prices are capped at remarkably affordable rates:",
+          "Delhi to Pithoragarh fares generally range from ₹3,000 to ₹4,800 per seat (one-way). Dehradun to Pithoragarh fares generally range from ₹2,500 to ₹3,800 per seat. During peak pilgrimage months (May–June and September–October), dynamic airline pricing may push last-minute seats to ₹5,500."
+        ],
+        "id": "airfares-booking-guide"
+      },
+      {
+        "bulletPoints": [
+          "Check-in Baggage: 15 kg per passenger included in standard tickets.",
+          "Hand / Cabin Baggage: 1 piece weighing maximum 5 kg (overhead storage bins on the ATR-42-600 are narrower than those on Airbus A320 or Boeing 737 aircraft; large trolley bags must be checked in).",
+          "Excess Baggage: Charged at standard regional airline rates (approx ₹450 to ₹500 per kg), subject strictly to payload clearance by the aircraft captain.",
+          "Mountain Gear Tip: Pack your heavy trekking boots, down jackets, and thermal wear in your check-in bag; carry vital prescription medications, Aadhar card, and camera batteries in your cabin handbag."
+        ],
+        "id": "baggage-allowances",
+        "heading": "Baggage Allowance, Cabin Space & Weight Restrictions",
+        "paragraphs": [
+          "Mountain aviation imposes strict aircraft weight limits (density altitude constraints). Travelers should strictly adhere to standard regional airline baggage regulations:"
+        ]
+      },
+      {
+        "calloutBox": {
+          "title": "GoTrek Monsoon Contingency Protocol",
+          "type": "warning",
+          "content": "During heavy monsoon downpours in July and August, mountain flights may occasionally experience weather holds. If a flight is cancelled due to weather, GoTrek's on-ground 4x4 transport backup immediately activates from Kathgodam/Tanakpur to ensure your yatra itinerary proceeds without disruption."
+        },
+        "paragraphs": [
+          "Naini Saini Airport operates under Visual Flight Rules (VFR), meaning aircraft require clear visibility of valley landmarks and surrounding ridgelines to execute approach and landing procedures.",
+          "Flights are deliberately scheduled between 11:00 AM and 2:30 PM, when morning mountain mist has burned off and before late-afternoon thermal turbulence develops. Spring (April–June) and Autumn (September–November) enjoy over 90% flight on-time reliability."
+        ],
+        "heading": "Mountain Weather, Visual Flight Rules (VFR) & Reliability",
+        "id": "weather-vfr-protocols"
+      },
+      {
+        "heading": "Airport Arrival & GoTrek 4x4 Private Transfers to Dharchula",
+        "id": "gotrek-airport-pickup",
+        "paragraphs": [
+          "Once your flight touches down at Naini Saini Airport, baggage delivery is remarkably rapid, typically taking under 10 minutes at the arrival terminal.",
+          "GoTrek provides seamless, private tarmac-to-hotel coordination for all registered pilgrims:"
+        ],
+        "bulletPoints": [
+          "Personalized Meet & Greet: Dedicated GoTrek local chauffeurs wait outside the arrival gate with your personalized name placard.",
+          "Direct 4x4 Bolero / Scorpio Transit: Comfortable mountain SUVs with experienced hill drivers take you directly on the scenic 92 km drive to Dharchula (approx 3 to 3.5 hours along the tranquil Kali river).",
+          "Acclimatization Advantage: Landing in Pithoragarh (4,970 ft) offers an ideal initial altitude step before resting in Dharchula (3,000 ft) and ascending to Gunji/Nabi (10,500 ft) the following morning.",
+          "Priority SDM Verification: Arriving by flight gives you ample afternoon time to visit the Dharchula SDM office with our liaison officer for expedited biometric Inner Line Permit issuance."
+        ]
+      },
+      {
+        "id": "alternative-road-rail",
+        "heading": "Alternative Road & Train Connections via Kathgodam/Tanakpur",
+        "bulletPoints": [
+          "Train + 4x4 Drive: Take the New Delhi – Kathgodam Shatabdi Express (Train #12040, departs NDLS 06:20 AM, arrives Kathgodam 11:40 AM) or the overnight Ranikhet Express (#15013). From Kathgodam railway station, GoTrek's private 4x4 drives 6.5 hours through Bhimtal, Bhowali, Almora, and Ghat to Pithoragarh.",
+          "Overnight Road Transit: Delhi to Pithoragarh via Moradabad, Rampur, Rudrapur, Khatima, Tanakpur, Champawat, Lohaghat, and Pithoragarh (approx 490 km, 12 to 14 hours drive).",
+          "Pantnagar Airport Alternative: IndiGo operates daily flights from Delhi to Pantnagar Airport (PGH). From Pantnagar, Pithoragarh is an 7-hour scenic hill drive."
+        ],
+        "paragraphs": [
+          "For travelers whose dates do not align with flight days or who prefer overland road journeys through Kumaon's oak and pine forests, dependable rail and road alternatives are readily available:"
+        ]
+      }
+    ],
+    "slug": "how-to-reach-pithoragarh-flights-delhi-dehradun-schedule-timings",
+    "isCustom": true
+  },
+  {
+    "views": 8120,
+    "tableOfContents": [
+      {
+        "title": "1. Overview: Overland Highway Gateways to Pithoragarh",
+        "id": "overland-overview"
+      },
+      {
+        "title": "2. Delhi to Pithoragarh by Bus: Anand Vihar ISBT Timings & Fares",
+        "id": "delhi-bus-guide"
+      },
+      {
+        "id": "haldwani-kathgodam-bus",
+        "title": "3. Haldwani & Kathgodam to Pithoragarh: Morning Buses & Stands"
+      },
+      {
+        "id": "tanakpur-dehradun-bus",
+        "title": "4. Tanakpur & Dehradun Bus Connections: Fares & Routes"
+      },
+      {
+        "title": "5. Shared Mountain Taxis: Haldwani, Kathgodam & Tanakpur Stands",
+        "id": "shared-taxi-system"
+      },
+      {
+        "id": "private-cab-rates",
+        "title": "6. Private Dedicated Taxi Hire: Rates Card & Vehicle Selection"
+      },
+      {
+        "title": "7. Highway Routes: Via Almora (NH 109) vs Via Tanakpur (NH 09)",
+        "id": "highway-routes-comparison"
+      },
+      {
+        "id": "mountain-travel-tips",
+        "title": "8. Essential Road Advice: Motion Sickness, Timing & Hill Safety"
+      }
+    ],
+    "author": {
+      "name": "Akshay Kumar",
+      "avatar": "/images/team/team4.webp",
+      "role": "Senior Operations Director & Overland Logistics Coordinator"
+    },
+    "readTime": "11 min read",
+    "relatedTourSlug": "adi-kailash",
+    "summary": "Reaching Pithoragarh by road is the traditional, reliable, and deeply scenic lifeline of the Kumaon Himalayas. Whether you are traveling on a budget via direct UTC Roadways buses from Delhi's Anand Vihar ISBT, catching high-frequency shared Bolero/Maxx jeeps from Haldwani KMOU Stand, or hiring a dedicated private 4x4 cab from Kathgodam railway station, this official handbook covers every road route, departure timing, fare, taxi stand location, and mountain travel advisory for Adi Kailash & Om Parvat yatris.",
+    "coverImage": "/blogs/pithoragarh-taxi-service.webp",
+    "faqs": [
+      {
+        "answer": "The most economical way is the direct UTC (Uttarakhand Transport Corporation) Roadways bus departing Anand Vihar ISBT Platform 21/22 every evening. Ordinary bus tickets cost approximately ₹680 per seat for the 495 km journey.",
+        "question": "What is the cheapest way to reach Pithoragarh from Delhi?"
+      },
+      {
+        "answer": "Yes. Shared jeeps (Mahindra Bolero/Maxx) wait right outside Kathgodam railway station and at Haldwani KMOU Stand (5 km away). Cabs start departing from 05:00 AM onwards and leave as soon as 8 to 9 passengers board. The fare is ₹600 to ₹750 per seat.",
+        "question": "Can I get a shared taxi from Kathgodam railway station immediately upon arriving?"
+      },
+      {
+        "answer": "A private taxi takes approximately 6.5 to 7.5 hours via the Almora route (210 km) or via the Tanakpur-Lohaghat route (240 km), including comfortable meal halts at Bhowali/Almora or Champawat.",
+        "question": "How long does a private taxi take from Kathgodam to Pithoragarh?"
+      },
+      {
+        "answer": "The NH-09 all-weather highway via Tanakpur, Champawat, and Lohaghat has significantly wider double lanes, engineered banking, and gentler curves than the traditional Almora ghat road, making it the best route for passengers prone to motion sickness.",
+        "question": "Which highway route to Pithoragarh has the least mountain curves?"
+      }
+    ],
+    "category": "Pilgrimage Guide",
+    "publishedAt": "September 2027 Edition",
+    "subtitle": "Complete operational guide covering direct UTC Roadways & Volvo buses from Delhi Anand Vihar ISBT, Haldwani & Tanakpur shared jeep stands, private cab hire rates, NH-09 mountain routes, and pro tips for pilgrims.",
+    "sections": [
+      {
+        "calloutBox": {
+          "content": "The two primary railheads connecting Indian Railways to Pithoragarh are Kathgodam (210 km away via Almora) and Tanakpur (150 km away via Champawat). Delhi is 495 km away by road.",
+          "type": "info",
+          "title": "Gateway Railheads & Transit Hubs"
+        },
+        "heading": "Overland Gateway to Pithoragarh & the Kailash Pilgrimage Corridor",
+        "paragraphs": [
+          "Nestled at 4,970 feet (1,515 meters) in the Saur Valley of eastern Uttarakhand, Pithoragarh serves as the administrative, cultural, and transit headquarters for expeditions venturing toward Dharchula, Vyas Valley, Adi Kailash, and Om Parvat.",
+          "While commercial flights now link Delhi and Dehradun to Naini Saini Airport (NGH), over 80% of pilgrims and backpackers still journey by road. Road travel offers gradual acclimatization as you ascend from the Terai plains (Kathgodam/Haldwani at 1,700 ft) into the mid-Himalayan valleys, passing through holy towns like Kainchi Dham, Almora, Champawat, and Lohaghat."
+        ],
+        "id": "overland-overview"
+      },
+      {
+        "paragraphs": [
+          "Direct public buses operated by Uttarakhand Transport Corporation (UTC Roadways) run daily from Delhi's Swami Vivekananda Inter-State Bus Terminus (Anand Vihar ISBT). Buses depart from Platform 21 and 22 at the UTC Uttarakhand counter.",
+          "The journey covers approximately 495 km and takes between 14 and 16 hours depending on plains traffic along NH-09 and weather in the ghats. Buses depart Delhi in the late afternoon and evening, crossing Uttar Pradesh (Moradabad, Rampur, Rudrapur) overnight and ascending through Haldwani, Bhowali, Almora, Danya, and Ghat in the early morning."
+        ],
+        "heading": "Delhi to Pithoragarh by Bus: Anand Vihar ISBT Timings, Fares & Online Booking",
+        "calloutBox": {
+          "type": "tip",
+          "title": "How to Book UTC Buses Online",
+          "content": "Seats can be reserved up to 30 days in advance on the official UTC portal (utc.uk.gov.in) or through the UTC mobile app. Always select seats in rows 3 through 6 for the smoothest ride on mountain curves."
+        },
+        "id": "delhi-bus-guide",
+        "bulletPoints": [
+          "04:30 PM: UTC Hill Ordinary 2x2 Express — Fare: ₹680 (Arrival ~07:30 AM in Pithoragarh)",
+          "06:15 PM: UTC Semi-Deluxe 2x2 Pushback — Fare: ₹850 (Arrival ~09:30 AM in Pithoragarh)",
+          "07:30 PM: UTC Ordinary 2x2 — Fare: ₹680 (Arrival ~11:00 AM in Pithoragarh)",
+          "08:45 PM: UTC Janrath AC / Low-Floor — Fare: ₹1,150 (Arrival ~12:30 PM in Pithoragarh)"
+        ]
+      },
+      {
+        "paragraphs": [
+          "Haldwani is the busiest transit hub of the Kumaon division. If you arrive in Kathgodam by train (such as the overnight Ranikhet Express 15013, Kathgodam Shatabdi 12040, or Uttaranchal Sampark Kranti 15035), you can easily catch a direct hill bus right from Kathgodam or from Haldwani ISBT (just 5 km away).",
+          "Buses leave at 45 to 60-minute intervals from 04:30 AM until 12:00 Noon. Both UTC Roadways and KMOU (Kumaon Motor Owners Union) run reliable services."
+        ],
+        "heading": "Haldwani & Kathgodam to Pithoragarh by Bus: Schedules, Stands & Fares",
+        "bulletPoints": [
+          "Distance & Time: 210 km via Almora | Travel duration: 7.5 to 8.5 hours",
+          "Bus Fares: ₹360 to ₹440 per passenger",
+          "Boarding Stands: Haldwani Roadways Bus Station (Nainital Road) and KMOU Bus Stand (Tikonia)",
+          "En Route Halts: Kathgodam → Bhimtal → Bhowali (Kainchi Dham diversion) → Almora (Dharanaula) → Danya → Ghat (riverside tea halt) → Pithoragarh (Siltham Stand)"
+        ],
+        "id": "haldwani-kathgodam-bus"
+      },
+      {
+        "id": "tanakpur-dehradun-bus",
+        "heading": "Tanakpur & Dehradun Bus Connections: Fares & Schedules",
+        "paragraphs": [
+          "From Tanakpur Railhead: Tanakpur is located on the southern edge of Uttarakhand along the Sharda River and is connected by trains to Bareilly, Lucknow, and Delhi. From Tanakpur bus station, UTC buses leave hourly from 05:00 AM to 02:00 PM along NH-09 via Sukhidhang, Champawat, Lohaghat, and Ghat. The distance is only 150 km, taking 5 to 6 hours. Fare is ₹270 to ₹340 per seat.",
+          "From Dehradun ISBT: For travelers originating from Garhwal or western Uttarakhand, direct UTC Roadways buses depart Dehradun ISBT daily at 04:00 PM and 06:30 PM, traveling via Haridwar, Najibabad, Kashipur, Haldwani, and Almora (520 km, 15 to 17 hours, fare ₹780 to ₹920)."
+        ]
+      },
+      {
+        "paragraphs": [
+          "Shared jeeps—primarily Mahindra Bolero, Maxx, and Tata Sumo—are the true lifeblood of travel across the Kumaon hills. They depart as soon as all 8 to 9 seats are filled, starting as early as 05:00 AM and running until 02:00 PM.",
+          "Because shared jeeps are smaller and more agile than 40-seater roadways buses, they navigate mountain hairpin bends much faster, saving 1.5 to 2 hours on the total transit time."
+        ],
+        "calloutBox": {
+          "type": "tip",
+          "title": "Shared Taxi Seating Tip",
+          "content": "In mountain jeeps, the front cabin seat next to the driver offers panoramic views and the least motion sway. You can often reserve the front seat for an extra ₹50 to ₹100, which is highly recommended for elderly pilgrims."
+        },
+        "bulletPoints": [
+          "Haldwani / Kathgodam to Pithoragarh: Departs from KMOU Stand (Tikonia) and Kathgodam Railway Exit. Transit: 6.5 to 7.5 hours. Fare: ₹600 to ₹750 per seat.",
+          "Tanakpur to Pithoragarh: Departs from Tanakpur Station Taxi Union stand. Transit: 4.5 to 5.5 hours via NH-09 all-weather highway. Fare: ₹450 to ₹550 per seat.",
+          "Almora to Pithoragarh: Departs from Dharanaula Taxi Stand. Transit: 3.5 to 4.5 hours (~120 km). Fare: ₹350 to ₹450 per seat."
+        ],
+        "heading": "Shared Mountain Taxis: High-Frequency Jeeps from Haldwani, Kathgodam & Tanakpur",
+        "id": "shared-taxi-system"
+      },
+      {
+        "bulletPoints": [
+          "Maruti Dzire / Etios (Sedan, up to 4 pax): Kathgodam: ₹5,500 – ₹6,500 | Tanakpur: ₹4,200 – ₹5,000 | Delhi NCR: ₹14,000 – ₹17,000",
+          "Mahindra Bolero / Scorpio (Rugged SUV, up to 6 pax): Kathgodam: ₹6,500 – ₹7,800 | Tanakpur: ₹5,000 – ₹6,200 | Delhi NCR: ₹16,000 – ₹19,000 (★ Most recommended for yatra rucksacks and ground clearance)",
+          "Toyota Innova Crysta (Premium SUV, up to 6 pax): Kathgodam: ₹8,500 – ₹11,000 | Tanakpur: ₹7,500 – ₹9,000 | Delhi NCR: ₹19,000 – ₹24,000",
+          "Force Urbania / Tempo Traveller (12 to 17 pax): Kathgodam: ₹16,000 – ₹20,000 | Delhi NCR: ₹32,000 – ₹38,000"
+        ],
+        "paragraphs": [
+          "Hiring a dedicated private cab is the ultimate overland option for families, elderly yatris, and photography enthusiasts. Private cabs offer total freedom to pause for photography, halt at Kainchi Dham for darshan, stop for fresh hot parathas at roadside dhabas, and adjust driving speeds for comfort.",
+          "GoTrek Travels provides pre-vetted private cabs with certified mountain drivers who have clean driving records and extensive experience navigating high-altitude ghat roads."
+        ],
+        "id": "private-cab-rates",
+        "heading": "Private Dedicated Taxi Hire: Rates Card, Vehicle Options & Luggage Capacity"
+      },
+      {
+        "heading": "Comparing Mountain Highway Routes: Via Almora (NH 109) vs Via Tanakpur (NH 09)",
+        "paragraphs": [
+          "When driving from the plains to Pithoragarh, there are two primary highway corridors:",
+          "1. Route Option A (Classic Kumaon Route via Almora): Kathgodam → Bhimtal → Bhowali (Kainchi Dham) → Almora → Danya → Ghat → Pithoragarh (210 km, 7 to 8 hours). This route winds through fragrant pine forests, offers dramatic valley overlooks, and allows you to visit Neem Karoli Baba Ashram at Kainchi Dham. However, the road features many narrow hairpin bends.",
+          "2. Route Option B (All-Weather Highway via Tanakpur NH-09): Tanakpur → Sukhidhang → Champawat → Lohaghat → Ghat → Pithoragarh (150 km from Tanakpur, 240 km from Haldwani). This corridor has been widened into a modern double-lane all-weather highway under the Chardham/Border Connectivity project. The curves are gentler, motion sickness is substantially less, and road clearance during monsoon showers is much faster."
+        ],
+        "id": "highway-routes-comparison"
+      },
+      {
+        "calloutBox": {
+          "title": "GoTrek Transit Coordination",
+          "type": "tip",
+          "content": "Whether you arrive by flight at Naini Saini Airport, by train at Kathgodam, or by roadways bus in Pithoragarh, GoTrek's on-ground logistics team coordinates smooth vehicle transfers, Inner Line Permits, and onward 4x4 journeys to Dharchula and Vyas Valley."
+        },
+        "heading": "Essential Mountain Road Advice: Motion Sickness, Timings & Hill Safety",
+        "paragraphs": [
+          "Navigating the winding roads of the Himalayas requires simple precautions to ensure a pleasant and safe journey:"
+        ],
+        "id": "mountain-travel-tips",
+        "bulletPoints": [
+          "Combat Motion Sickness: If you are susceptible to motion sickness, take medication (Avomine / Ondansetron / Stugeron) 30 to 45 minutes prior to ascending the hills. Keep car windows slightly cracked for fresh mountain air and keep lemon or ginger candies handy.",
+          "Start Before Sunrise: Mountain driving after 07:00 PM is strongly discouraged due to hill mist, hairpin turns, and reduced visibility. Always start by 05:00 AM to 06:30 AM from Kathgodam or Tanakpur.",
+          "Cash & Connectivity: While UPI works in main towns (Almora, Champawat, Pithoragarh), mobile network signals can drop in deep gorges between Danya and Ghat. Keep ₹2,000 to ₹3,000 in physical cash for meals, shared taxis, and tea stops.",
+          "Luggage Advice: Pack your gear in soft duffel bags or trekking rucksacks. Rigid plastic trolley bags are difficult to stack securely on rooftop carriers and trunk spaces."
+        ]
+      }
+    ],
+    "title": "How to Reach Pithoragarh by Bus & Taxi: Timings, Fares, Stands, Highway Routes & Travel Guide",
+    "slug": "how-to-reach-pithoragarh-by-bus-and-taxi-delhi-kathgodam-route",
+    "isCustom": true
+  },
+  {
+    "publishedAt": "August 2027 Edition",
+    "tableOfContents": [
+      {
+        "title": "1. Overview & Spiritual Significance",
+        "id": "overview"
+      },
+      {
+        "id": "inner-line-permit",
+        "title": "2. Inner Line Permit (ILP) & SDM Verification"
+      },
+      {
+        "id": "best-time",
+        "title": "3. Best Months & Weather Window"
+      },
+      {
+        "id": "route-map",
+        "title": "4. Day-by-Day Route & Altitude Profile"
+      },
+      {
+        "title": "5. High Altitude Physical Fitness & AMS",
+        "id": "fitness-prep"
+      },
+      {
+        "title": "6. Packing & Clothing Checklist",
+        "id": "packing-checklist"
+      }
+    ],
+    "category": "Pilgrimage Guide",
+    "author": {
+      "avatar": "/images/team/team3.webp",
+      "name": "Vinay Gururani",
+      "role": "Co-Founder & SDM Permit Director"
+    },
+    "views": 4820,
+    "relatedTourSlug": "adi-kailash",
+    "readTime": "8 min read",
+    "coverImage": "/images/destinations/adi-kailash5.webp",
+    "faqs": [
+      {
+        "question": "Is walking required on the Adi Kailash Yatra?",
+        "answer": "Walking is minimal! Vehicles drive right up to Jolingkong (1.5 km gentle walk to Parvati Sarovar) and Nabhidhang (Om Parvat view point is accessible right from the parking lot)."
+      },
+      {
+        "answer": "BSNL service is functional in Dharchula, Gunji, and Nabi village. Jio has limited coverage near Gunji. We carry satellite communication for emergency coordination.",
+        "question": "Is mobile network available in Vyas Valley?"
+      }
+    ],
+    "subtitle": "Everything you need to know about visiting Chhota Kailash, Parvati Sarovar, and witnessing the natural snow ॐ symbol in Pithoragarh, Uttarakhand.",
+    "sections": [
+      {
+        "calloutBox": {
+          "content": "Following Prime Minister Narendra Modi's historic worship at Parvati Sarovar and Gunji in October 2023, the infrastructure and road connectivity to Vyas Valley have been transformed into a world-class pilgrimage corridor.",
+          "type": "info",
+          "title": "Prime Minister's Historic Visit"
+        },
+        "id": "overview",
+        "heading": "Overview & Spiritual Significance of Chhota Kailash",
+        "paragraphs": [
+          "Adi Kailash (19,500 ft), also revered as Chhota Kailash or Baba Kailash, is the sacred abode of Lord Shiva in the Vyas Valley of Pithoragarh district, Kumaon Himalayas. It is revered as the replica of Mt. Kailash in Tibet and holds profound spiritual energy as one of the Panch Kailash peak circuits.",
+          "Opposite Adi Kailash lies the pristine Parvati Sarovar (14,950 ft) and Gauri Kund, where pilgrims perform holy snan (dip) and Shiva Aradhana. Nearby in Nabhidhang, facing the Indo-Tibet border, stands Om Parvat — a natural geological wonder where snow deposits naturally carve the sacred Sanskrit letter 'ॐ' on the black mountain face."
+        ]
+      },
+      {
+        "paragraphs": [
+          "Because Vyas Valley runs along the strategic high-altitude international border corridor of Tibet (China), an official Inner Line Permit (ILP) issued by the Sub-Divisional Magistrate (SDM) of Dharchula is legally mandatory for every Indian citizen.",
+          "Obtaining the permit independently involves police character verification, ITBP clearance, and medical fitness certificates. When you book with GoTrek Expeditions, our dedicated SDM Liaison Officers handle 100% of this bureaucracy in advance."
+        ],
+        "id": "inner-line-permit",
+        "bulletPoints": [
+          "Aadhar Card / Voter ID (Original + 3 Self-Attested Photocopies)",
+          "4 Passport-size photographs with light background",
+          "Police Verification Certificate (PCC) from your home state / local police station",
+          "Medical Fitness Certificate from a registered MBBS doctor declaring capability for 14,000+ ft altitude"
+        ],
+        "heading": "Inner Line Permit (ILP) & SDM Verification at Dharchula"
+      },
+      {
+        "heading": "Best Months & Weather Window for 2027",
+        "id": "best-time",
+        "paragraphs": [
+          "The Yatra season officially opens in May and continues through November before heavy winter snowfall closes the high passes.",
+          "May to June (Summer Window): Ideal for clear blue skies, crisp mountain air, and massive snow deposits on Om Parvat.",
+          "September to November (Autumn Window): Breathtaking post-monsoon clarity, sparkling golden meadows in Nabi village, and razor-sharp views of the Himalayan peaks."
+        ],
+        "calloutBox": {
+          "type": "warning",
+          "title": "Monsoon Note (July - August)",
+          "content": "Heavy rains in Lower Kumaon (Kathgodam to Pithoragarh) can cause temporary landslide blockages along the BRO mountain roads. We recommend traveling with experienced 4x4 drivers and keeping 1 buffer day."
+        }
+      },
+      {
+        "id": "route-map",
+        "paragraphs": [
+          "The 8-Day expedition starts from Kathgodam / Pantnagar Airport and ascends gradually into the high mountains:",
+          "Day 1: Kathgodam to Pithoragarh / Dharchula (Altitude: 3,000 ft) — Scenic drive past Neem Karoli Baba Kainchi Dham & Jageshwar Dham.",
+          "Day 2: Dharchula to Nabi / Gunji Village (Altitude: 10,500 ft) — Drive along Kali river border through Chialekh pass flower meadows.",
+          "Day 3: Nabi to Jolingkong & Parvati Sarovar (Altitude: 14,950 ft) — Holy Darshan of Adi Kailash and Parvati Sarovar, return to Nabi homestay.",
+          "Day 4: Nabi to Nabhidhang & Om Parvat (Altitude: 14,000 ft) — Witness the miraculous Snow ॐ and Kali Mandir at Kalapani.",
+          "Day 5: Nabi to Kutti Village & Kumaoni Cultural Exchange — Explore 3,000-year-old Pandava fort ruins.",
+          "Day 6-8: Return journey via Dharchula and Bhimtal to Kathgodam railway drop."
+        ],
+        "heading": "Day-by-Day Route & Altitude Profile",
+        "calloutBox": {
+          "type": "tip",
+          "content": "Save 14 hours of road travel! Alliance Air operates direct flights from Delhi (80 mins, 11:00 AM) and Dehradun (45 mins, 01:55 PM) to Naini Saini Airport, Pithoragarh. GoTrek provides direct 4x4 airport tarmac pickups to Dharchula basecamp.",
+          "title": "Direct Flights to Pithoragarh Available"
+        }
+      },
+      {
+        "id": "fitness-prep",
+        "heading": "High Altitude Physical Fitness & AMS Prevention",
+        "paragraphs": [
+          "Although 90% of the journey is covered in custom 4x4 Mahindra Bolero/Scorpio vehicles, spending time at 14,000+ feet requires proper acclimatization.",
+          "Start brisk walking or light cardio 3 weeks before the trip. Drink 3-4 liters of water daily while at high altitude, avoid smoking and alcohol, and carry personal Diamox (Acetazolamide) after consulting your physician."
+        ]
+      }
+    ],
+    "title": "Complete Guide to Adi Kailash & Om Parvat Yatra 2027: Inner Line Permits, Route & Preparation",
+    "summary": "The Adi Kailash and Om Parvat Yatra in Pithoragarh, Uttarakhand is one of India's most sacred and thrilling Himalayan pilgrimages. With the opening of the motorable road via Lipulekh Pass, pilgrims can now reach Jolingkong and Nabhidhang in comfortable 4x4 SUVs without grueling multi-day foot treks.",
+    "slug": "adi-kailash-om-parvat-guide-2027",
+    "isCustom": true
+  },
+  {
+    "slug": "char-dham-yatra-ultimate-guide-2027",
+    "coverImage": "/images/destinations/char-dham.webp",
+    "tableOfContents": [
+      {
+        "title": "1. The Sacred Order of Four Shrines",
+        "id": "significance"
+      },
+      {
+        "title": "2. Mandatory Uttarakhand Yatra e-Pass Registration",
+        "id": "registration"
+      },
+      {
+        "id": "shrine-by-shrine",
+        "title": "3. Shrine-by-Shrine Highlights & Treks"
+      },
+      {
+        "id": "helicopter-booking",
+        "title": "4. Kedarnath Helicopter Booking Guide"
+      },
+      {
+        "id": "accommodation-food",
+        "title": "5. Hotels, Food & Senior Citizen Comfort"
+      }
+    ],
+    "title": "Garhwal Char Dham Yatra 2027: The Ultimate Pilgrimage Handbook",
+    "sections": [
+      {
+        "paragraphs": [
+          "According to Vedic scriptures, the Char Dham Yatra must strictly follow a clockwise order from West to East: Yamunotri → Gangotri → Kedarnath → Badrinath.",
+          "Yamunotri honors Goddess Yamuna (representing physical purity). Gangotri honors Goddess Ganga (representing mental cleansing). Kedarnath honors Lord Shiva as Jyotirlinga (liberation of soul). Badrinath honors Lord Vishnu (attainment of Moksha)."
+        ],
+        "heading": "The Sacred Order of Four Shrines (Clockwise Yatra)",
+        "id": "significance",
+        "calloutBox": {
+          "type": "tip",
+          "content": "Always respect the chronological sequence. Skipping or reversing order can disrupt acclimatization as Kedarnath is the highest point at 11,755 ft.",
+          "title": "Pro Tip for Pilgrims"
+        }
+      },
+      {
+        "id": "registration",
+        "bulletPoints": [
+          "Aadhar Card scan for all yatris",
+          "Active mobile phone number for OTP verification",
+          "Emergency contact information & blood group record"
+        ],
+        "paragraphs": [
+          "The Government of Uttarakhand mandates a QR-coded Yatra e-Pass for every traveler entering Sonprayag, Yamunotri, and Gangotri checkpoints.",
+          "Registration is managed through the official tourist registration portal. When traveling with GoTrek, our operations team handles your biometric registration, QR pass generation, and temple token issuance."
+        ],
+        "heading": "Mandatory Uttarakhand Char Dham Yatra e-Pass Registration"
+      },
+      {
+        "heading": "Shrine-by-Shrine Highlights & Trek Distance",
+        "id": "shrine-by-shrine",
+        "paragraphs": [
+          "1. Yamunotri Dham: 6 km trek from Janki Chatti. Take a dip at Surya Kund and cook rice in the boiling natural spring as sacred Prasadam.",
+          "2. Gangotri Dham: Motorable road right up to the temple gate. Perform Ganga Snan at Bhagirathi river and visit Harsil Valley apple orchards.",
+          "3. Kedarnath Dham: 16 km steep trek from Gaurikund along the Mandakini river. Pony, Palki, and Helicopter options available.",
+          "4. Badrinath Dham: Motorable road up to temple. Dip in natural hot Tapt Kund and visit Mana Village (India's first border village), Vyas Gufa, and Saraswati River Origin."
+        ]
+      },
+      {
+        "heading": "Kedarnath Helicopter Booking Guide 2027",
+        "id": "helicopter-booking",
+        "paragraphs": [
+          "For senior citizens or time-constrained travelers, official helicopter shuttles operate from Phata, Sirsi, and Guptkashi helipads to Kedarnath helipad (only 500m from temple).",
+          "Helicopter tickets are exclusively issued via the official IRCTC HeliYatra portal. Beware of fake third-party websites or fraudulent agents."
+        ]
+      },
+      {
+        "heading": "Hotels, Pure Veg Food & Senior Citizen Comfort",
+        "paragraphs": [
+          "All our tour packages include private attached-bathroom deluxe hotels, 100% pure vegetarian (No Onion No Garlic upon request) sattvic meals, and medical oxygen cylinders in every vehicle."
+        ],
+        "id": "accommodation-food"
+      }
+    ],
+    "subtitle": "Complete itinerary, e-Pass registration, Kedarnath helicopter tips, and temple timings for Yamunotri, Gangotri, Kedarnath & Badrinath.",
+    "relatedTourSlug": "chardham-yatra",
+    "readTime": "10 min read",
+    "faqs": [
+      {
+        "question": "How many days are required for complete Char Dham Yatra?",
+        "answer": "A complete 4-Dham Yatra requires 10 to 12 days starting from Haridwar or Rishikesh to allow safe driving and acclimatization."
+      },
+      {
+        "answer": "Yes, provided they get a medical checkup and clearance from an MBBS doctor. Portable oxygen canisters and helicopter transfers make the journey comfortable.",
+        "question": "Can senior citizens with high blood pressure visit Kedarnath?"
+      }
+    ],
+    "publishedAt": "August 2027 Edition",
+    "summary": "The Char Dham Yatra of Uttarakhand takes pilgrims across four holy Himalayan shrines: Yamunotri, Gangotri, Kedarnath, and Badrinath. This comprehensive 2027 guide covers route planning, government registration, helicopter booking, and health tips.",
+    "category": "Pilgrimage Guide",
+    "author": {
+      "name": "Pawan Singh Bisht",
+      "role": "Co-Founder & Fleet Operations Manager",
+      "avatar": "/images/team/team1.webp"
+    },
+    "views": 6190,
+    "isCustom": true
+  },
+  {
+    "tableOfContents": [
+      {
+        "title": "1. Flower Blooming Schedule Month-by-Month",
+        "id": "blooming-calendar"
+      },
+      {
+        "title": "2. Rare Flora: Brahma Kamal & Blue Poppy",
+        "id": "flora-fauna"
+      },
+      {
+        "title": "3. Sacred History of Sri Hemkund Sahib",
+        "id": "hemkund-sahib"
+      },
+      {
+        "title": "4. Ghangaria Basecamp & Trek Route",
+        "id": "ghangaria-basecamp"
+      },
+      {
+        "title": "5. Monsoon Trekking Gear & Rain Protection",
+        "id": "gear-guide"
+      }
+    ],
+    "slug": "valley-of-flowers-hemkund-sahib-blooms",
+    "sections": [
+      {
+        "heading": "Flower Blooming Schedule Month-by-Month",
+        "id": "blooming-calendar",
+        "calloutBox": {
+          "type": "info",
+          "content": "No overnight stay is permitted inside the Valley of Flowers. Visitors must enter after 7:00 AM and exit back to Ghangaria basecamp before 5:00 PM.",
+          "title": "UNESCO Park Regulations"
+        },
+        "paragraphs": [
+          "The Valley of Flowers is open to visitors strictly from June 1st to October 31st each year. The flower species shift continuously as monsoon progresses:",
+          "Late June to Mid-July: Early greening, orchids, anemones, and melting snow waterfalls.",
+          "Mid-July to Mid-August (PEAK BLOOM): Over 500 species blooming simultaneously! Blue Poppy, Cobra Lily, Meadow Geranium, and Brahma Kamal carpet the valley floor.",
+          "Late August to September: Golden autumn tones, seed pod formations, crisp clear mountain views, and ideal photography light."
+        ]
+      },
+      {
+        "paragraphs": [
+          "The Brahma Kamal (Saussurea obvallata) is the official state flower of Uttarakhand, revered as the divine flower offered to Lord Shiva at Kedarnath and Badrinath. It grows in high rocky ridges above 12,000 ft.",
+          "The Himalayan Blue Poppy (Meconopsis aculeata), known as the Queen of Himalayan Flowers, blooms delicately along streams near the Pushpawati River bridge."
+        ],
+        "heading": "Rare Flora: Brahma Kamal & Blue Poppy",
+        "id": "flora-fauna"
+      },
+      {
+        "heading": "Sacred History of Sri Hemkund Sahib (14,400 ft)",
+        "id": "hemkund-sahib",
+        "paragraphs": [
+          "Sri Hemkund Sahib is the world's highest Gurudwara, situated beside a crystal-clear glacial lake surrounded by seven snow-covered mountain peaks (Sapt Sring).",
+          "According to Dasam Granth, Guru Gobind Singh Ji meditated at this exact location in his previous incarnation as Dust Daman. Pilgrims take a holy dip in the freezing Sarovar and partake in hot Langar served inside the Gurudwara."
+        ]
+      },
+      {
+        "paragraphs": [
+          "The basecamp for both Valley of Flowers and Hemkund Sahib is Ghangaria (10,200 ft).",
+          "Trek starts from Govindghat / Pulna village (10 km gradual trek along Lakshman Ganga river). Helicopter services also operate from Govindghat to Ghangaria helipad when weather permits."
+        ],
+        "heading": "Ghangaria Basecamp & Trek Route",
+        "id": "ghangaria-basecamp"
+      },
+      {
+        "id": "gear-guide",
+        "paragraphs": [
+          "Because the trek coincides with the Himalayan monsoon, high-quality rain protection is non-negotiable.",
+          "Carry a heavy-duty waterproof raincoat/poncho, waterproof trekking boots with good lug grip, dry-fit synthetic trousers, and waterproof backpack covers."
+        ],
+        "heading": "Monsoon Trekking Gear & Rain Protection"
+      }
+    ],
+    "subtitle": "Explore the UNESCO World Heritage alpine garden with over 500 wildflower species and the sacred high-altitude Sri Hemkund Sahib Gurudwara.",
+    "publishedAt": "August 2027 Edition",
+    "views": 3940,
+    "relatedTourSlug": "valley-of-flowers",
+    "title": "Valley of Flowers & Hemkund Sahib Trek: Blooming Calendar & Guide",
+    "summary": "Discovered by British mountaineer Frank Smythe in 1931, the Valley of Flowers in Chamoli, Uttarakhand transforms into a vibrant carpet of alpine blooms every monsoon. Combined with a pilgrimage to Sri Hemkund Sahib at 14,400 ft, it is a bucket-list Himalayan trek.",
+    "readTime": "7 min read",
+    "coverImage": "/images/destinations/valley-of-flowers-1.webp",
+    "faqs": [
+      {
+        "answer": "Yes! The trek has clear stone-paved pathways with gradual incline. Ponies and porters are available for children and seniors.",
+        "question": "Is Valley of Flowers trek suitable for beginners?"
+      },
+      {
+        "question": "Can I visit Badrinath Dham on the same trip?",
+        "answer": "Absolutely! Badrinath is just 25 km from Govindghat. Our 6-Day package includes Badrinath Darshan and Mana Village."
+      }
+    ],
+    "category": "Trekking Guide",
+    "author": {
+      "avatar": "/images/team/team2.webp",
+      "name": "Deepak Singh Mehta",
+      "role": "Lead High-Altitude Mountain Guide"
+    },
+    "isCustom": true
+  },
+  {
+    "publishedAt": "August 2027 Edition",
+    "faqs": [
+      {
+        "answer": "May to June and September to November are the best months. Homestays operate during these seasons.",
+        "question": "When is Darma Valley open for tourists?"
+      },
+      {
+        "answer": "Yes! Our partner homestays in Dugtu feature clean wooden bedrooms, warm fleece blankets, attached toilets, and delicious home-cooked meals.",
+        "question": "Are homestays clean and comfortable in Dugtu?"
+      }
+    ],
+    "author": {
+      "avatar": "/images/team/team2.webp",
+      "name": "Deepak Singh Mehta",
+      "role": "4x4 Overland & Tribal Heritage Specialist"
+    },
+    "title": "Exploring Darma Valley & Panchachuli Base Camp: Offbeat Kumaon",
+    "subtitle": "Immerse in Bhotia tribal heritage, glacier streams, and panoramic views of the Five Peaks of Panchachuli in Pithoragarh.",
+    "sections": [
+      {
+        "heading": "The Hidden Jewel of Eastern Kumaon",
+        "id": "darma-intro",
+        "paragraphs": [
+          "Carved by the raging Dhauliganga River, Darma Valley is flanked by the majestic high-altitude Kumaon Himalayan ranges and the five soaring peaks of Panchachuli. Untouched by commercial tourism, it offers raw wilderness, wooden carved traditional houses, and dense pine forests."
+        ]
+      },
+      {
+        "calloutBox": {
+          "type": "tip",
+          "title": "Photography Goldmine",
+          "content": "Sunrise over Panchachuli from Dugtu village is one of the most stunning sights in the Indian Himalayas, as the first golden rays illuminate the five peaks against blue skies."
+        },
+        "heading": "The Mythology of Panchachuli Peaks (5 Chulas of the Pandavas)",
+        "paragraphs": [
+          "Panchachuli refers to the group of five snow-capped Himalayan peaks ranging from 19,800 ft to 22,600 ft. Legend holds that after the Mahabharata war, the Pandavas cooked their last meal on these five giant peaks ('Panch Chula' or five stoves) before ascending to heaven."
+        ],
+        "id": "panchachuli-legend"
+      },
+      {
+        "heading": "Bhotia Tribal Homestays & Organic Kumaoni Cuisine",
+        "id": "bhotia-culture",
+        "paragraphs": [
+          "The native Rung / Bhotia community of Darma Valley welcomes travelers into their traditional stone and timber homes. Taste authentic local delicacies like Mandua roti, Kumaoni Raita, Madira kheer, and organic Himalayan herbs."
+        ]
+      },
+      {
+        "id": "dugtu-basecamp",
+        "heading": "Dugtu Village & Panchachuli Glacier Viewpoint",
+        "paragraphs": [
+          "Dugtu and Dantu villages serve as the base for exploring the Meola glacier and Panchachuli base camp.",
+          "A short 3 km scenic walk from Dugtu brings you right to the snout of the Panchachuli glacier with towering ice walls."
+        ]
+      },
+      {
+        "id": "how-to-reach",
+        "paragraphs": [
+          "Darma Valley is reached via Dharchula (Pithoragarh). 4x4 Bolero vehicles navigate the adventurous mountain trail along the Dhauliganga river.",
+          "Inner Line Permits are required and processed seamlessly by GoTrek Expeditions at Dharchula SDM office."
+        ],
+        "heading": "How to Plan Your Darma Valley Trip"
+      }
+    ],
+    "relatedTourSlug": "darma-valley",
+    "summary": "Tucked away in the remote northeastern corner of Pithoragarh, Darma Valley is a paradise for offbeat travelers. Experience indigenous Bhotia homestays in Dugtu village and stand at the foot of the Panchachuli glacier.",
+    "slug": "darma-valley-panchachuli-expedition",
+    "coverImage": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80",
+    "readTime": "6 min read",
+    "views": 2840,
+    "category": "Offbeat Himalaya",
+    "tableOfContents": [
+      {
+        "id": "darma-intro",
+        "title": "1. The Hidden Jewel of Eastern Kumaon"
+      },
+      {
+        "id": "panchachuli-legend",
+        "title": "2. The Mythology of Panchachuli Peaks"
+      },
+      {
+        "title": "3. Bhotia Tribal Homestays & Hospitality",
+        "id": "bhotia-culture"
+      },
+      {
+        "id": "dugtu-basecamp",
+        "title": "4. Dugtu Village & Glacier Viewpoint"
+      },
+      {
+        "title": "5. How to Plan Your Darma Valley Trip",
+        "id": "how-to-reach"
+      }
+    ],
+    "isCustom": true
+  },
+  {
+    "summary": "Essential medical precautions for yatris traveling to Parvati Sarovar (14,950 ft), Jolingkong, and Kedarnath. Understand Acute Mountain Sickness (AMS), early symptom detection, and how GoTrek vehicles are equipped with medical oxygen.",
+    "sections": [
+      {
+        "paragraphs": [
+          "As you ascend above 9,000 ft in the Kumaon and Garhwal Himalayas, atmospheric pressure drops, leading to lower oxygen availability per breath.",
+          "Common mild AMS symptoms include slight headache, mild nausea, fatigue, or dizziness. These are natural and usually resolve within 12-24 hours with adequate rest and hydration."
+        ],
+        "heading": "Understanding Acute Mountain Sickness (AMS)",
+        "calloutBox": {
+          "content": "Never ascend with symptoms of altitude illness. Always inform your GoTrek trip leader immediately if you experience persistent headache or breathlessness.",
+          "type": "warning",
+          "title": "Golden Rule of High Altitude"
+        },
+        "id": "understanding-ams"
+      },
+      {
+        "heading": "Daily Pulse & SpO2 Monitoring Protocol",
+        "paragraphs": [
+          "Every GoTrek trip lead carries digital pulse oximeters and medical-grade oxygen canisters.",
+          "Readings are checked every morning and evening at Gunji (10,500 ft) and Nabi homestays. An SpO2 level between 80% and 92% is typical at 14,000 ft."
+        ],
+        "id": "oximeter-checks"
+      },
+      {
+        "paragraphs": [
+          "Drink at least 3 to 4 liters of warm water, herbal ginger-lemon tea, or electrolyte drinks daily.",
+          "Eat carbohydrate-rich, light vegetarian meals. Avoid heavy fried foods and strictly refrain from alcohol or tobacco during the high-altitude leg."
+        ],
+        "id": "preventive-measures",
+        "heading": "Hydration, Nutrition & Medication"
+      },
+      {
+        "id": "emergency-evacuation",
+        "paragraphs": [
+          "Vyas Valley has 24/7 ITBP medical aid posts at Gunji, Kalapani, and Jolingkong staffed by army doctors.",
+          "In rare cases of severe AMS, GoTrek vehicles immediately descend to Dharchula (3,000 ft), and state helicopter evacuation is coordinated via Pithoragarh district administration."
+        ],
+        "heading": "ITBP First-Aid & Emergency Evacuation"
+      }
+    ],
+    "subtitle": "Doctor-approved advice on pulse oximeter monitoring, AMS prevention, hydration, and emergency evacuation protocols.",
+    "slug": "high-altitude-medical-oxygen-safety-guide",
+    "views": 3120,
+    "title": "High Altitude Health & Oxygen Safety: Acclimatization at 15,000 Feet",
+    "category": "Medical & Safety",
+    "publishedAt": "August 2027 Edition",
+    "tableOfContents": [
+      {
+        "id": "understanding-ams",
+        "title": "1. Understanding Acute Mountain Sickness (AMS)"
+      },
+      {
+        "title": "2. Daily Pulse & SpO2 Monitoring Protocol",
+        "id": "oximeter-checks"
+      },
+      {
+        "title": "3. Hydration, Nutrition & Medication",
+        "id": "preventive-measures"
+      },
+      {
+        "id": "emergency-evacuation",
+        "title": "4. ITBP First-Aid & Emergency Evacuation"
+      }
+    ],
+    "faqs": [
+      {
+        "answer": "Yes, if asthma is mild and well-controlled with inhalers. Always consult your pulmonologist and carry extra rescue inhalers.",
+        "question": "Can asthma patients do the Adi Kailash Yatra?"
+      }
+    ],
+    "coverImage": "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1600&q=80",
+    "author": {
+      "avatar": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=200&q=80",
+      "name": "Dr. Arvind Joshi (MD)",
+      "role": "High-Altitude Medical Consultant"
+    },
+    "readTime": "6 min read",
+    "relatedTourSlug": "adi-kailash",
+    "isCustom": true
+  },
+  {
+    "author": {
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+      "name": "Vinay Gururani",
+      "role": "Co-Founder & SDM Permit Director"
+    },
+    "publishedAt": "August 2027 Edition",
+    "subtitle": "Why thousands of Indian pilgrims are choosing the sacred Vyas Valley in Uttarakhand over Chinese Tibet for Lord Shiva's divine darshan.",
+    "sections": [
+      {
+        "paragraphs": [
+          "In Vedic sanatan literature, Lord Shiva does not reside in a single geographical pinnacle, but manifests His cosmic dance across five eternal Himalayan peaks known collectively as the 'Panch Kailash': Mt. Kailash (Tibet), Adi Kailash (Uttarakhand), Kinnar Kailash (Himachal), Shrikhand Mahadev (Himachal), and Manimahesh Kailash (Himachal).",
+          "The Manaskhand of the Skanda Purana explicitly records that Adi Kailash is the primordial seat where Mahadev's wedding procession (Barat) to Goddess Parvati was welcomed by King Himavat. The sacred mountain overlooks Parvati Sarovar and Gauri Kund, making it an unblemished repository of Shakti and Shiva energy.",
+          "Furthermore, while Mt. Kailash offers darshan of the single peak, Vyas Valley bestows a dual darshan: Baba Adi Kailash and the miraculous natural snow ॐ carving on Om Parvat at Nabhidhang, an extraordinary phenomenon found nowhere else on planet Earth."
+        ],
+        "calloutBox": {
+          "type": "info",
+          "title": "Vedic Revelation",
+          "content": "Ancient sages including Maharishi Vyas, Parashar, and the Pandava brothers spent decades performing penance at Vyas Valley because Adi Kailash represents the 'Adi' (original, primordial) cosmic manifestation of Shiva prior to creation."
+        },
+        "heading": "Scriptural Equality: Skanda Purana & The Panch Kailash Circuit",
+        "id": "scriptural-equality"
+      },
+      {
+        "id": "passport-visa",
+        "paragraphs": [
+          "One of the biggest hurdles for Indian devotees wishing to visit Mt. Kailash Mansarovar in Tibet is the dependency on the Ministry of External Affairs (MEA) lottery system or private Tibetan travel agencies governed by the Chinese Autonomous Region authorities.",
+          "For Mt. Kailash (Tibet): A valid Passport with minimum 6 months validity, Chinese Group Visa, Foreign Exchange clearances, and special Tibet Entry Permits are mandatory. In recent years, political halts and biometric visa requirements in Delhi have caused unpredictable cancellations.",
+          "For Adi Kailash & Om Parvat (India): 100% Indian sovereign territory. NO passport is required for Indian citizens. All you need is an Indian government ID (Aadhar / Voter ID) and an Inner Line Permit (ILP) issued smoothly by the Sub-Divisional Magistrate (SDM) of Dharchula, arranged effortlessly by GoTrek."
+        ],
+        "bulletPoints": [
+          "Zero Foreign Currency (USD/CNY) Exchange hassles — 100% INR transactions & UPI support",
+          "No risk of diplomatic visa cancellations or international border closures",
+          "Simple Aadhar-based SDM verification completed in advance by local team",
+          "Indian Army and Indo-Tibetan Border Police (ITBP) provide warm, patriotic security throughout"
+        ],
+        "heading": "Passport & Visa Requirements: India vs China (Tibet)"
+      },
+      {
+        "paragraphs": [
+          "Traveling to Tibet for Kailash Mansarovar has become prohibitively expensive for most middle-class families and retirees, often exceeding ₹2,50,000 to ₹3,50,000 per person including Kathmandu flights, China visa fees, and high-altitude guide royalties.",
+          "In contrast, the entire 8-Day All-Inclusive Adi Kailash & Om Parvat Yatra by 4x4 SUV from Kathgodam/Pantnagar ranges between ₹38,000 and ₹48,000 per person — nearly 80% more affordable while providing warm heritage homestays, authentic pure vegetarian cuisine, and dedicated local Sherpas."
+        ],
+        "id": "cost-comparison",
+        "heading": "Comprehensive Cost & Budget Comparison (2027)",
+        "bulletPoints": [
+          "Mt. Kailash Mansarovar (Tibet Overland / Aerial Circuit): ₹2,50,000 – ₹3,80,000 per person (14 to 18 Days)",
+          "Adi Kailash & Om Parvat (Uttarakhand Route): ₹38,000 – ₹48,000 per person (7 to 8 Days All-Inclusive)",
+          "Kedarnath + Adi Kailash Combo: ₹65,000 – ₹80,000 per person"
+        ]
+      },
+      {
+        "id": "altitude-accessibility",
+        "calloutBox": {
+          "content": "Over 60% of our successful yatris in 2024–2026 were aged between 55 and 78 years. With heated vehicles, onboard medical oxygen, and homestays at 10,500 ft in Nabi village, altitude adaptation is gentle and natural.",
+          "title": "Senior Citizen Friendly",
+          "type": "tip"
+        },
+        "paragraphs": [
+          "Mt. Kailash Kora requires circumambulating at altitudes exceeding 18,600 ft across the grueling Dolma La Pass on foot over 3 exhausting days in freezing sub-zero winds, which poses severe risks of High Altitude Pulmonary Edema (HAPE) for elderly pilgrims.",
+          "Adi Kailash Yatra has undergone an infrastructure renaissance. Thanks to the Border Roads Organisation (Project Swastik), all-weather motorable roads now reach directly to Jolingkong basecamp (14,500 ft) and Nabhidhang parking. Pilgrims walk only a gentle 1.5 km to Parvati Sarovar or can hire local ponies and Palkis for utmost comfort."
+        ],
+        "heading": "Altitude, Physical Demands & Motorable 4x4 Access"
+      },
+      {
+        "id": "holy-lakes",
+        "paragraphs": [
+          "Mansarovar Lake in Tibet is famed for its vast emerald expanse, but strict Chinese environmental decrees now forbid yatris from taking a physical snan (holy dip) in the lake or bringing sacred water canisters back.",
+          "Parvati Sarovar and Gauri Kund at Adi Kailash remain spiritually pristine and welcoming. Yatris can perform traditional Shiva Abhishek, chant the Maha Mrityunjaya Mantra on the lake bank, take holy aachman, and carry sealed bottles of sacred Gangajal-quality water back home for family and temple rituals."
+        ],
+        "heading": "Sacred Lakes: Parvati Sarovar vs Mansarovar Lake"
+      },
+      {
+        "heading": "Quick Feature Comparison Matrix",
+        "id": "summary-table",
+        "paragraphs": [
+          "Here is a side-by-side comparison between the two sacred pilgrimages:",
+          "• Geographical Location: Tibet Autonomous Region (China) vs Pithoragarh, Uttarakhand (India)",
+          "• Documents: International Passport + China Tibet Visa vs Aadhar Card + SDM Permit",
+          "• Total Estimated Cost: ₹2.5L to ₹3.5L vs ₹38K to ₹48K All-Inclusive",
+          "• Travel Duration: 14–18 Days vs 7–8 Days from Delhi/Kathgodam",
+          "• Mountain Darshan: Mt. Kailash Peak vs Adi Kailash + Miraculous Natural Snow ॐ Parvat",
+          "• Medical Safety: Chinese Military Checkpoints vs ITBP 24x7 Army Medical Aid Posts & Indian Doctors"
+        ]
+      },
+      {
+        "id": "booking-verdict",
+        "paragraphs": [
+          "With the newly completed double-lane tunnels, blacktopped mountain highways, fiber satellite connectivity in Nabi village, and verified homestay comfort, the Adi Kailash & Om Parvat Yatra has become India's proudest high-altitude spiritual expedition.",
+          "Secure your seat early in the limited May-June or September-November batches with GoTrek to experience this life-changing Himalayan journey."
+        ],
+        "heading": "Why 2027 is the Golden Year for Vyas Valley"
+      }
+    ],
+    "views": 8940,
+    "slug": "adi-kailash-vs-mount-kailash-mansarovar-comparison",
+    "summary": "Mt. Kailash in Tibet has traditionally been the pinnacle of Shiva devotion, but geopolitical closures, soaring Chinese visa costs (₹2.5L+), and strict foreign restrictions have led devotees to explore India's own eternal abode: Adi Kailash (Chhota Kailash) and Om Parvat in Pithoragarh, Uttarakhand. Discover the spiritual parity, cost differences, zero-passport ease, and motorable 4x4 access in this ultimate guide.",
+    "coverImage": "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1600&q=80",
+    "tableOfContents": [
+      {
+        "id": "scriptural-equality",
+        "title": "1. Scriptural Equality: Skanda Purana & Panch Kailash"
+      },
+      {
+        "id": "passport-visa",
+        "title": "2. Passport & Visa Requirements: India vs China (Tibet)"
+      },
+      {
+        "id": "cost-comparison",
+        "title": "3. Comprehensive Cost & Budget Comparison"
+      },
+      {
+        "title": "4. Altitude, Physical Demands & Motorable 4x4 Access",
+        "id": "altitude-accessibility"
+      },
+      {
+        "title": "5. Sacred Lakes: Parvati Sarovar vs Mansarovar Lake",
+        "id": "holy-lakes"
+      },
+      {
+        "title": "6. Quick Feature Comparison Matrix",
+        "id": "summary-table"
+      },
+      {
+        "id": "booking-verdict",
+        "title": "7. Why 2027 is the Golden Year for Vyas Valley"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Is Adi Kailash considered as holy as Mt. Kailash in Tibet?",
+        "answer": "Yes. In the Shiva Purana and Skanda Purana, Adi Kailash is venerated as the primordial (Adi) seat of Mahadev where His celestial marriage procession rested. It is one of the five sacred Panch Kailash peaks."
+      },
+      {
+        "answer": "No! Indian citizens only need a valid Aadhar Card or Voter ID along with the Inner Line Permit (ILP) arranged directly by GoTrek through the SDM Office in Dharchula.",
+        "question": "Do I need a passport for Adi Kailash?"
+      },
+      {
+        "answer": "Yes, provided they obtain a basic Medical Fitness Certificate from an MBBS physician. Our 4x4 vehicles drive straight to the basecamps with portable medical oxygen support.",
+        "question": "Can senior citizens above 70 years visit Adi Kailash?"
+      }
+    ],
+    "category": "Pilgrimage Guide",
+    "title": "Adi Kailash vs Mt. Kailash Mansarovar (Tibet): Detailed 2027 Comparison, Costs, Visas & Spiritual Sanctity",
+    "relatedTourSlug": "adi-kailash",
+    "readTime": "12 min read",
+    "isCustom": true
+  },
+  {
+    "category": "Culture & Heritage",
+    "tableOfContents": [
+      {
+        "title": "1. The Natural Geological Miracle of the ॐ Carving",
+        "id": "geological-wonder"
+      },
+      {
+        "title": "2. The 8 Cosmic Om Mountains of the Universe",
+        "id": "vedic-prophecy"
+      },
+      {
+        "title": "3. Nabhidhang & Kalapani: The Sacred Kali River Origin",
+        "id": "nabhidhang-viewpoint"
+      },
+      {
+        "id": "maharishi-vyas-gufa",
+        "title": "4. Maharishi Vyas Cave & The Mahabharata Connection"
+      },
+      {
+        "title": "5. Best Season, Weather Windows & Golden Hour Photography",
+        "id": "best-photography-time"
+      }
+    ],
+    "coverImage": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80",
+    "views": 7120,
+    "slug": "om-parvat-miracle-geology-mythology-nabhidhang",
+    "publishedAt": "August 2027 Edition",
+    "author": {
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+      "role": "4x4 Overland & Tribal Heritage Specialist",
+      "name": "Deepak Kumaoni"
+    },
+    "readTime": "9 min read",
+    "relatedTourSlug": "adi-kailash",
+    "summary": "Rising majestically along the high Himalayan crest of Vyas Valley in Pithoragarh, Om Parvat (5,590 m) is one of the world's most awe-inspiring natural wonders. Discover the scientific ridges that hold snow in the exact shape of 'ॐ', the ancient Skanda Purana verses of the 8 cosmic Om peaks, and how to capture the clearest morning photography.",
+    "sections": [
+      {
+        "calloutBox": {
+          "type": "info",
+          "title": "Scientific Wonder",
+          "content": "Unlike man-made geoglyphs, no human hand or chisel has ever touched the precipitous face of Om Parvat. The snow symbol maintains its crisp symmetry throughout May, June, September, and October."
+        },
+        "paragraphs": [
+          "Om Parvat, situated in the Darchula/Pithoragarh region at an elevation of 5,590 meters (18,340 ft), is a mountain carved by nature in the unmistakable form of the primordial sound of the universe: the sacred symbol 'ॐ'.",
+          "Geologically, the black mountain face features natural rock fissures, ridges, and perpendicular troughs that hold winter and pre-monsoon snow while the steeper basalt slopes shed excess drifts. The resulting contrast between black rock and brilliant white snow creates a pristine, mathematically proportioned 'Om' character visible even with the naked eye from kilometers away at Nabhidhang."
+        ],
+        "id": "geological-wonder",
+        "heading": "The Natural Geological Miracle of the ॐ Carving"
+      },
+      {
+        "heading": "The Vedic Prophecy of 8 Cosmic Om Mountains",
+        "paragraphs": [
+          "According to ancient Hindu scriptures, the cosmos is anchored by eight sacred mountains bearing the natural symbol of Pranava (AUM). To date, this mountain in the Vyas Valley is the only one discovered and documented by mankind.",
+          "The symbol embodies the three states of consciousness: A (waking state / creation / Brahma), U (dream state / preservation / Vishnu), and M (deep sleep / dissolution / Shiva), capped by the bindu (transcendental silence). Standing before Om Parvat is believed to cleanse centuries of karmic debt."
+        ],
+        "id": "vedic-prophecy"
+      },
+      {
+        "id": "nabhidhang-viewpoint",
+        "paragraphs": [
+          "The primary viewpoint for Om Parvat is Nabhidhang (14,000 ft), a wide plateau surrounded by jagged Himalayan peaks where the ITBP guards India's high-altitude frontier.",
+          "En route to Nabhidhang lies Kalapani (12,000 ft), the sacred source where the Mahakali (Sharda) river emerges from underground pine springs. Here, yatris visit the ancient Kali Temple to receive the blessings of Maa Kali before proceeding to the divine viewpoint."
+        ],
+        "heading": "Nabhidhang & Kalapani: The Sacred Kali River Origin"
+      },
+      {
+        "paragraphs": [
+          "High on a rocky cliff overlooking Kalapani stands the sacred Vyas Gufa (Cave of Sage Vyas). It is here that Maharishi Veda Vyas meditated and compiled the 18 Puranas, the Mahabharata, and the four Vedas during the Dwapara Yuga.",
+          "The entire valley derives its name — Vyas Valley — from this holy sage, and local villagers preserve oral folk songs celebrating the footsteps of the Pandavas on their ultimate journey to Swargarohini."
+        ],
+        "id": "maharishi-vyas-gufa",
+        "heading": "Maharishi Vyas Cave & The Mahabharata Connection"
+      },
+      {
+        "heading": "Best Season, Weather Windows & Golden Hour Photography",
+        "paragraphs": [
+          "To witness Om Parvat with crystal-clear visibility and the thickest snow carving:",
+          "1. Early Morning (6:00 AM – 9:30 AM): The rising sun illuminates the eastern face of Om Parvat with a celestial golden glow (Alpenglow), creating an unforgettable spiritual spectacle.",
+          "2. May to June (Peak Snow Season): The 'ॐ' symbol is filled with thick, dazzling white glacial snow against dark charcoal granite.",
+          "3. September to October (Crisp Autumn Skies): 100% blue skies with zero haze, offering ultra-sharp telephoto and mobile photography shots."
+        ],
+        "id": "best-photography-time"
+      }
+    ],
+    "subtitle": "A deep dive into the mystical mountain where natural snow deposits eternally carve the sacred Sanskrit letter 'ॐ' at 14,000 ft on the Indo-Tibet border.",
+    "faqs": [
+      {
+        "answer": "No. Om Parvat is a deeply revered sacred mountain and climbing is strictly forbidden to preserve its sanctity. Darshan is taken from the Nabhidhang viewpoint.",
+        "question": "Can we touch or climb Om Parvat?"
+      },
+      {
+        "answer": "Vehicles drive right up to the Nabhidhang parking lot. The magnificent mountain rises directly in front of the parking area, requiring zero trekking.",
+        "question": "How close can vehicles drive to Om Parvat?"
+      }
+    ],
+    "title": "The Miracle of Om Parvat & Nabhidhang: Sacred Geology, Vedic Legends & Best Darshan Timings",
+    "isCustom": true
+  },
+  {
+    "publishedAt": "August 2027 Edition",
+    "title": "Neem Karoli Baba Kainchi Dham & Jageshwar 124 Stone Temples: The Ultimate Kumaon Spiritual Circuit Guide",
+    "coverImage": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80",
+    "slug": "kainchi-dham-jageshwar-spiritual-circuit-guide",
+    "sections": [
+      {
+        "heading": "Neem Karoli Baba & Kainchi Dham Ashram",
+        "id": "kainchi-dham-history",
+        "paragraphs": [
+          "Nestled in a lush pine valley alongside the Kshipra river near Bhowali (Nainital), Kainchi Dham is the hermitage established in 1964 by the divine saint Neem Karoli Baba (affectionately called 'Maharaj-ji').",
+          "Revered as an incarnation of Lord Hanuman, Maharaj-ji taught the path of selfless love, service, and chanting Ram Naam ('Sub Ek' — All is One). The ashram rose to international prominence when tech pioneers like Apple founder Steve Jobs and Meta CEO Mark Zuckerberg spent days meditating here during critical turning points in their lives."
+        ]
+      },
+      {
+        "heading": "Ashram Timings, Aarti & June 15 Foundation Day",
+        "calloutBox": {
+          "type": "tip",
+          "title": "Visiting Etiquette",
+          "content": "Photography inside the sanctum sanctorum and Baba's room is restricted to maintain peace. Dress modestly in Indian ethnic wear and maintain silent devotion."
+        },
+        "paragraphs": [
+          "The ashram is open daily from 6:30 AM to 6:30 PM. Morning Aarti is performed at 7:00 AM, and Evening Aarti takes place at 6:00 PM with soul-stirring Hanuman Chalisa chants.",
+          "Every year on June 15th, the grand Kainchi Dham Bhandara commemorates the temple's consecration, attracting over 200,000 devotees who partake in sacred Malpua prasad."
+        ],
+        "id": "bhandara-timings"
+      },
+      {
+        "paragraphs": [
+          "Perched on a ridge above Almora, the Kasar Devi Temple dates back to the 2nd century AD. According to scientific studies including NASA research, Kasar Devi is one of only three places on Earth blessed with an immense geomagnetic radiation field (the Van Allen Belt anomaly), alongside Stonehenge in the UK and Machu Picchu in Peru.",
+          "Swami Vivekananda meditated here in 1890, describing it as an effortless gateway to transcendental consciousness."
+        ],
+        "id": "kasar-devi-vortex",
+        "heading": "Kasar Devi & The NASA Van Allen Magnetic Vortex"
+      },
+      {
+        "paragraphs": [
+          "Surrounded by towering deodar trees and the sacred Jata Ganga stream, Jageshwar Dham is an architectural marvel housing 124 stone temples built between the 7th and 14th centuries by the Katyuri and Chand kings.",
+          "Revered as 'Nagesh Darukavane' (the 8th Jyotirlinga among the 12 Dwadasha Jyotirlingas), it is the historic site where Lord Shiva performed penance and where Adi Shankaracharya revived Sanatan Dharma in the Himalayas."
+        ],
+        "id": "jageshwar-dham",
+        "heading": "Jageshwar Dham: 124 Ancient Stone Temples & 8th Jyotirlinga"
+      },
+      {
+        "id": "golu-devta",
+        "paragraphs": [
+          "Chitai Golu Devta is venerated as the supreme dispenser of justice across Kumaon. Devotees who feel wronged in legal battles or personal disputes write formal petitions on legal stamp paper and hang them with brass temple bells.",
+          "The temple courtyard is decorated with thousands of ringing brass bells of every size, tied by devotees whose prayers were miraculously answered."
+        ],
+        "heading": "Chitai Golu Devta: The God of Justice & Stamp Paper Petitions"
+      },
+      {
+        "paragraphs": [
+          "Day 1: Kathgodam to Kainchi Dham (38 km drive) — Afternoon Darshan & Evening Aarti, night stay in Bhowali/Nainital.",
+          "Day 2: Bhowali to Kasar Devi & Chitai Golu Devta (65 km) — Sunset meditation at Kasar Devi ridge, night stay in Almora.",
+          "Day 3: Almora to Jageshwar Dham & Vridha Jageshwar (36 km) — Rudrabhishek pooja in ancient deodar temple complex.",
+          "Day 4: Jageshwar to Pithoragarh (gateway to Adi Kailash) or return drop to Kathgodam railway station."
+        ],
+        "heading": "Recommended 4-Day Kumaon Spiritual Itinerary",
+        "id": "itinerary-route"
+      }
+    ],
+    "subtitle": "Complete itinerary to visit Maharaj-ji's Ashram, Kasar Devi's geomagnetic vortex, Chitai Golu Devta, and the ancient Jyotirlinga cluster in Almora.",
+    "summary": "Kumaon is home to some of India's most powerful spiritual energy centers. From Neem Karoli Baba's miraculous Kainchi Dham near Bhowali (visited by Steve Jobs, Mark Zuckerberg, and Virat Kohli) to the 8th-century Jageshwar Dham Shiva complex deep in deodar forests, this guide plans your 4-day devotional pilgrimage.",
+    "tableOfContents": [
+      {
+        "id": "kainchi-dham-history",
+        "title": "1. Neem Karoli Baba & Kainchi Dham Ashram"
+      },
+      {
+        "title": "2. Ashram Timings, Aarti & June 15 Foundation Day",
+        "id": "bhandara-timings"
+      },
+      {
+        "id": "kasar-devi-vortex",
+        "title": "3. Kasar Devi & The NASA Van Allen Magnetic Vortex"
+      },
+      {
+        "title": "4. Jageshwar Dham: 124 Ancient Stone Temples & 8th Jyotirlinga",
+        "id": "jageshwar-dham"
+      },
+      {
+        "title": "5. Chitai Golu Devta: The God of Justice & Stamp Paper Petitions",
+        "id": "golu-devta"
+      },
+      {
+        "id": "itinerary-route",
+        "title": "6. Recommended 4-Day Kumaon Spiritual Itinerary"
+      }
+    ],
+    "readTime": "10 min read",
+    "author": {
+      "role": "Co-Founder & Fleet Operations Manager",
+      "name": "Pawan Singh Bisht",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80"
+    },
+    "faqs": [
+      {
+        "question": "Can I stay inside Kainchi Dham Ashram?",
+        "answer": "Ashram rooms require advance written permission from the ashram trust. However, numerous premium hotels and homestays are available within 2 to 5 km in Bhowali and Kainchi village."
+      },
+      {
+        "answer": "Yes, wide all-weather asphalt roads lead directly to the temple entrance gate with ample parking.",
+        "question": "Is Jageshwar Dham motorable?"
+      }
+    ],
+    "views": 6410,
+    "relatedTourSlug": "adi-kailash",
+    "category": "Pilgrimage Guide",
+    "isCustom": true
+  },
+  {
+    "sections": [
+      {
+        "id": "legend-pandavas",
+        "paragraphs": [
+          "Seeking absolution from the sin of Gotra Vadha (killing kin in the Kurukshetra war), the five Pandavas pursued Lord Shiva to the Garhwal Himalayas. Shiva transformed into a bull to hide in the pastures of Guptkashi.",
+          "When Bhima recognized Him and attempted to hold the bull, the divine form sank into the earth, with different body parts resurfacing at five distinct Himalayan shrines: the Hump at Kedarnath, the Navel at Madhyamaheshwar, the Arms at Tungnath, the Face at Rudranath, and the Matted Locks (Jata) at Kalpeshwar."
+        ],
+        "heading": "The Mahabharata Legend of the Bull Form"
+      },
+      {
+        "paragraphs": [
+          "Trek Distance: 16 km from Gaurikund. Highest Jyotirlinga among the 12, framed by the 22,000 ft Kedarnath Dome and Mandakini river.",
+          "Access: Foot trek, pony, palki, or helicopter shuttle from Phata, Sirsi, and Guptkashi."
+        ],
+        "heading": "First Kedar: Kedarnath Dham (11,755 ft) — The Hump",
+        "id": "kedarnath"
+      },
+      {
+        "heading": "Second Kedar: Madhyamaheshwar (11,473 ft) — The Navel",
+        "paragraphs": [
+          "Trek Distance: 16 km from Ransi village through dense oak and rhododendron forests along the Madhu Ganga river.",
+          "Highlights: Peaceful grass meadow surrounded by Chaukhamba peaks. The uphill hike to Budha Madhyamaheshwar (1.5 km above temple) provides reflecting lake views of the entire Garhwal range."
+        ],
+        "id": "madhyamaheshwar"
+      },
+      {
+        "id": "tungnath",
+        "paragraphs": [
+          "Trek Distance: 3.5 km stone-paved trail from Chopta (the 'Mini Switzerland of Uttarakhand').",
+          "Tungnath is the world's highest Shiva temple. A further 1 km steep climb reaches Chandrashila Summit (13,100 ft) with an unparalleled 360-degree panorama of Nanda Devi, Trishul, Chaukhamba, and Kedar Dome."
+        ],
+        "heading": "Third Kedar: Tungnath & Chandrashila (12,073 ft / 13,100 ft) — The Arms"
+      },
+      {
+        "heading": "Fourth Kedar: Rudranath (11,811 ft) — The Divine Face (Nilkanth)",
+        "id": "rudranath",
+        "paragraphs": [
+          "Trek Distance: 20 km through the enchanting Bugyals (high alpine meadows) of Panar and Pitradhar from Sagar village (Gopeshwar).",
+          "Rudranath is the only temple where Lord Shiva's peaceful face (Vaktra) is worshipped inside a natural rock cave."
+        ]
+      },
+      {
+        "id": "kalpeshwar",
+        "paragraphs": [
+          "Trek Distance: 1 km easy walk from Devgram village in Urgam Valley.",
+          "Kalpeshwar is the only Kedar that remains open throughout the year (even during heavy winter snow) where the Kalpvriksha wish-fulfilling tree and Jateshwar Mahadev cave reside."
+        ],
+        "heading": "Fifth Kedar: Kalpeshwar (7,217 ft) — The Matted Hair (Jata)"
+      },
+      {
+        "heading": "Fitness, Seasons & Recommended 14-Day Circuit",
+        "id": "fitness-planning",
+        "paragraphs": [
+          "Best Season: May to June and September to October. Rudranath and Madhyamaheshwar trails remain closed during winter due to 10+ feet of snow.",
+          "The complete Panch Kedar circuit covers approximately 80 km of mountain trails and requires strong cardiovascular stamina, trekking poles, and reliable waterproof boots."
+        ]
+      }
+    ],
+    "subtitle": "Trek through the five sacred abodes of Lord Shiva in the Garhwal Himalayas, including the highest Shiva temple in the world at 12,073 ft.",
+    "slug": "panch-kedar-yatra-trekking-guide-uttarakhand",
+    "author": {
+      "name": "Deepak Singh Mehta",
+      "role": "Lead High-Altitude Mountain Guide",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+    },
+    "title": "Complete Guide to Panch Kedar Yatra 2027: Kedarnath, Tungnath, Rudranath, Madhyamaheshwar & Kalpeshwar",
+    "summary": "The Panch Kedar represents the pinnacle of Shaivite trekking across Rudraprayag and Chamoli districts. According to the Mahabharata, when Lord Shiva took the form of a celestial bull to evade the Pandavas, His body parts appeared in five sanctified high-altitude sanctuaries. This guide details each trek route, altitude, and preparation.",
+    "publishedAt": "August 2027 Edition",
+    "views": 5890,
+    "category": "Trekking Guide",
+    "tableOfContents": [
+      {
+        "title": "1. The Mahabharata Legend of the Bull Form",
+        "id": "legend-pandavas"
+      },
+      {
+        "title": "2. First Kedar: Kedarnath Dham (Hump of Shiva)",
+        "id": "kedarnath"
+      },
+      {
+        "title": "3. Second Kedar: Madhyamaheshwar (Navel of Shiva)",
+        "id": "madhyamaheshwar"
+      },
+      {
+        "id": "tungnath",
+        "title": "4. Third Kedar: Tungnath & Chandrashila (Arms of Shiva)"
+      },
+      {
+        "title": "5. Fourth Kedar: Rudranath & Alpine Meadows (Face of Shiva)",
+        "id": "rudranath"
+      },
+      {
+        "title": "6. Fifth Kedar: Kalpeshwar (Matted Hair / Jata of Shiva)",
+        "id": "kalpeshwar"
+      },
+      {
+        "title": "7. Fitness, Seasons & Recommended 14-Day Circuit",
+        "id": "fitness-planning"
+      }
+    ],
+    "faqs": [
+      {
+        "answer": "Tungnath and Kalpeshwar are easy and beginner-friendly. However, completing all five requires moderate-to-high fitness due to the steep 20 km Rudranath and 16 km Madhyamaheshwar trails.",
+        "question": "Can beginners do the full Panch Kedar Yatra?"
+      },
+      {
+        "answer": "Chopta receives heavy snow in January-February and becomes a winter wonderland for snow treks. The temple gates close in November and the idol moves to Makkumath for winter worship.",
+        "question": "Is Chopta Tungnath open during winter?"
+      }
+    ],
+    "readTime": "11 min read",
+    "relatedTourSlug": "chardham-yatra",
+    "coverImage": "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1600&q=80",
+    "isCustom": true
+  },
+  {
+    "slug": "high-altitude-packing-list-clothing-guide-himalayas",
+    "relatedTourSlug": "adi-kailash",
+    "views": 5120,
+    "tableOfContents": [
+      {
+        "id": "layering-system",
+        "title": "1. The Scientific 3-Layer Clothing Rule"
+      },
+      {
+        "id": "footwear-socks",
+        "title": "2. Footwear, Ankle Support & Woolen Socks"
+      },
+      {
+        "id": "head-hands-protection",
+        "title": "3. Protecting Extremities: Beanies, Gloves & UV Shades"
+      },
+      {
+        "title": "4. Power Banks & Battery Management in Sub-Zero Weather",
+        "id": "electronics-batteries"
+      },
+      {
+        "title": "5. Personal High-Altitude Medical First-Aid Kit",
+        "id": "medical-kit"
+      },
+      {
+        "id": "documents-cash",
+        "title": "6. Essential IDs, Permit Papers & Cash Requirements"
+      }
+    ],
+    "publishedAt": "August 2027 Edition",
+    "sections": [
+      {
+        "heading": "The Scientific 3-Layer Clothing Rule",
+        "id": "layering-system",
+        "paragraphs": [
+          "In the Himalayas above 10,000 ft, mountain weather can shift from burning UV sunshine (20°C) to freezing wind chills (-2°C) in under 30 minutes. Never rely on a single heavy jacket; always use the 3-Layer Rule:",
+          "1. Base Layer (Moisture Wicking): Thermal tops and bottoms made of Merino wool or synthetic polyester. Never wear cotton as it traps sweat and causes rapid hypothermia.",
+          "2. Mid Layer (Thermal Insulation): 200–300 GSM fleece jacket or light down jacket to trap warm body air.",
+          "3. Outer Layer (Weather Shield): Windproof and waterproof Gore-Tex jacket with hood to block piercing Himalayan valley gusts and sleet."
+        ]
+      },
+      {
+        "id": "footwear-socks",
+        "paragraphs": [
+          "Good footwear prevents ankle twists on loose moraine and stone trails:",
+          "• High-ankle water-resistant trekking boots with deep rubber lugs (Vibram or rubber soles).",
+          "• 3–4 pairs of thick Merino wool or synthetic cushioned socks.",
+          "• 1 pair of comfortable slip-on indoor shoes or camp slippers for homestays."
+        ],
+        "heading": "Footwear, Ankle Support & Woolen Socks"
+      },
+      {
+        "paragraphs": [
+          "Up to 40% of body heat is lost through the head and neck. Essential items include:",
+          "• Fleece-lined woolen beanie / monkey cap covering ears completely.",
+          "• Dual-layer gloves (inner fleece touch-screen gloves + outer windproof gloves).",
+          "• UV 400 Category 3 or 4 Polarized Sunglasses to protect eyes from intense high-altitude solar glare and snow blindness.",
+          "• SPF 50+ Sunscreen lotion and hydrating Lip Balm with SPF."
+        ],
+        "heading": "Protecting Extremities: Beanies, Gloves & UV Shades",
+        "id": "head-hands-protection"
+      },
+      {
+        "heading": "Power Banks & Battery Management in Sub-Zero Weather",
+        "paragraphs": [
+          "Lithium-ion batteries drain 3x faster in cold temperatures below 5°C. Follow these tips:",
+          "• Carry 20,000 mAh high-capacity fast-charging power banks.",
+          "• Keep your phone and camera batteries inside your inner jacket pockets near your body warmth.",
+          "• Carry a sturdy LED headlamp or rechargeable torch for early morning darshan walks."
+        ],
+        "id": "electronics-batteries"
+      },
+      {
+        "paragraphs": [
+          "While GoTrek vehicles carry medical oxygen and emergency kits, yatris should carry a small personal pouch containing:",
+          "• Diamox (Acetazolamide 125mg/250mg) — for acclimatization (consult your doctor).",
+          "• Pain relievers (Paracetamol / Ibuprofen) for altitude headaches.",
+          "• ORS / Electral hydration sachets (1–2 packets daily in warm water).",
+          "• Antacid, motion sickness tablets (Avomine / Ondansetron) for winding hill roads.",
+          "• Band-aids, Moov/Volini pain spray, and personal daily prescription medications."
+        ],
+        "id": "medical-kit",
+        "heading": "Personal High-Altitude Medical First-Aid Kit"
+      },
+      {
+        "heading": "Essential IDs, Permit Papers & Cash Requirements",
+        "paragraphs": [
+          "• Original Aadhar Card + 4 self-attested photocopies + 4 passport-size photographs.",
+          "• Carry ₹5,000 to ₹10,000 in physical cash notes (₹100 / ₹500), as ATMs are unavailable beyond Dharchula in remote border valleys."
+        ],
+        "id": "documents-cash"
+      }
+    ],
+    "subtitle": "Field-tested equipment, thermal layering, footwear, power banks, and personal medical kit checklist for Adi Kailash, Kedarnath & high passes.",
+    "author": {
+      "role": "High-Altitude Medical Consultant",
+      "name": "Dr. Arvind Joshi (MD)",
+      "avatar": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=200&q=80"
+    },
+    "faqs": [
+      {
+        "question": "Are trolley suitcases allowed on 4x4 SUVs?",
+        "answer": "We strictly recommend carrying a soft 50-60L rucksack or duffle bag instead of hard-shell trolley bags, as soft luggage fits far better in 4x4 vehicle carriers."
+      },
+      {
+        "question": "Is hot water available in high-altitude homestays?",
+        "answer": "Yes, our partner homestays in Nabi and Gunji provide hot water buckets heated by solar water heaters or traditional wood-fired bukharis."
+      }
+    ],
+    "readTime": "8 min read",
+    "title": "Ultimate High-Altitude Himalayan Yatra Packing List & 3-Layer Clothing Guide (15,000+ Ft)",
+    "coverImage": "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1600&q=80",
+    "category": "Medical & Safety",
+    "summary": "Packing incorrectly for high-altitude Himalayan pilgrimages can transform a spiritual adventure into an uncomfortable ordeal. Learn the scientific 3-layer clothing system, recommended winter footwear, essential electronics, and first-aid kits recommended by GoTrek Sherpas.",
+    "isCustom": true
+  },
+  {
+    "readTime": "9 min read",
+    "author": {
+      "name": "Deepak Kumaoni",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+      "role": "4x4 Overland & Tribal Heritage Specialist"
+    },
+    "slug": "bhotia-rung-tribe-vyas-valley-heritage-cuisine",
+    "publishedAt": "August 2027 Edition",
+    "views": 4530,
+    "category": "Culture & Heritage",
+    "title": "Bhotia & Rung Tribal Heritage of Vyas Valley: Wooden Architecture, Customs & Kumaoni Cuisine",
+    "relatedTourSlug": "adi-kailash",
+    "faqs": [
+      {
+        "question": "Is pure vegetarian food available in Nabi village homestays?",
+        "answer": "Yes! All GoTrek partner homestays serve 100% pure vegetarian, freshly cooked sattvic mountain meals. Jain food (no onion, no garlic) is gladly prepared upon prior request."
+      },
+      {
+        "answer": "Yes! Host families in Nabi and Dharchula offer handmade pure sheep wool socks, mufflers, Thulma blankets, and organic Himalayan herbs at genuine village prices.",
+        "question": "Can we purchase authentic handwoven woolens directly from weavers?"
+      }
+    ],
+    "tableOfContents": [
+      {
+        "id": "trans-himalayan-trade",
+        "title": "1. The Historic Silk & Salt Route across Lipulekh Pass"
+      },
+      {
+        "title": "2. Traditional Earth-Quake Resistant Wooden Architecture",
+        "id": "rung-architecture"
+      },
+      {
+        "id": "weaving-traditions",
+        "title": "3. Handloom Weaving: Dan & Thulma Yak Wool Blankets"
+      },
+      {
+        "id": "mountain-gastronomy",
+        "title": "4. Sacred Kumaoni Gastronomy: Mandua, Jambu & Madira"
+      },
+      {
+        "title": "5. Experiencing Community-Based Homestays with GoTrek",
+        "id": "homestay-hospitality"
+      }
+    ],
+    "subtitle": "Discover the ancient Trans-Himalayan Indo-Tibetan trade traditions, intricately carved wooden homes, and organic mountain superfoods of Nabi and Gunji.",
+    "sections": [
+      {
+        "heading": "The Historic Silk & Salt Route across Lipulekh Pass",
+        "id": "trans-himalayan-trade",
+        "paragraphs": [
+          "Before 1962, the Shauka/Bhotia merchants of Vyas Valley navigated perilous high-altitude passes like Lipulekh (16,700 ft) with caravans of yaks and mountain sheep, trading Indian grains, spices, sugar, and cotton for Tibetan rock salt, raw pashmina wool, borax, and gold dust.",
+          "This cross-cultural legacy created a uniquely sophisticated society fluent in Hindi, Kumaoni, Tibetan, and their own ancient Rung-lo dialect."
+        ]
+      },
+      {
+        "id": "rung-architecture",
+        "heading": "Traditional Earth-Quake Resistant Wooden Architecture",
+        "paragraphs": [
+          "Walking through Nabi, Napalchu, and Kutti villages, visitors marvel at centuries-old multi-story stone and deodar wood houses. Built using the traditional 'Koti Banal' earthquake-resistant interlocked timber technique, the houses feature elaborately hand-carved window frames (Kholis) depicting peacocks, lotuses, and sacred mantras.",
+          "Inside, thick stone walls and insulated wood ceilings maintain a warm ambient temperature even when outside winter temperatures plunge to -15°C."
+        ]
+      },
+      {
+        "heading": "Handloom Weaving: Dan & Thulma Yak Wool Blankets",
+        "id": "weaving-traditions",
+        "paragraphs": [
+          "Every Rung household preserves the art of traditional backstrap and pit loom weaving. Women weave world-famous 'Thulma' (heavy brushed wool blankets), 'Chutka' (coarse woolen rugs), and 'Pashmina shawls' dyed with natural Himalayan plant extracts.",
+          "Supporting these local craftswomen provides direct economic empowerment to mountain families in border villages."
+        ]
+      },
+      {
+        "id": "mountain-gastronomy",
+        "paragraphs": [
+          "High-altitude living requires dense, warming nutrition. When you stay in Nabi homestays, you will relish authentic organic meals cooked on wood fire:",
+          "• Mandua (Finger Millet) Rotis with pure cow ghee and Bhangjeera chutney.",
+          "• Bhatt ki Churkani & Dubuk (slow-cooked black soybean stew rich in protein).",
+          "• Tempered Dals with wild Himalayan garlic herb 'Jambu' and Gandharani aromatic bark.",
+          "• Madira (Barnyard Millet) Kheer infused with dry fruits and saffron."
+        ],
+        "heading": "Sacred Kumaoni Gastronomy: Mandua, Jambu & Madira"
+      },
+      {
+        "paragraphs": [
+          "GoTrek works in direct partnership with local Rung village committees in Nabi and Gunji. 100% of accommodation payments go directly to local host families, fostering eco-sustainable tourism and preserving this ancient Himalayan heritage for future generations."
+        ],
+        "heading": "Experiencing Community-Based Homestays with GoTrek",
+        "id": "homestay-hospitality"
+      }
+    ],
+    "summary": "The Vyas, Darma, and Chaudas valleys of Pithoragarh are home to the indigenous Rung (Shauka / Bhotia) mountain community. Renowned for centuries as master traders across the high passes of Lipulekh into Tibet, the Rung people boast a rich culture of sustainable wooden architecture, woolen carpet handlooms, and nourishing millet-based gastronomy.",
+    "coverImage": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80",
+    "isCustom": true
+  }
+]

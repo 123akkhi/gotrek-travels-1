@@ -1,7 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 
 export default async function handler(req: any, res: any) {
-  // Set CORS headers for Vercel
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -20,7 +19,7 @@ export default async function handler(req: any, res: any) {
       return res.status(400).json({ success: false, error: "Prompt is required" });
     }
 
-    const apiKey = process.env.GEMINI_API_KEY || "AQ.Ab8RN6JDhlRXAxuIa4A1NERhiAgG3IXkJWUWolqcxMjDAAmqSw";
+    const apiKey = (process.env.GEMINI_API_KEY || process.env.GOOGLE_GEMINI_API_KEY || "").trim();
     if (!apiKey) {
       return res.status(500).json({
         success: false,
@@ -46,17 +45,32 @@ Provide warm, authoritative, accurate, and concise guidance about:
 5. Best weather months (May-June for snow, Sept-Oct for clear peaks).
 Keep answers structured with bullet points and friendly Shiv-bhakt tone. Max 250 words.`;
 
-    const response = await ai.models.generateContent({
-      model: "gemini-3.1-flash-lite",
-      contents: prompt,
-      config: {
-        systemInstruction,
-      },
-    });
+    const candidateModels = ["gemini-3.1-flash-lite", "gemini-4-hydrogen"];
+    let lastError: any = null;
 
-    return res.status(200).json({
-      success: true,
-      answer: response.text || "Hari Om! How may I assist you with your sacred journey?",
+    for (const model of candidateModels) {
+      try {
+        const response = await ai.models.generateContent({
+          model,
+          contents: prompt,
+          config: {
+            systemInstruction,
+          },
+        });
+        return res.status(200).json({
+          success: true,
+          model,
+          answer: response.text || "Hari Om! How may I assist you with your sacred journey?",
+        });
+      } catch (err: any) {
+        lastError = err;
+        console.warn(`[Vercel Gemini] Model ${model} failed:`, err?.message || err);
+      }
+    }
+
+    return res.status(500).json({
+      success: false,
+      error: lastError?.message || "Gemini API request failed. Verify GEMINI_API_KEY in Vercel Environment Variables.",
     });
   } catch (err: any) {
     console.error("Vercel Gemini Consultant Error:", err);

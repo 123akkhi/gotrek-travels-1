@@ -1,21 +1,9 @@
 import crypto from "crypto";
-import { initializeApp, getApps, getApp } from "firebase/app";
-import { initializeFirestore, doc, setDoc } from "firebase/firestore";
-import firebaseConfig from "../../firebase-applet-config.json";
+import { doc, setDoc } from "firebase/firestore";
+import * as firebaseServer from "../../src/server/vercelFirebase";
 
-// Initialize Firebase for Vercel Serverless
-let db: any = null;
-try {
-  const firebaseApp = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-  const resolvedDbId = (firebaseConfig.firestoreDatabaseId && firebaseConfig.firestoreDatabaseId !== "(default)")
-    ? firebaseConfig.firestoreDatabaseId
-    : (firebaseConfig.projectId === "gotrek-travels" ? "default" : undefined);
-  db = resolvedDbId
-    ? initializeFirestore(firebaseApp, { ignoreUndefinedProperties: true }, resolvedDbId)
-    : initializeFirestore(firebaseApp, { ignoreUndefinedProperties: true });
-} catch (e) {
-  console.warn("Vercel Firebase initialization warning:", e);
-}
+const getServerlessDb = (firebaseServer as any).getServerlessDb;
+const db = typeof getServerlessDb === "function" ? getServerlessDb() : null;
 
 export default async function handler(req: any, res: any) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -42,6 +30,7 @@ export default async function handler(req: any, res: any) {
       pickupLocation,
       travellers,
       month,
+      travelDate,
       amountPaid,
       notes,
     } = req.body || {};
@@ -50,17 +39,18 @@ export default async function handler(req: any, res: any) {
       return res.status(400).json({ success: false, error: "Missing mandatory pilgrim booking fields" });
     }
 
-    const keySecret = process.env.RAZORPAY_KEY_SECRET;
-    if (keySecret && razorpay_order_id && razorpay_signature) {
-      try {
-        const hmac = crypto.createHmac("sha256", keySecret);
-        hmac.update(`${razorpay_order_id}|${razorpay_payment_id}`);
-        const generatedSignature = hmac.digest("hex");
-        if (generatedSignature !== razorpay_signature) {
-          console.warn("Razorpay signature mismatch warning.");
-        }
-      } catch (sigErr) {
-        console.warn("Signature verification warning:", sigErr);
+    const keySecret = (process.env.RAZORPAY_KEY_SECRET || "").trim();
+    const isSimulated = razorpay_signature === "simulated_sig_ok" || String(razorpay_order_id || "").startsWith("order_demo_");
+
+    if (keySecret && !isSimulated && razorpay_order_id && razorpay_payment_id && razorpay_signature) {
+      const hmac = crypto.createHmac("sha256", keySecret);
+      hmac.update(`${razorpay_order_id}|${razorpay_payment_id}`);
+      const generatedSignature = hmac.digest("hex");
+      if (generatedSignature !== razorpay_signature) {
+        return res.status(400).json({
+          success: false,
+          error: "Razorpay payment signature verification failed. Please verify RAZORPAY_KEY_SECRET in Vercel.",
+        });
       }
     }
 
@@ -96,7 +86,6 @@ export default async function handler(req: any, res: any) {
       notes: `ONLINE RAZORPAY CONFIRMED BOOKING. Payment ID: ${paymentId}. Order ID: ${razorpay_order_id || "N/A"}. ${notes || ""}`,
     };
 
-    // Save lead to Firestore database
     if (db) {
       try {
         await setDoc(doc(db, "leads", newId), confirmedLead);
@@ -105,12 +94,31 @@ export default async function handler(req: any, res: any) {
       }
     }
 
+    const cleanDigits = String(phone).replace(/\D/g, "");
+    const targetWaPhone = cleanDigits.length >= 10 ? `91${cleanDigits.slice(-10)}` : "917248285767";
+    const appOrigin = (process.env.APP_URL || "https://gotrektravel.com").trim().replace(/\/+$/, "");
+    const receiptUrl = `${appOrigin}/payment-success?bookingId=${encodeURIComponent(newId)}&paymentId=${encodeURIComponent(paymentId)}`;
+    const waText = encodeURIComponent(
+      `🙏 *GoTrek Travels — Yatra Booking Confirmed*\nBooking ID: ${newId}\nPayment ID: ${paymentId}\nCircuit: ${destination}\nDeposit Paid: ₹${paidAmountNum.toLocaleString("en-IN")}\nPass: ${receiptUrl}`
+    );
+
+    let emailResult: any = { success: false, mode: "skipped" };
+    if (email) {
+      emailResult = { success: false, mode: "unavailable" };
+    }
+
     return res.status(200).json({
       success: true,
       bookingId: confirmedLead.id,
-      paymentId: paymentId,
+      paymentId,
       lead: confirmedLead,
       receiptUrl: `/receipt?id=${confirmedLead.id}`,
+      notifications: {
+        whatsappWebLink: `https://api.whatsapp.com/send?phone=${targetWaPhone}&text=${waText}`,
+        waMeLink: `https://wa.me/${targetWaPhone}?text=${waText}`,
+        emailSent: Boolean(emailResult?.success),
+        emailMode: emailResult?.mode || "skipped",
+      },
     });
   } catch (err: any) {
     return res.status(500).json({ success: false, error: err?.message || "Failed to verify payment" });

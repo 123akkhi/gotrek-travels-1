@@ -1,25 +1,19 @@
-import { initializeApp, getApps, getApp } from "firebase/app";
-import { initializeFirestore, getFirestore, doc, setDoc, getDocs, collection, deleteDoc } from "firebase/firestore";
-import firebaseConfig from "../firebase-applet-config.json";
+import { doc, setDoc, getDocs, collection, deleteDoc } from "firebase/firestore";
 
-let db: any = null;
-try {
-  const firebaseApp = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-  const resolvedDbId = (firebaseConfig.firestoreDatabaseId && firebaseConfig.firestoreDatabaseId !== "(default)")
-    ? firebaseConfig.firestoreDatabaseId
-    : (firebaseConfig.projectId === "gotrek-travels" ? "default" : undefined);
+const resolveServerlessDb = () => {
   try {
-    db = resolvedDbId
-      ? initializeFirestore(firebaseApp, { ignoreUndefinedProperties: true }, resolvedDbId)
-      : initializeFirestore(firebaseApp, { ignoreUndefinedProperties: true });
+    const mod = require("../src/server/vercelFirebase");
+    if (typeof mod?.getServerlessDb === "function") return mod.getServerlessDb();
+    if (typeof mod?.default === "function") return mod.default();
+    if (typeof mod?.getDb === "function") return mod.getDb();
+    if (typeof mod?.default?.getServerlessDb === "function") return mod.default.getServerlessDb();
+    return null;
   } catch {
-    db = resolvedDbId
-      ? getFirestore(firebaseApp, resolvedDbId)
-      : getFirestore(firebaseApp);
+    return null;
   }
-} catch (e) {
-  console.warn("Vercel Firebase initialization warning:", e);
-}
+};
+
+const db = resolveServerlessDb();
 
 export default async function handler(req: any, res: any) {
   res.setHeader("Access-Control-Allow-Origin", "*");

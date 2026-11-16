@@ -4,31 +4,31 @@
   "framework": "vite",
   "rewrites": [
     {
-      "source": "/api/health",
-      "destination": "/api/health"
-    },
-    {
-      "source": "/api/consult",
-      "destination": "/api/consult"
-    },
-    {
-      "source": "/api/leads",
-      "destination": "/api/leads"
-    },
-    {
-      "source": "/api /payment/create-order",
-      "destination": "/api/payment/create-order"
-    },
-    {
-      "source": "/api/payment/verify-payment",
-      "destination": "/api/payment/verify-payment"
-    },
-    {
-      "source": "/api/google-reviews",
+      "source": "/api/places-reviews",
       "destination": "/api/google-reviews"
     },
     {
-      "source": "/(.*)",
+      "source": "/api/whatsapp/trigger-devotee-message",
+      "destination": "/api/whatsapp-trigger"
+    },
+    {
+      "source": "/api/leads/:id",
+      "destination": "/api/leads?id=:id"
+    },
+    {
+      "source": "/api/blogs/:slug",
+      "destination": "/api/blogs?slug=:slug"
+    },
+    {
+      "source": "/api/news/:id",
+      "destination": "/api/news?id=:id"
+    },
+    {
+      "source": "/api/pilgrims/:id",
+      "destination": "/api/pilgrims?id=:id"
+    },
+    {
+      "source": "/((?!api/).*)",
       "destination": "/index.html"
     }
   ]

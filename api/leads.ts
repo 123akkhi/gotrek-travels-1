@@ -1,26 +1,23 @@
-import { initializeApp, getApps, getApp } from "firebase/app";
-import { initializeFirestore, getFirestore, doc, setDoc, getDocs, collection, deleteDoc } from "firebase/firestore";
-import firebaseConfig from "../../firebase-applet-config.json";
-import { INITIAL_LEADS } from "../../src/data/mockData";
+import { doc, setDoc, getDocs, collection, deleteDoc, getDoc } from "firebase/firestore";
+import { INITIAL_LEADS } from "../src/data/mockData";
 
-let db: any = null;
-try {
-  const firebaseApp = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-  const resolvedDbId = (firebaseConfig.firestoreDatabaseId && firebaseConfig.firestoreDatabaseId !== "(default)")
-    ? firebaseConfig.firestoreDatabaseId
-    : (firebaseConfig.projectId === "gotrek-travels" ? "default" : undefined);
+const vercelFirebaseModule: any = (() => {
   try {
-    db = resolvedDbId
-      ? initializeFirestore(firebaseApp, { ignoreUndefinedProperties: true }, resolvedDbId)
-      : initializeFirestore(firebaseApp, { ignoreUndefinedProperties: true });
-  } catch {
-    db = resolvedDbId
-      ? getFirestore(firebaseApp, resolvedDbId)
-      : getFirestore(firebaseApp);
+    return require("../src/server/vercelFirebase");
+  } catch (error) {
+    console.warn("Unable to load vercelFirebase module:", error);
+    return {};
   }
-} catch (e) {
-  console.warn("Vercel Firebase initialization warning:", e);
-}
+})();
+
+const getServerlessDb =
+  vercelFirebaseModule?.getServerlessDb ??
+  vercelFirebaseModule?.getDb ??
+  vercelFirebaseModule?.default?.getServerlessDb ??
+  vercelFirebaseModule?.default?.getDb ??
+  (() => null);
+
+const db = getServerlessDb();
 
 export default async function handler(req: any, res: any) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -110,12 +107,40 @@ export default async function handler(req: any, res: any) {
     }
   }
 
+  // PATCH: Update lead booking
+  if (req.method === "PATCH") {
+    try {
+      const id = String(req.query?.id || req.body?.id || req.url?.split("?")[0]?.split("/").pop() || "").trim();
+      if (!id) {
+        return res.status(400).json({ success: false, error: "Lead ID is required" });
+      }
+      const updates = { ...(req.body || {}), updatedAt: new Date().toISOString(), detailsFilled: true };
+      let existing: any = {};
+      if (db) {
+        try {
+          const existingSnap = await getDoc(doc(db, "leads", id));
+          if (existingSnap.exists()) {
+            existing = existingSnap.data();
+          }
+          const updatedLead = { ...existing, ...updates, id };
+          await setDoc(doc(db, "leads", id), updatedLead, { merge: true });
+          return res.status(200).json({ success: true, lead: updatedLead });
+        } catch (dbErr) {
+          console.warn("Failed to update lead in Firestore on Vercel:", dbErr);
+        }
+      }
+      return res.status(200).json({ success: true, lead: { id, ...updates } });
+    } catch (err: any) {
+      return res.status(500).json({ success: false, error: err?.message || "Failed to update lead" });
+    }
+  }
+
   // DELETE: Delete lead booking
   if (req.method === "DELETE") {
     try {
-      const { id } = req.query;
+      const id = String(req.query?.id || req.body?.id || req.url?.split("?")[0]?.split("/").pop() || "").trim();
       if (id && db) {
-        await deleteDoc(doc(db, "leads", String(id)));
+        await deleteDoc(doc(db, "leads", id));
       }
       return res.status(200).json({ success: true, message: `Lead ${id} deleted` });
     } catch (err: any) {
