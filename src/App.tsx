@@ -56,6 +56,25 @@ const RazorpayCheckoutModal = lazyWithRetry(() => import("./components/RazorpayC
 const UserAuthModal = lazyWithRetry(() => import("./components/UserAuthModal"), "UserAuthModal");
 const InitialPopupModal = lazyWithRetry(() => import("./components/InitialPopupModal"), "InitialPopupModal");
 const GlobalSearchModal = lazyWithRetry(() => import("./components/GlobalSearchModal"), "GlobalSearchModal");
+function DesktopStickyActionPillComponent({
+  onOpenInquiry,
+  currentCircuit,
+}: {
+  onOpenInquiry: () => void;
+  currentCircuit: string;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onOpenInquiry}
+      className="fixed bottom-6 right-6 z-40 hidden items-center gap-3 rounded-full bg-amber-500 px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-amber-600 md:flex"
+      aria-label={`Enquire about ${currentCircuit}`}
+    >
+      <span>Plan your trip</span>
+      <span aria-hidden="true">→</span>
+    </button>
+  );
+}
 
 const floatingPageVariants = {
   initial: { 
@@ -160,6 +179,31 @@ function getInitialRouteState() {
   }
   if (cleanPath.startsWith('packages/') || cleanPath.startsWith('package/')) {
     state.packageSlug = cleanPath.replace(/^packages?\//, '');
+    return state;
+  }
+  if (
+    cleanPath === 'adi-kailash-yatra-standard' ||
+    cleanPath === 'adi-kailash-standard' ||
+    cleanPath === 'standard-package'
+  ) {
+    state.packageSlug = 'adi-kailash-yatra-standard';
+    return state;
+  }
+  if (
+    cleanPath === 'adi-kailash-spiritual-expedition-premium' ||
+    cleanPath === 'adi-kailash-premium' ||
+    cleanPath === 'premium-package' ||
+    cleanPath === 'premium-spiritual-expedition'
+  ) {
+    state.packageSlug = 'adi-kailash-spiritual-expedition-premium';
+    return state;
+  }
+  if (
+    cleanPath === 'adi-kailash-vip-luxury-helicopter' ||
+    cleanPath === 'helicopter-package' ||
+    cleanPath === 'vip-helicopter'
+  ) {
+    state.packageSlug = 'adi-kailash-vip-luxury-helicopter';
     return state;
   }
   if (cleanPath.startsWith('blogs/') || cleanPath.startsWith('blog/')) {
@@ -481,6 +525,7 @@ export default function App() {
     setIsMedicalFitnessOpen(false);
     setIsHotelsPageOpen(false);
     setIsWomenBatchPageOpen(false);
+    setIsCrmOpen(false);
     if (window.location.pathname !== '/') {
       window.history.pushState({}, '', '/');
     }
@@ -514,6 +559,9 @@ export default function App() {
     setIsPithoragarhFlightsOpen(false);
     setIsRazorpayOpen(false);
     setIsMedicalFitnessOpen(false);
+    setIsHotelsPageOpen(false);
+    setIsWomenBatchPageOpen(false);
+    setIsCrmOpen(false);
     setIsPaymentSuccessOpen(true);
     const targetPath = '/payment-success';
     if (window.location.pathname !== targetPath) {
@@ -567,6 +615,9 @@ export default function App() {
         setIsMemoriesPageOpen(false);
         setIsPithoragarhFlightsOpen(false);
         setIsMedicalFitnessOpen(false);
+        setIsHotelsPageOpen(false);
+        setIsWomenBatchPageOpen(false);
+        setIsPaymentSuccessOpen(false);
         return;
       }
 
@@ -594,6 +645,33 @@ export default function App() {
           handleSelectPackage(pkgSlug);
           return;
         }
+      }
+
+      // Match direct package slugs without /packages/ prefix
+      if (
+        cleanPath === 'adi-kailash-yatra-standard' ||
+        cleanPath === 'adi-kailash-standard' ||
+        cleanPath === 'standard-package'
+      ) {
+        handleSelectPackage('adi-kailash-yatra-standard');
+        return;
+      }
+      if (
+        cleanPath === 'adi-kailash-spiritual-expedition-premium' ||
+        cleanPath === 'adi-kailash-premium' ||
+        cleanPath === 'premium-package' ||
+        cleanPath === 'premium-spiritual-expedition'
+      ) {
+        handleSelectPackage('adi-kailash-spiritual-expedition-premium');
+        return;
+      }
+      if (
+        cleanPath === 'adi-kailash-vip-luxury-helicopter' ||
+        cleanPath === 'helicopter-package' ||
+        cleanPath === 'vip-helicopter'
+      ) {
+        handleSelectPackage('adi-kailash-vip-luxury-helicopter');
+        return;
       }
 
       // Match blog paths: /blogs/slug or /blog/slug or /blogs
@@ -943,7 +1021,14 @@ export default function App() {
     setIsTermsPageOpen(false);
     setIsPrivacyPageOpen(false);
     setIsAboutUsOpen(false);
+    setIsReelsPageOpen(false);
+    setIsMemoriesPageOpen(false);
     setIsPithoragarhFlightsOpen(false);
+    setIsPaymentSuccessOpen(false);
+    setIsMedicalFitnessOpen(false);
+    setIsHotelsPageOpen(false);
+    setIsWomenBatchPageOpen(false);
+    setIsCrmOpen(false);
     setIsTeamPageOpen(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
@@ -958,7 +1043,14 @@ export default function App() {
     setIsTermsPageOpen(false);
     setIsPrivacyPageOpen(false);
     setIsAboutUsOpen(false);
+    setIsReelsPageOpen(false);
+    setIsMemoriesPageOpen(false);
     setIsPithoragarhFlightsOpen(false);
+    setIsPaymentSuccessOpen(false);
+    setIsMedicalFitnessOpen(false);
+    setIsHotelsPageOpen(false);
+    setIsWomenBatchPageOpen(false);
+    setIsCrmOpen(false);
     setIsCareersPageOpen(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
@@ -973,7 +1065,14 @@ export default function App() {
     setIsTermsPageOpen(false);
     setIsPrivacyPageOpen(false);
     setIsAboutUsOpen(false);
+    setIsReelsPageOpen(false);
+    setIsMemoriesPageOpen(false);
     setIsPithoragarhFlightsOpen(false);
+    setIsPaymentSuccessOpen(false);
+    setIsMedicalFitnessOpen(false);
+    setIsHotelsPageOpen(false);
+    setIsWomenBatchPageOpen(false);
+    setIsCrmOpen(false);
     setIsClothingGuideOpen(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
@@ -988,7 +1087,14 @@ export default function App() {
     setIsClothingGuideOpen(false);
     setIsPrivacyPageOpen(false);
     setIsAboutUsOpen(false);
+    setIsReelsPageOpen(false);
+    setIsMemoriesPageOpen(false);
     setIsPithoragarhFlightsOpen(false);
+    setIsPaymentSuccessOpen(false);
+    setIsMedicalFitnessOpen(false);
+    setIsHotelsPageOpen(false);
+    setIsWomenBatchPageOpen(false);
+    setIsCrmOpen(false);
     setIsTermsPageOpen(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
@@ -1003,7 +1109,14 @@ export default function App() {
     setIsClothingGuideOpen(false);
     setIsTermsPageOpen(false);
     setIsAboutUsOpen(false);
+    setIsReelsPageOpen(false);
+    setIsMemoriesPageOpen(false);
     setIsPithoragarhFlightsOpen(false);
+    setIsPaymentSuccessOpen(false);
+    setIsMedicalFitnessOpen(false);
+    setIsHotelsPageOpen(false);
+    setIsWomenBatchPageOpen(false);
+    setIsCrmOpen(false);
     setIsPrivacyPageOpen(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
@@ -1021,6 +1134,11 @@ export default function App() {
     setIsReelsPageOpen(false);
     setIsMemoriesPageOpen(false);
     setIsPithoragarhFlightsOpen(false);
+    setIsPaymentSuccessOpen(false);
+    setIsMedicalFitnessOpen(false);
+    setIsHotelsPageOpen(false);
+    setIsWomenBatchPageOpen(false);
+    setIsCrmOpen(false);
     setIsAboutUsOpen(true);
     const targetPath = '/about-us';
     if (window.location.pathname !== targetPath) {
@@ -1046,6 +1164,11 @@ export default function App() {
     setIsAboutUsOpen(false);
     setIsMemoriesPageOpen(false);
     setIsPithoragarhFlightsOpen(false);
+    setIsPaymentSuccessOpen(false);
+    setIsMedicalFitnessOpen(false);
+    setIsHotelsPageOpen(false);
+    setIsWomenBatchPageOpen(false);
+    setIsCrmOpen(false);
     setIsReelsPageOpen(true);
     const targetPath = '/reels';
     if (window.location.pathname !== targetPath) {
@@ -1067,6 +1190,11 @@ export default function App() {
     setIsAboutUsOpen(false);
     setIsReelsPageOpen(false);
     setIsPithoragarhFlightsOpen(false);
+    setIsPaymentSuccessOpen(false);
+    setIsMedicalFitnessOpen(false);
+    setIsHotelsPageOpen(false);
+    setIsWomenBatchPageOpen(false);
+    setIsCrmOpen(false);
     setIsMemoriesPageOpen(true);
     const targetPath = '/memories';
     if (window.location.pathname !== targetPath) {
@@ -1088,7 +1216,11 @@ export default function App() {
     setIsAboutUsOpen(false);
     setIsReelsPageOpen(false);
     setIsMemoriesPageOpen(false);
+    setIsPaymentSuccessOpen(false);
     setIsMedicalFitnessOpen(false);
+    setIsHotelsPageOpen(false);
+    setIsWomenBatchPageOpen(false);
+    setIsCrmOpen(false);
     setIsPithoragarhFlightsOpen(true);
     const targetPath = '/pithoragarh-flights';
     if (window.location.pathname !== targetPath) {
@@ -1112,6 +1244,9 @@ export default function App() {
     setIsMemoriesPageOpen(false);
     setIsPithoragarhFlightsOpen(false);
     setIsPaymentSuccessOpen(false);
+    setIsHotelsPageOpen(false);
+    setIsWomenBatchPageOpen(false);
+    setIsCrmOpen(false);
     setIsMedicalFitnessOpen(true);
     const targetPath = '/medical-fitness';
     if (window.location.pathname !== targetPath) {
@@ -1145,6 +1280,7 @@ export default function App() {
     setIsPaymentSuccessOpen(false);
     setIsMedicalFitnessOpen(false);
     setIsWomenBatchPageOpen(false);
+    setIsCrmOpen(false);
     setIsHotelsPageOpen(true);
     const targetPath = '/hotels';
     if (window.location.pathname !== targetPath) {
@@ -1178,6 +1314,7 @@ export default function App() {
     setIsPaymentSuccessOpen(false);
     setIsMedicalFitnessOpen(false);
     setIsHotelsPageOpen(false);
+    setIsCrmOpen(false);
     setIsWomenBatchPageOpen(true);
     const targetPath = '/women-special';
     if (window.location.pathname !== targetPath) {
@@ -1277,15 +1414,7 @@ export default function App() {
           onLogoutUser={handleLogoutUser}
           onOpenClothingGuide={handleOpenClothingPage}
           onGoHome={handleGoHome}
-          onSelectDestination={(slug) => {
-            setSelectedBlogSlug('');
-            setSelectedPackageSlug('');
-            setSelectedSeoSlug('');
-            setIsReelsPageOpen(false);
-            setIsMemoriesPageOpen(false);
-            setSelectedDestinationSlug(slug);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
+          onSelectDestination={handleSelectDestination}
           onSelectBlog={handleSelectBlog}
           onSelectPackage={handleSelectPackage}
           onSelectSeoPage={handleSelectSeoPage}
@@ -1296,6 +1425,8 @@ export default function App() {
           onOpenMemoriesPage={handleOpenMemoriesPage}
           onSelectPithoragarhFlights={handleOpenPithoragarhFlights}
           onOpenMedicalFitness={handleOpenMedicalFitness}
+          onOpenHotelsPage={handleOpenHotelsPage}
+          onOpenWomenBatchPage={handleOpenWomenBatchPage}
           onOpenSearch={() => setIsSearchOpen(true)}
           activePage={currentActivePage}
         />
@@ -1752,7 +1883,11 @@ export default function App() {
 
             {/* Yatra Operations CRM Dashboard */}
             <AnimatePresence>
-              {isCrmOpen && <CrmDashboard onClose={handleToggleCrm} />}
+              {isCrmOpen && (
+                <ErrorBoundary onReset={handleToggleCrm}>
+                  <CrmDashboard onClose={handleToggleCrm} />
+                </ErrorBoundary>
+              )}
             </AnimatePresence>
 
             {/* Instant Global Search Modal */}
@@ -1789,6 +1924,12 @@ export default function App() {
 
             {/* Live WhatsApp Chat Support Widget */}
             <WhatsAppChatWidget />
+
+            {/* Desktop Sticky Quick Action Pill (Trip to Temples style conversion bar) */}
+            <DesktopStickyActionPillComponent
+              onOpenInquiry={handleOpenInquiry}
+              currentCircuit={selectedDestinationSlug || selectedPackageSlug || 'Adi Kailash & Om Parvat 2027'}
+            />
 
             {/* High-Altitude Offline Trek Notification & Route Caching Banner */}
             <OfflineTrekBar />

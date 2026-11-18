@@ -45,7 +45,7 @@ interface DropdownItem {
   title: string;
   desc?: string;
   slug: string;
-  type: 'destination' | 'package' | 'seo' | 'blog' | 'blog-all' | 'clothing' | 'faq' | 'about' | 'team' | 'careers' | 'reels' | 'memories' | 'flights' | 'medical-fitness';
+  type: 'destination' | 'package' | 'seo' | 'blog' | 'blog-all' | 'clothing' | 'faq' | 'about' | 'team' | 'careers' | 'reels' | 'memories' | 'flights' | 'medical-fitness' | 'hotels' | 'women-batch';
   badge?: string;
 }
 
@@ -59,10 +59,24 @@ interface PackageShowcaseCard {
   category: 'all' | 'adi-kailash' | 'mansarovar' | 'flowers' | 'chardham' | 'dodham' | 'himachal';
   image: string;
   highlights: string[];
-  type: 'destination' | 'packages';
+  type: 'destination' | 'package' | 'packages' | 'hotels' | 'women-batch';
 }
 
 const DESTINATION_ITEMS: DropdownItem[] = [
+  {
+    title: "Women Special Batch 2027",
+    desc: "100% women-led yatra with lady guides & doctors",
+    slug: "women-special",
+    type: "women-batch",
+    badge: "Exclusive",
+  },
+  {
+    title: "Hotels & Stays (15 Properties)",
+    desc: "Standard & premium accommodations in Dharchula, Nabi & Gunji",
+    slug: "hotels",
+    type: "hotels",
+    badge: "15 Stays",
+  },
   {
     title: "Adi Kailash & Om Parvat",
     desc: "Chhota Kailash & eternal snow Om at 14,500 ft",
@@ -226,6 +240,28 @@ const DESTINATION_ITEMS: DropdownItem[] = [
 
 const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
   {
+    title: "Adi Kailash Women Special Batch 2027",
+    duration: "6D / 5N",
+    price: "₹38,000",
+    badge: "100% Women-Led",
+    destSlug: "women-special",
+    category: "adi-kailash",
+    image: "/images/memories/group-memory-01.webp",
+    highlights: ["Certified Lady Mountain Guide", "Female Doctor on Board", "Private Cottages in Nabi"],
+    type: "women-batch",
+  },
+  {
+    title: "Hotels & Stays (15 Verified Properties)",
+    duration: "Standard & Deluxe",
+    price: "From ₹1,800",
+    badge: "15 Accommodations",
+    destSlug: "hotels",
+    category: "adi-kailash",
+    image: "/images/destinations/adi-kailash3.webp",
+    highlights: ["Dharchula Base Hotels", "Nabi Wooden Cottages", "Gunji Alpine Homestays"],
+    type: "hotels",
+  },
+  {
     title: "Spiti Valley & Chandratal Lake Grand Circuit",
     duration: "7D / 6N",
     price: "₹22,500",
@@ -367,7 +403,7 @@ const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
     category: "adi-kailash",
     image: "/images/destinations/adi-kailash2.webp",
     highlights: ["4x4 Bolero Fleet", "SDM Permits in 48h", "Homestay & Sattvik Meals"],
-    type: "packages",
+    type: "package",
   },
   {
     title: "Premium Spiritual Expedition",
@@ -379,7 +415,7 @@ const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
     category: "adi-kailash",
     image: "/images/destinations/adi-kailash3.webp",
     highlights: ["Luxury Isuzu 4x4", "Private Cottages Nabi", "Medical Oxygen Backup"],
-    type: "packages",
+    type: "package",
   },
   {
     title: "VIP Helicopter Darshan",
@@ -391,7 +427,7 @@ const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
     category: "adi-kailash",
     image: "/images/destinations/adi-kailash5.webp",
     highlights: ["Pithoragarh Helipad", "Gunji Direct Fly", "Senior Devotee Friendly"],
-    type: "packages",
+    type: "package",
   },
   {
     title: "Kailash Mansarovar (Old Lipulekh)",
@@ -433,7 +469,7 @@ const PACKAGES_SHOWCASE: PackageShowcaseCard[] = [
     badge: "Train Connect",
     destSlug: "adi-kailash-yatra-from-haldwani",
     category: "adi-kailash",
-    image: "/images/destinations/adi-kailash5.webp",
+    image: "/images/destinatrions/adi-kailash5.webp",
     highlights: ["Kathgodam Railway Join", "Direct 4x4 Transfer", "Local Kumaoni Host"],
     type: "destination",
   }
@@ -467,6 +503,20 @@ const GUIDE_ITEMS: DropdownItem[] = [
     slug: "high-altitude-medical-oxygen-safety-guide",
     type: "blog",
     badge: "Fitness Pass",
+  },
+  {
+    title: "Hotels & Stays (15 Verified)",
+    desc: "Warm wooden cottages, deluxe stays & homestays in Nabi, Gunji & Dharchula",
+    slug: "hotels",
+    type: "hotels",
+    badge: "15 Stays",
+  },
+  {
+    title: "Women Special Batch 2027",
+    desc: "100% women-led yatra with lady guides & female doctor",
+    slug: "women-special",
+    type: "women-batch",
+    badge: "Exclusive",
   },
   {
     title: "Nabi & Gunji Homestays Guide",
@@ -696,6 +746,9 @@ export const Navbar = memo(function Navbar({
   };
 
   const handleCatMouseDown = (e: React.MouseEvent) => {
+    if ((e.target as HTMLElement).closest('button, a')) {
+      return;
+    }
     if (!categoryNavRef.current) return;
     setIsCatDragging(true);
     setCatStartX(e.pageX - categoryNavRef.current.offsetLeft);
@@ -704,10 +757,12 @@ export const Navbar = memo(function Navbar({
 
   const handleCatMouseMove = (e: React.MouseEvent) => {
     if (!isCatDragging || !categoryNavRef.current) return;
-    e.preventDefault();
     const x = e.pageX - categoryNavRef.current.offsetLeft;
     const walk = (x - catStartX) * 1.5;
-    categoryNavRef.current.scrollLeft = catScrollLeft - walk;
+    if (Math.abs(walk) > 4) {
+      e.preventDefault();
+      categoryNavRef.current.scrollLeft = catScrollLeft - walk;
+    }
   };
 
   const handleCatMouseUp = () => {
@@ -831,13 +886,21 @@ export const Navbar = memo(function Navbar({
       if (onOpenMemoriesPage) onOpenMemoriesPage();
     } else if (item.type === 'flights') {
       if (onSelectPithoragarhFlights) onSelectPithoragarhFlights();
+    } else if (item.type === 'hotels') {
+      if (onOpenHotelsPage) onOpenHotelsPage();
+    } else if (item.type === 'women-batch') {
+      if (onOpenWomenBatchPage) onOpenWomenBatchPage();
     }
   };
 
   const handlePackageCardClick = (card: PackageShowcaseCard) => {
     setActiveDropdown(null);
     setMobileMenuOpen(false);
-    if (card.type === 'packages' && card.packageSlug) {
+    if (card.type === 'women-batch') {
+      if (onOpenWomenBatchPage) onOpenWomenBatchPage();
+    } else if (card.type === 'hotels') {
+      if (onOpenHotelsPage) onOpenHotelsPage();
+    } else if ((card.type === 'package' || card.type === 'packages') && card.packageSlug) {
       if (onSelectPackage) onSelectPackage(card.packageSlug);
     } else {
       if (onSelectDestination) onSelectDestination(card.destSlug);
@@ -851,6 +914,9 @@ export const Navbar = memo(function Navbar({
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
+    if ((e.target as HTMLElement).closest('button, a')) {
+      return;
+    }
     if (!packagesSliderRef.current) return;
     setIsDragging(true);
     setStartX(e.pageX - packagesSliderRef.current.offsetLeft);
@@ -859,10 +925,12 @@ export const Navbar = memo(function Navbar({
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDragging || !packagesSliderRef.current) return;
-    e.preventDefault();
     const x = e.pageX - packagesSliderRef.current.offsetLeft;
     const walk = (x - startX) * 1.5;
-    packagesSliderRef.current.scrollLeft = scrollLeftPos - walk;
+    if (Math.abs(walk) > 4) {
+      e.preventDefault();
+      packagesSliderRef.current.scrollLeft = scrollLeftPos - walk;
+    }
   };
 
   const handleMouseUp = () => {
@@ -905,7 +973,7 @@ export const Navbar = memo(function Navbar({
           transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
           onMouseEnter={() => handleMouseEnter("destinations")}
           onMouseLeave={handleMouseLeave}
-          className="fixed top-[84px] sm:top-[92px] left-2 right-2 sm:left-4 sm:right-auto lg:left-8 mt-2 w-auto sm:w-[680px] lg:w-[1080px] max-w-[calc(100vw-16px)] max-h-[calc(100vh-110px)] overflow-y-auto rounded-2xl bg-white border border-amber-400/40 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] p-3.5 sm:p-5 z-[400] text-slate-800 ring-1 ring-black/5 overscroll-contain smooth-scroll-y"
+          className="fixed top-[128px] sm:top-[136px] left-2 right-2 sm:left-4 sm:right-auto lg:left-8 mt-1 w-auto sm:w-[680px] lg:w-[1080px] max-w-[calc(100vw-16px)] max-h-[calc(100vh-148px)] overflow-y-auto rounded-2xl bg-white border border-amber-400/40 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] p-3.5 sm:p-5 z-[400] text-slate-800 ring-1 ring-black/5 overscroll-contain smooth-scroll-y"
         >
           {/* Top Header Bar */}
           <div className="flex items-center justify-between pb-3 mb-3 sm:mb-4 border-b border-slate-100 gap-2">
@@ -1103,7 +1171,7 @@ export const Navbar = memo(function Navbar({
           transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
           onMouseEnter={() => handleMouseEnter("guides")}
           onMouseLeave={handleMouseLeave}
-          className="fixed top-[84px] sm:top-[92px] left-2 right-2 sm:left-auto sm:right-28 lg:left-[460px] lg:right-auto mt-2 w-auto sm:w-[420px] max-w-[calc(100vw-16px)] max-h-[calc(100vh-110px)] overflow-y-auto rounded-2xl bg-white border border-amber-400/40 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] p-3.5 z-[400] text-slate-800 ring-1 ring-black/5 overscroll-contain smooth-scroll-y"
+          className="fixed top-[128px] sm:top-[136px] left-2 right-2 sm:left-auto sm:right-28 lg:left-[460px] lg:right-auto mt-1 w-auto sm:w-[420px] max-w-[calc(100vw-16px)] max-h-[calc(100vh-148px)] overflow-y-auto rounded-2xl bg-white border border-amber-400/40 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] p-3.5 z-[400] text-slate-800 ring-1 ring-black/5 overscroll-contain smooth-scroll-y"
         >
           <div className="flex items-center justify-between px-1 pb-2.5 mb-1.5 border-b border-slate-100">
             <div className="flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-[#C91D24]">
@@ -1170,7 +1238,7 @@ export const Navbar = memo(function Navbar({
           transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
           onMouseEnter={() => handleMouseEnter("about")}
           onMouseLeave={handleMouseLeave}
-          className="fixed top-[84px] sm:top-[92px] left-2 right-2 sm:left-auto sm:right-12 lg:right-24 mt-2 w-auto sm:w-[340px] max-w-[calc(100vw-16px)] max-h-[calc(100vh-110px)] overflow-y-auto rounded-2xl bg-white border border-amber-400/40 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] p-3.5 z-[400] text-slate-800 ring-1 ring-black/5 overscroll-contain smooth-scroll-y"
+          className="fixed top-[128px] sm:top-[136px] left-2 right-2 sm:left-auto sm:right-12 lg:right-24 mt-1 w-auto sm:w-[340px] max-w-[calc(100vw-16px)] max-h-[calc(100vh-148px)] overflow-y-auto rounded-2xl bg-white border border-amber-400/40 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] p-3.5 z-[400] text-slate-800 ring-1 ring-black/5 overscroll-contain smooth-scroll-y"
         >
           <div className="flex items-center justify-between px-1 pb-2.5 mb-1.5 border-b border-slate-100">
             <div className="flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-[#C91D24]">
@@ -1237,7 +1305,7 @@ export const Navbar = memo(function Navbar({
           transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
           onMouseEnter={() => handleMouseEnter("packages")}
           onMouseLeave={handleMouseLeave}
-          className="fixed top-[84px] sm:top-[92px] left-2 right-2 sm:left-16 sm:right-auto lg:left-36 mt-2 w-auto sm:w-[660px] max-w-[calc(100vw-16px)] max-h-[82vh] overflow-y-auto rounded-2xl bg-white border border-amber-400/40 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] p-3.5 sm:p-4 z-[400] text-slate-800 ring-1 ring-black/5 no-scrollbar overscroll-contain smooth-scroll-y"
+          className="fixed top-[128px] sm:top-[136px] left-2 right-2 sm:left-16 sm:right-auto lg:left-36 mt-1 w-auto sm:w-[660px] max-w-[calc(100vw-16px)] max-h-[calc(100vh-148px)] overflow-y-auto rounded-2xl bg-white border border-amber-400/40 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] p-3.5 sm:p-4 z-[400] text-slate-800 ring-1 ring-black/5 no-scrollbar overscroll-contain smooth-scroll-y"
         >
           {/* Header */}
           <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-slate-100 gap-2">
@@ -1883,13 +1951,21 @@ export const Navbar = memo(function Navbar({
 
           {/* Hotels & Stays (15 Verified Properties) */}
           <button
-            onClick={() => {
+            type="button"
+            onMouseEnter={() => setActiveDropdown(null)}
+            onMouseDown={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.stopPropagation();
               setActiveDropdown(null);
               if (onOpenHotelsPage) {
                 onOpenHotelsPage();
               }
             }}
-            className="px-2.5 py-1.5 rounded-lg hover:bg-white/15 hover:text-amber-200 transition-colors cursor-pointer text-white flex items-center gap-1 shrink-0"
+            className={`px-2.5 py-1.5 rounded-lg transition-colors cursor-pointer flex items-center gap-1 shrink-0 ${
+              activePage === 'hotels'
+                ? 'bg-black/30 text-amber-300 shadow-inner border border-amber-400/40 font-bold'
+                : 'text-white hover:bg-white/15 hover:text-amber-200'
+            }`}
             title="Explore 15 Standard & Premium Accommodations"
           >
             <Building2 size={13} className="text-amber-300" />
@@ -1901,13 +1977,21 @@ export const Navbar = memo(function Navbar({
 
           {/* Women Special Batch 2027 (Pinkish Himalayan Buransh Theme) */}
           <button
-            onClick={() => {
+            type="button"
+            onMouseEnter={() => setActiveDropdown(null)}
+            onMouseDown={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.stopPropagation();
               setActiveDropdown(null);
               if (onOpenWomenBatchPage) {
                 onOpenWomenBatchPage();
               }
             }}
-            className="px-2.5 py-1.5 rounded-lg bg-rose-950/70 hover:bg-rose-900 border border-rose-400/50 text-rose-100 hover:text-white transition-all cursor-pointer flex items-center gap-1.5 shrink-0 shadow-xs ring-1 ring-rose-400/20"
+            className={`px-2.5 py-1.5 rounded-lg border text-rose-100 hover:text-white transition-all cursor-pointer flex items-center gap-1.5 shrink-0 shadow-xs ring-1 ${
+              activePage === 'women-special'
+                ? 'bg-rose-800 border-rose-300 ring-rose-300/60 shadow-inner'
+                : 'bg-rose-950/70 hover:bg-rose-900 border-rose-400/50 ring-rose-400/20'
+            }`}
             title="Adi Kailash Women Special Batch 2027 • 100% Women-Led • Certified Lady Guides & Medics"
           >
             <span className="text-xs">🌸</span>
@@ -2137,12 +2221,14 @@ export const Navbar = memo(function Navbar({
               </button>
 
               {/* 0. Women Special Batch 2027 (Himalayan Buransh Pinkish Theme) */}
-              <div 
-                onClick={() => {
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
                   setMobileMenuOpen(false);
                   if (onOpenWomenBatchPage) onOpenWomenBatchPage();
                 }}
-                className="p-3.5 rounded-2xl bg-gradient-to-r from-rose-900 via-rose-800 to-pink-900 text-white flex items-center justify-between shadow-md border border-rose-400/40 cursor-pointer active:scale-[0.98] transition-all"
+                className="w-full p-3.5 rounded-2xl bg-gradient-to-r from-rose-900 via-rose-800 to-pink-900 text-white flex items-center justify-between shadow-md border border-rose-400/40 cursor-pointer active:scale-[0.98] transition-all text-left"
               >
                 <div className="flex items-center gap-3">
                   <span className="text-2xl">🌸</span>
@@ -2156,15 +2242,17 @@ export const Navbar = memo(function Navbar({
                   </div>
                 </div>
                 <ChevronRight size={18} className="text-rose-200 shrink-0" />
-              </div>
+              </button>
 
               {/* 0.5 Hotels & Accommodations (15 Verified Properties) */}
-              <div 
-                onClick={() => {
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
                   setMobileMenuOpen(false);
                   if (onOpenHotelsPage) onOpenHotelsPage();
                 }}
-                className="p-3.5 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-800 to-amber-950 text-white flex items-center justify-between shadow-md border border-amber-400/40 cursor-pointer active:scale-[0.98] transition-all"
+                className="w-full p-3.5 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-800 to-amber-950 text-white flex items-center justify-between shadow-md border border-amber-400/40 cursor-pointer active:scale-[0.98] transition-all text-left"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center shrink-0 border border-amber-400/30">
@@ -2185,7 +2273,7 @@ export const Navbar = memo(function Navbar({
                   </div>
                 </div>
                 <ChevronRight size={18} className="text-amber-300 shrink-0" />
-              </div>
+              </button>
 
               {/* 1. Home Card */}
               <button
