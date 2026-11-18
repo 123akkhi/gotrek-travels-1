@@ -1,10 +1,24 @@
 export default function handler(req: any, res: any) {
   res.setHeader("Access-Control-Allow-Origin", "*");
+  const rawGemini = (process.env.GEMINI_API_KEY || process.env.GOOGLE_GEMINI_API_KEY || "")
+    .trim()
+    .replace(/^(GEMINI_API_KEY|GOOGLE_GEMINI_API_KEY)\s*=\s*/i, "")
+    .replace(/^["']|["']$/g, "")
+    .replace(/\s+/g, "");
+  const geminiKeyFormat = !rawGemini
+    ? "missing"
+    : rawGemini.startsWith("AIza")
+    ? "valid_aiza_prefix"
+    : rawGemini.startsWith("AQ.")
+    ? "invalid_aq_token"
+    : "unexpected_prefix";
+
   return res.status(200).json({
     status: "ok",
     app: "GoTrek Travels - Yatra & CRM (Vercel Serverless)",
     envConfigured: {
-      geminiApiKey: Boolean((process.env.GEMINI_API_KEY || process.env.GOOGLE_GEMINI_API_KEY || "").trim()),
+      geminiApiKey: Boolean(rawGemini),
+      geminiKeyFormat,
       googlePlacesApiKey: Boolean(
         (
           process.env.GOOGLE_PLACES_API_KEY ||

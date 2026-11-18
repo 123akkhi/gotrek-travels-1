@@ -31,13 +31,24 @@ export default async function handler(req: any, res: any) {
       return res.status(400).json({ success: false, error: "Prompt is required" });
     }
 
-    const apiKey = (process.env.GEMINI_API_KEY || process.env.GOOGLE_GEMINI_API_KEY || "")
-      .trim()
-      .replace(/^["']|["']$/g, "");
+    const rawKey = (process.env.GEMINI_API_KEY || process.env.GOOGLE_GEMINI_API_KEY || "").trim();
+    const apiKey = rawKey
+      .replace(/^(GEMINI_API_KEY|GOOGLE_GEMINI_API_KEY)\s*=\s*/i, "")
+      .replace(/^["']|["']$/g, "")
+      .replace(/\s+/g, "");
+
     if (!apiKey) {
       return res.status(500).json({
         success: false,
         error: "GEMINI_API_KEY is not configured in Vercel Environment Variables.",
+      });
+    }
+
+    if (apiKey.startsWith("AQ.")) {
+      return res.status(400).json({
+        success: false,
+        error:
+          "Invalid GEMINI_API_KEY format on Vercel: 'AQ.' tokens are not valid for the public Gemini API. Generate an 'AIza...' API key from Google AI Studio (aistudio.google.com/apikey), update GEMINI_API_KEY in Vercel, and Redeploy.",
       });
     }
 
@@ -59,7 +70,7 @@ Provide warm, authoritative, accurate, and concise guidance about:
 5. Best weather months (May-June for snow, Sept-Oct for clear peaks).
 Keep answers structured with bullet points and friendly Shiv-bhakt tone. Max 250 words.`;
 
-    const candidateModels = ["gemini-3.1-flash-lite", "gemini-4-hydrogen"];
+    const candidateModels = ["gemini-4-hydrogen", "gemini-3.1-flash-lite"];
     let lastError: any = null;
 
     for (const model of candidateModels) {
@@ -82,9 +93,18 @@ Keep answers structured with bullet points and friendly Shiv-bhakt tone. Max 250
       }
     }
 
+    const errMsg = String(lastError?.message || "");
+    if (errMsg.includes("API_KEY_INVALID") || errMsg.includes("API key not valid") || errMsg.includes("UNAUTHENTICATED")) {
+      return res.status(401).json({
+        success: false,
+        error:
+          "Google rejected GEMINI_API_KEY (401 API_KEY_INVALID). Ensure the active Vercel project uses a valid 'AIza...' key from Google AI Studio with NO HTTP-referrer restriction, then click Redeploy.",
+      });
+    }
+
     return res.status(500).json({
       success: false,
-      error: lastError?.message || "Gemini API request failed. Verify GEMINI_API_KEY in Vercel Environment Variables.",
+      error: errMsg || "Gemini API request failed. Verify GEMINI_API_KEY in Vercel Environment Variables.",
     });
   } catch (err: any) {
     console.error("Vercel Gemini Consultant Error:", err);

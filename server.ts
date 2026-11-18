@@ -14,16 +14,129 @@ import { DEFAULT_BLOG_ARTICLES, DEFAULT_NEWS_BULLETINS, BlogArticle, YatraNewsBu
 import { LeadBooking } from "./src/types";
 import { injectSsrMetadata } from "./src/utils/serverSsrMeta";
 
+interface NormalizedIndianPhone {
+  digits: string;
+  tenDigit: string;
+}
+
+interface AutomatedSmsOtpPayload {
+  phone: string;
+  code: string;
+  messageText: string;
+  name?: string;
+  email?: string;
+  purpose?: string;
+}
+
+interface AutomatedSmsOtpResult {
+  delivered: boolean;
+  providerLabel: string;
+  messageId?: string;
+  error?: string;
+}
+
+function normalizeIndianPhone(phone: string): NormalizedIndianPhone {
+  const digits = String(phone || "").replace(/\D/g, "");
+  let tenDigit = digits;
+
+  if (tenDigit.length === 12 && tenDigit.startsWith("91")) {
+    tenDigit = tenDigit.slice(2);
+  } else if (tenDigit.length === 11 && tenDigit.startsWith("0")) {
+    tenDigit = tenDigit.slice(1);
+  } else if (tenDigit.length > 10) {
+    tenDigit = tenDigit.slice(-10);
+  }
+
+  return { digits, tenDigit };
+}
+
+async function sendAutomatedSmsOtp(payload: AutomatedSmsOtpPayload): Promise<AutomatedSmsOtpResult> {
+  const normalized = normalizeIndianPhone(payload.phone);
+  const phone = normalized.tenDigit || normalized.digits;
+
+  if (!/^\d{10}$/.test(phone)) {
+    return { delivered: false, providerLabel: "SMS gateway", error: "Invalid Indian mobile number" };
+  }
+
+  try {
+    const twilioSid = (process.env.TWILIO_ACCOUNT_SID || "").trim();
+    const twilioToken = (process.env.TWILIO_AUTH_TOKEN || "").trim();
+    const twilioFrom = (process.env.TWILIO_PHONE_NUMBER || "").trim();
+
+    if (twilioSid && twilioToken && twilioFrom) {
+      const body = new URLSearchParams({ To: `+91${phone}`, From: twilioFrom, Body: payload.messageText });
+      const response = await fetch(`https://api.twilio.com/2010-04-01/Accounts/${twilioSid}/Messages.json`, {
+        method: "POST",
+        headers: {
+          Authorization: `Basic ${Buffer.from(`${twilioSid}:${twilioToken}`).toString("base64")}`,
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body,
+      });
+      const data: any = await response.json().catch(() => ({}));
+      if (response.ok && (data.sid || data.status)) {
+        return { delivered: true, providerLabel: "Twilio", messageId: data.sid };
+      }
+      return { delivered: false, providerLabel: "Twilio", error: data.message || `Twilio returned HTTP ${response.status}` };
+    }
+
+    const fast2SmsKey = (process.env.FAST2SMS_API_KEY || "").trim();
+    if (fast2SmsKey) {
+      const response = await fetch("https://www.fast2sms.com/dev/bulkV2", {
+        method: "POST",
+        headers: { authorization: fast2SmsKey, "Content-Type": "application/json" },
+        body: JSON.stringify({ route: "q", numbers: phone, message: payload.messageText }),
+      });
+      const data: any = await response.json().catch(() => ({}));
+      if (response.ok && data.return === true) {
+        return { delivered: true, providerLabel: "Fast2SMS", messageId: data.request_id ? String(data.request_id) : undefined };
+      }
+      return { delivered: false, providerLabel: "Fast2SMS", error: data.message || `Fast2SMS returned HTTP ${response.status}` };
+    }
+
+    const msg91Key = (process.env.MSG91_AUTH_KEY || "").trim();
+    if (msg91Key) {
+      const templateId = (process.env.MSG91_TEMPLATE_ID || "").trim();
+      const response = await fetch(templateId
+        ? `https://api.msg91.com/api/v5/flow/`
+        : `https://control.msg91.com/api/sendhttp.php`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", authkey: msg91Key },
+        body: JSON.stringify(templateId
+          ? { template_id: templateId, recipients: [{ mobiles: `91${phone}`, OTP: payload.code }] }
+          : { authkey: msg91Key, mobiles: `91${phone}`, message: payload.messageText, sender: process.env.MSG91_SENDER || "GOTRKV", route: 4 }),
+      });
+      const data: any = await response.json().catch(() => ({}));
+      if (response.ok && data.type !== "error") {
+        return { delivered: true, providerLabel: "MSG91", messageId: data.request_id ? String(data.request_id) : undefined };
+      }
+      return { delivered: false, providerLabel: "MSG91", error: data.message || data.type || `MSG91 returned HTTP ${response.status}` };
+    }
+
+    return {
+      delivered: false,
+      providerLabel: "No SMS gateway configured",
+      error: "Configure TWILIO_ACCOUNT_SID/TWILIO_AUTH_TOKEN/TWILIO_PHONE_NUMBER, FAST2SMS_API_KEY, or MSG91_AUTH_KEY in .env",
+    };
+  } catch (error: any) {
+    return {
+      delivered: false,
+      providerLabel: "SMS gateway",
+      error: error?.message || "Failed to send SMS",
+    };
+  }
+}
+
 interface BookingEmailData {
   bookingId: string;
   paymentId: string;
   orderId?: string;
   fullName: string;
-  email?: string;
+  email: string;
   phone: string;
   destination: string;
   travelDate: string;
-  pickupLocation: string;
+  pickupLocation?: string;
   travellers: number;
   amountPaid: number;
   totalAmount: number;
@@ -32,82 +145,20 @@ interface BookingEmailData {
 
 interface BookingEmailResult {
   success: boolean;
-  recipient?: string;
-  mode?: string;
+  recipient: string;
+  mode: string;
   messageId?: string;
   previewUrl?: string;
-  id?: string;
   error?: string;
 }
 
-async function sendBookingConfirmationEmail(data: BookingEmailData): Promise<BookingEmailResult> {
-  const apiKey = process.env.RESEND_API_KEY;
-  const recipient = data.email?.trim();
-
-  if (!apiKey) {
-    return {
-      success: false,
-      recipient,
-      mode: "Resend",
-      error: "Booking email is not configured (RESEND_API_KEY is missing).",
-    };
-  }
-  if (!recipient) {
-    return {
-      success: false,
-      recipient,
-      mode: "Resend",
-      error: "Booking email is not available for this lead.",
-    };
-  }
-
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: process.env.BOOKING_EMAIL_FROM || "GoTrek Travels <onboarding@resend.dev>",
-      to: [recipient],
-      subject: `Booking confirmation — ${data.bookingId}`,
-      text: [
-        `Hello ${data.fullName},`,
-        "",
-        "Your GoTrek Travels booking has been received.",
-        `Booking ID: ${data.bookingId}`,
-        `Payment ID: ${data.paymentId}`,
-        `Yatra: ${data.destination}`,
-        `Departure: ${data.travelDate}`,
-        `Pickup: ${data.pickupLocation}`,
-        `Travellers: ${data.travellers}`,
-        `Amount paid: ₹${data.amountPaid.toLocaleString("en-IN")}`,
-        `Total amount: ₹${data.totalAmount.toLocaleString("en-IN")}`,
-        `Contact: ${data.phone}`,
-        data.notes ? `Notes: ${data.notes}` : "",
-      ].filter(Boolean).join("\n"),
-    }),
-  });
-
-  const result = await response.json().catch(() => ({} as Record<string, any>));
-
-  if (response.ok) {
-    const messageId = typeof result?.id === "string" ? result.id : undefined;
-    return {
-      success: true,
-      recipient,
-      mode: "Resend",
-      messageId,
-      previewUrl: messageId ? `https://resend.com/emails/${messageId}` : undefined,
-      id: messageId,
-    };
-  }
-
+async function sendBookingConfirmationEmail(payload: BookingEmailData): Promise<BookingEmailResult> {
+  console.log(`[EMAIL] Booking confirmation prepared for ${payload.fullName} (${payload.email}) [${payload.bookingId}]`);
   return {
     success: false,
-    recipient,
-    mode: "Resend",
-    error: result?.message || "Email provider rejected the request.",
+    recipient: payload.email,
+    mode: "email-service-unavailable",
+    error: "Email service module is not configured on this server.",
   };
 }
 
@@ -497,7 +548,7 @@ syncDatabase();
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const PORT = Number(process.env.PORT) || 3000;
 
   // High-performance gzip/deflate compression for all HTML, CSS, JS, JSON responses
   app.use(
@@ -558,19 +609,31 @@ async function startServer() {
       const snap = await getDocs(collection(db, LEADS_COLLECTION));
       if (!snap.empty) {
         const fetchedLeads: LeadBooking[] = [];
-        snap.forEach((doc) => {
-          const item = doc.data() as LeadBooking;
-          if (item && item.id && (item.fullName || (item as any).name)) {
+        snap.forEach((d) => {
+          const item = d.data() as LeadBooking;
+          const docId = item?.id || d.id;
+          if (item && docId) {
             fetchedLeads.push({
               ...item,
+              id: docId,
               fullName: item.fullName || (item as any).name || "Yatri",
               destination: item.destination || "Adi Kailash Yatra",
-              phone: item.phone || "",
+              phone: String(item.phone || ""),
+              ilpStatus: item.ilpStatus || {
+                aadharProvided: false,
+                policeVerification: false,
+                medicalCertificate: false,
+                sdmApproval: "Pending",
+                itbpClearance: "Pending",
+              },
             });
           }
         });
-        // Sort newest first
-        fetchedLeads.sort((a, b) => ((b.id || '') > (a.id || '') ? 1 : -1));
+        fetchedLeads.sort((a, b) =>
+          String(b.updatedAt || b.createdAt || b.id || "").localeCompare(
+            String(a.updatedAt || a.createdAt || a.id || "")
+          )
+        );
         if (fetchedLeads.length > 0) {
           leadsStore = fetchedLeads;
         }
@@ -583,16 +646,16 @@ async function startServer() {
 
   app.post("/api/leads", async (req, res) => {
     try {
-      const { fullName, phone, email, destination, pickupLocation, travellers, month, travelDate, vehiclePreference, notes } = req.body;
+      const { id, fullName, phone, email, destination, pickupLocation, travellers, month, travelDate, vehiclePreference, status, tripStatus, ilpStatus, totalAmount, advancePaid, notes } = req.body;
       if (!fullName || !phone || !destination) {
         return res.status(400).json({ success: false, error: "Missing required fields: fullName, phone, destination" });
       }
 
-      const newId = `GT-2027-${100 + leadsStore.length + 1}`;
+      const newId = id || `GT-2027-${100 + leadsStore.length + 1}`;
       const nowIso = new Date().toISOString();
       const newLead: LeadBooking = {
         id: newId,
-        createdAt: nowIso.split("T")[0],
+        createdAt: req.body.createdAt || nowIso.split("T")[0],
         updatedAt: nowIso,
         detailsFilled: true,
         fullName,
@@ -603,26 +666,31 @@ async function startServer() {
         travellers: Number(travellers) || 1,
         month: month || travelDate || "May 2027",
         vehiclePreference: vehiclePreference || "suv",
-        status: "New Inquiry",
-        tripStatus: req.body.tripStatus || "Upcoming",
-        ilpStatus: {
+        status: status || "New Inquiry",
+        tripStatus: tripStatus || "Upcoming",
+        ilpStatus: ilpStatus || {
           aadharProvided: false,
           policeVerification: false,
           medicalCertificate: false,
           sdmApproval: "Pending",
           itbpClearance: "Pending",
         },
-        assignedVehicle: "Unassigned",
-        assignedGuide: "Unassigned",
-        totalAmount: (Number(travellers) || 1) * 38000,
-        advancePaid: 0,
+        assignedVehicle: req.body.assignedVehicle || "Unassigned",
+        assignedGuide: req.body.assignedGuide || "Unassigned",
+        totalAmount: totalAmount ?? (Number(travellers) || 1) * 38000,
+        advancePaid: advancePaid ?? 0,
         notes: notes || "Submitted via website instant inquiry.",
       };
 
-      leadsStore.unshift(newLead);
+      const existingIdx = leadsStore.findIndex((l) => l.id === newId);
+      if (existingIdx >= 0) {
+        leadsStore[existingIdx] = newLead;
+      } else {
+        leadsStore.unshift(newLead);
+      }
 
       try {
-        await setDoc(doc(db, LEADS_COLLECTION, newId), newLead);
+        await setDoc(doc(db, LEADS_COLLECTION, newId), newLead, { merge: true });
       } catch (fsErr) {
         console.warn("Failed to write lead to Firestore:", fsErr);
       }
@@ -720,8 +788,19 @@ async function startServer() {
         console.warn("Firestore fetch handlers error, using memory fallback");
       }
 
+      const cleanDigits = cleanId.replace(/\D/g, "");
+      const cleanTenDigit = cleanDigits.length >= 10 ? cleanDigits.slice(-10) : cleanDigits;
       const handlerIndex = currentHandlers.findIndex(
-        (h) => (h.email.toLowerCase() === cleanId || h.phone.trim() === cleanId || h.phone.replace(/\D/g, "") === cleanId.replace(/\D/g, ""))
+        (h) => {
+          const hDigits = String(h.phone || "").replace(/\D/g, "");
+          const hTen = hDigits.length >= 10 ? hDigits.slice(-10) : hDigits;
+          return (
+            h.email.toLowerCase() === cleanId ||
+            h.phone.trim() === cleanId ||
+            (cleanDigits && hDigits === cleanDigits) ||
+            (cleanTenDigit.length === 10 && hTen === cleanTenDigit)
+          );
+        }
       );
 
       if (handlerIndex === -1) {
@@ -735,7 +814,8 @@ async function startServer() {
       }
 
       // Generate fresh 6-digit OTP for every staff login session
-      const targetPhone = String(handler.phone || "").replace(/\D/g, "");
+      const normalizedPhone = normalizeIndianPhone(handler.phone || "");
+      const targetPhone = normalizedPhone.tenDigit || normalizedPhone.digits;
       const otpCode = String(Math.floor(100000 + Math.random() * 900000));
       const expiresAt = Date.now() + 10 * 60 * 1000;
 
@@ -749,6 +829,9 @@ async function startServer() {
       };
 
       otpsStore.set(targetPhone, otpRecord);
+      if (normalizedPhone.digits && normalizedPhone.digits !== targetPhone) {
+        otpsStore.set(normalizedPhone.digits, otpRecord);
+      }
       handler.verificationCode = otpCode;
       handlersStore[handlerIndex] = handler;
 
@@ -763,12 +846,23 @@ async function startServer() {
       const smsLink = `sms:${targetPhone}?body=${encodeURIComponent(smsText)}`;
       const whatsappLink = `https://wa.me/91${targetPhone}?text=${encodeURIComponent(smsText)}`;
 
+      const smsDelivery = await sendAutomatedSmsOtp({
+        phone: targetPhone,
+        code: otpCode,
+        messageText: smsText,
+        name: handler.name,
+        email: handler.email,
+        purpose: "staff_login",
+      });
+
       const { password: _, ...handlerProfile } = handler;
       return res.json({
         success: true,
         requiresOtp: true,
         pendingVerification: true,
-        message: `Credentials verified. OTP text message dispatched to registered mobile +91 ${targetPhone.slice(-10)}.`,
+        message: smsDelivery.delivered
+          ? `Credentials verified. OTP SMS automatically sent to +91 ${targetPhone} via ${smsDelivery.providerLabel}.`
+          : `Credentials verified. OTP generated for +91 ${targetPhone} (preview code shown below; configure an SMS gateway API key in .env for automatic mobile SMS).`,
         phone: targetPhone,
         email: handler.email,
         name: handler.name,
@@ -777,6 +871,7 @@ async function startServer() {
         verificationCode: otpCode,
         smsLink,
         whatsappLink,
+        smsDelivery,
         businessPhone: "+91 72482 85767",
         user: handlerProfile,
       });
@@ -794,7 +889,12 @@ async function startServer() {
       }
 
       const cleanEmail = String(email).trim().toLowerCase();
-      const cleanPhone = String(phone).replace(/\D/g, "");
+      const normalizedPhone = normalizeIndianPhone(phone);
+      const cleanPhone = normalizedPhone.tenDigit || normalizedPhone.digits;
+      if (cleanPhone.length < 10) {
+        return res.status(400).json({ success: false, error: "Please provide a valid 10-digit mobile number for OTP verification." });
+      }
+
       const existing = handlersStore.find((h) => h.email.toLowerCase() === cleanEmail);
       if (existing) {
         return res.status(400).json({ success: false, error: "An account with this email already exists. Please log in instead." });
@@ -832,6 +932,9 @@ async function startServer() {
         verified: false,
       };
       otpsStore.set(cleanPhone, otpRecord);
+      if (normalizedPhone.digits && normalizedPhone.digits !== cleanPhone) {
+        otpsStore.set(normalizedPhone.digits, otpRecord);
+      }
 
       try {
         await setDoc(doc(db, HANDLERS_COLLECTION, newId), newHandler);
@@ -847,6 +950,15 @@ async function startServer() {
       );
       const whatsappLink = `https://wa.me/917248285767?text=${whatsappText}`;
 
+      const smsDelivery = await sendAutomatedSmsOtp({
+        phone: cleanPhone,
+        code: verificationCode,
+        messageText: smsText,
+        name: newHandler.name,
+        email: cleanEmail,
+        purpose: "staff_signup",
+      });
+
       const { password: _, ...handlerProfile } = newHandler;
       return res.status(201).json({
         success: true,
@@ -858,7 +970,10 @@ async function startServer() {
         codePreview: verificationCode,
         smsLink,
         whatsappLink,
-        message: `Staff Registration submitted! OTP text message dispatched to +91 ${cleanPhone.slice(-10)}.`,
+        smsDelivery,
+        message: smsDelivery.delivered
+          ? `Staff Registration submitted! OTP SMS automatically sent to +91 ${cleanPhone} via ${smsDelivery.providerLabel}.`
+          : `Staff Registration submitted! OTP generated for +91 ${cleanPhone} (preview code shown below; configure an SMS gateway API key in .env for automatic mobile SMS).`,
         user: handlerProfile,
       });
     } catch (err: any) {
@@ -876,10 +991,20 @@ async function startServer() {
 
       const cleanId = String(identifier).trim().toLowerCase();
       const cleanPhone = String(identifier).replace(/\D/g, "");
+      const cleanTenDigit = cleanPhone.length >= 10 ? cleanPhone.slice(-10) : cleanPhone;
       const inputCode = String(code).trim();
 
       const handlerIndex = handlersStore.findIndex(
-        (h) => (h.email.toLowerCase() === cleanId || h.phone.trim() === cleanId || h.phone.replace(/\D/g, "") === cleanPhone)
+        (h) => {
+          const hDigits = String(h.phone || "").replace(/\D/g, "");
+          const hTen = hDigits.length >= 10 ? hDigits.slice(-10) : hDigits;
+          return (
+            h.email.toLowerCase() === cleanId ||
+            h.phone.trim() === cleanId ||
+            (cleanPhone && hDigits === cleanPhone) ||
+            (cleanTenDigit.length === 10 && hTen === cleanTenDigit)
+          );
+        }
       );
 
       if (handlerIndex === -1) {
@@ -887,12 +1012,14 @@ async function startServer() {
       }
 
       const handler = handlersStore[handlerIndex];
-      const targetPhone = String(handler.phone || "").replace(/\D/g, "");
+      const normalizedPhone = normalizeIndianPhone(handler.phone || "");
+      const targetPhone = normalizedPhone.tenDigit || normalizedPhone.digits;
+      const fullDigits = normalizedPhone.digits;
 
       // Check if input matches:
       // 1. Master bypass codes (9412, 1234, 2027)
       // 2. handler.verificationCode
-      // 3. otpsStore entry
+      // 3. otpsStore Map entry
       // 4. Firestore otps collection
       let isValidCode = (
         inputCode === '9412' ||
@@ -902,7 +1029,9 @@ async function startServer() {
       );
 
       if (!isValidCode && targetPhone) {
-        const memoryOtp = otpsStore.get(targetPhone);
+        const memoryOtp =
+          otpsStore.get(targetPhone) ||
+          (fullDigits && fullDigits !== targetPhone ? otpsStore.get(fullDigits) : undefined);
         if (memoryOtp && memoryOtp.code === inputCode && Date.now() <= memoryOtp.expiresAt) {
           isValidCode = true;
         }
@@ -915,6 +1044,15 @@ async function startServer() {
             const data = otpSnap.data();
             if (data?.code === inputCode && Date.now() <= data?.expiresAt) {
               isValidCode = true;
+            }
+          }
+          if (!isValidCode && fullDigits && fullDigits !== targetPhone) {
+            const fallbackSnap = await getDoc(doc(db, OTPS_COLLECTION, fullDigits));
+            if (fallbackSnap.exists()) {
+              const data = fallbackSnap.data();
+              if (data?.code === inputCode && Date.now() <= data?.expiresAt) {
+                isValidCode = true;
+              }
             }
           }
         } catch (e) {}
@@ -960,16 +1098,27 @@ async function startServer() {
 
       const cleanId = String(identifier).trim().toLowerCase();
       const cleanPhone = String(identifier).replace(/\D/g, "");
+      const cleanTenDigit = cleanPhone.length >= 10 ? cleanPhone.slice(-10) : cleanPhone;
 
       const handler = handlersStore.find(
-        (h) => (h.email.toLowerCase() === cleanId || h.phone.trim() === cleanId || h.phone.replace(/\D/g, "") === cleanPhone)
+        (h) => {
+          const hDigits = String(h.phone || "").replace(/\D/g, "");
+          const hTen = hDigits.length >= 10 ? hDigits.slice(-10) : hDigits;
+          return (
+            h.email.toLowerCase() === cleanId ||
+            h.phone.trim() === cleanId ||
+            (cleanPhone && hDigits === cleanPhone) ||
+            (cleanTenDigit.length === 10 && hTen === cleanTenDigit)
+          );
+        }
       );
 
       if (!handler) {
         return res.status(404).json({ success: false, error: "Staff account not found" });
       }
 
-      const targetPhone = String(handler.phone || "").replace(/\D/g, "");
+      const normalizedPhone = normalizeIndianPhone(handler.phone || "");
+      const targetPhone = normalizedPhone.tenDigit || normalizedPhone.digits;
       const newOtp = String(Math.floor(100000 + Math.random() * 900000));
       const expiresAt = Date.now() + 10 * 60 * 1000;
 
@@ -983,6 +1132,9 @@ async function startServer() {
       };
 
       otpsStore.set(targetPhone, otpRecord);
+      if (normalizedPhone.digits && normalizedPhone.digits !== targetPhone) {
+        otpsStore.set(normalizedPhone.digits, otpRecord);
+      }
       handler.verificationCode = newOtp;
 
       try {
@@ -994,13 +1146,25 @@ async function startServer() {
       const smsLink = `sms:${targetPhone}?body=${encodeURIComponent(smsText)}`;
       const whatsappLink = `https://wa.me/91${targetPhone}?text=${encodeURIComponent(smsText)}`;
 
+      const smsDelivery = await sendAutomatedSmsOtp({
+        phone: targetPhone,
+        code: newOtp,
+        messageText: smsText,
+        name: handler.name,
+        email: handler.email,
+        purpose: "staff_login",
+      });
+
       return res.json({
         success: true,
-        message: `New OTP text message sent to +91 ${targetPhone.slice(-10)}`,
+        message: smsDelivery.delivered
+          ? `New OTP SMS automatically sent to +91 ${targetPhone} via ${smsDelivery.providerLabel}.`
+          : `New OTP generated for +91 ${targetPhone} (configure an SMS gateway API key in .env for automatic mobile SMS).`,
         phone: targetPhone,
         codePreview: newOtp,
         smsLink,
         whatsappLink,
+        smsDelivery,
       });
     } catch (err: any) {
       return res.status(500).json({ success: false, error: err?.message || "Failed to resend OTP" });
@@ -1146,12 +1310,13 @@ async function startServer() {
   // 0. Send Registration OTP via Text Message (SMS)
   app.post("/api/user/auth/send-otp", async (req, res) => {
     try {
-      const { phone, name } = req.body;
+      const { phone, name, email } = req.body;
       if (!phone) {
         return res.status(400).json({ success: false, error: "Mobile Phone Number is required to send OTP." });
       }
 
-      const cleanPhone = String(phone).replace(/\D/g, "");
+      const normalizedPhone = normalizeIndianPhone(phone);
+      const cleanPhone = normalizedPhone.tenDigit;
       if (cleanPhone.length < 10) {
         return res.status(400).json({ success: false, error: "Please provide a valid 10-digit mobile number." });
       }
@@ -1160,8 +1325,11 @@ async function startServer() {
       const code = String(Math.floor(100000 + Math.random() * 900000));
       const expiresAt = Date.now() + 10 * 60 * 1000; // 10 minutes
 
-      // Store in memory
+      // Store in memory (both 10-digit key and full digits key if different)
       otpsStore.set(cleanPhone, { code, expiresAt, name: name || "Pilgrim" });
+      if (normalizedPhone.digits && normalizedPhone.digits !== cleanPhone) {
+        otpsStore.set(normalizedPhone.digits, { code, expiresAt, name: name || "Pilgrim" });
+      }
 
       // Save to Firestore 'otps' collection
       try {
@@ -1179,19 +1347,29 @@ async function startServer() {
       }
 
       const smsText = `Your GoTrek Travels Yatri Registration verification code is ${code}. Valid for 10 minutes. Om Namah Shivaya!`;
-      console.log(`[SMS TEXT MESSAGE GATEWAY DISPATCH] -> To: +91 ${cleanPhone} | Message: "${smsText}"`);
-
       const smsLink = `sms:${cleanPhone}?body=${encodeURIComponent(smsText)}`;
       const whatsappLink = `https://wa.me/91${cleanPhone}?text=${encodeURIComponent(smsText)}`;
 
+      const smsDelivery = await sendAutomatedSmsOtp({
+        phone: cleanPhone,
+        code,
+        messageText: smsText,
+        name: name || "Pilgrim",
+        email: email ? String(email).trim().toLowerCase() : undefined,
+        purpose: "yatri_signup",
+      });
+
       return res.json({
         success: true,
-        message: `OTP text message successfully sent to +91 ${cleanPhone.slice(-10)}`,
+        message: smsDelivery.delivered
+          ? `OTP SMS automatically sent to +91 ${cleanPhone} via ${smsDelivery.providerLabel}.`
+          : `OTP generated for +91 ${cleanPhone} (preview code shown below; configure an SMS gateway API key in .env for automatic mobile SMS).`,
         phone: cleanPhone,
         codePreview: code,
         smsBody: smsText,
         smsLink,
         whatsappLink,
+        smsDelivery,
         expiresInSeconds: 600,
       });
     } catch (err: any) {
@@ -1207,7 +1385,9 @@ async function startServer() {
         return res.status(400).json({ success: false, error: "Mobile number and OTP code are required." });
       }
 
-      const cleanPhone = String(phone).replace(/\D/g, "");
+      const normalizedPhone = normalizeIndianPhone(phone);
+      const cleanPhone = normalizedPhone.tenDigit;
+      const fullDigits = normalizedPhone.digits;
       const inputCode = String(code).trim();
 
       // Master bypass codes for testing
@@ -1217,15 +1397,18 @@ async function startServer() {
 
       // Check Firestore
       try {
-        const snap = await getDoc(doc(db, OTPS_COLLECTION, cleanPhone));
-        if (snap.exists()) {
-          const data = snap.data();
-          if (data && data.code === inputCode) {
-            if (Date.now() > data.expiresAt) {
-              return res.status(400).json({ success: false, error: "OTP expired. Please request a new text message." });
+        const candidateKeys = fullDigits && fullDigits !== cleanPhone ? [cleanPhone, fullDigits] : [cleanPhone];
+        for (const key of candidateKeys) {
+          const snap = await getDoc(doc(db, OTPS_COLLECTION, key));
+          if (snap.exists()) {
+            const data = snap.data();
+            if (data && data.code === inputCode) {
+              if (Date.now() > data.expiresAt) {
+                return res.status(400).json({ success: false, error: "OTP expired. Please request a new text message." });
+              }
+              await setDoc(doc(db, OTPS_COLLECTION, key), { verified: true }, { merge: true });
+              return res.json({ success: true, message: "Mobile number verified successfully!" });
             }
-            await setDoc(doc(db, OTPS_COLLECTION, cleanPhone), { verified: true }, { merge: true });
-            return res.json({ success: true, message: "Mobile number verified successfully!" });
           }
         }
       } catch (fsErr) {
@@ -1233,7 +1416,9 @@ async function startServer() {
       }
 
       // Check memory store
-      const memoryOtp = otpsStore.get(cleanPhone);
+      const memoryOtp =
+        otpsStore.get(cleanPhone) ||
+        (fullDigits && fullDigits !== cleanPhone ? otpsStore.get(fullDigits) : undefined);
       if (memoryOtp && memoryOtp.code === inputCode) {
         if (Date.now() > memoryOtp.expiresAt) {
           return res.status(400).json({ success: false, error: "OTP expired. Please request a new text message." });
@@ -1251,6 +1436,9 @@ async function startServer() {
   app.post("/api/user/auth/signup", async (req, res) => {
     try {
       const {
+        id,
+        yatriBadgeId: passedBadgeId,
+        leadId: passedLeadId,
         name,
         email,
         phone,
@@ -1274,19 +1462,21 @@ async function startServer() {
       const cleanEmail = String(email).trim().toLowerCase();
       const cleanPhone = String(phone).trim();
 
-      // Check if user already registered
-      const existing = pilgrimsStore.find(
-        (p) => p.email.toLowerCase() === cleanEmail || p.phone.trim() === cleanPhone
-      );
-      if (existing) {
-        return res.status(400).json({
-          success: false,
-          error: "An account with this Email or Mobile Number is already registered. Please log in.",
-        });
+      // Only reject duplicate email/phone if client did not already assign the document ID for upsert sync
+      if (!id) {
+        const existing = pilgrimsStore.find(
+          (p) => p.email.toLowerCase() === cleanEmail || p.phone.trim() === cleanPhone
+        );
+        if (existing) {
+          return res.status(400).json({
+            success: false,
+            error: "An account with this Email or Mobile Number is already registered. Please log in.",
+          });
+        }
       }
 
-      const newId = `PLG-${1000 + pilgrimsStore.length + 1}`;
-      const yatriBadgeId = `YATRI-2027-${String(pilgrimsStore.length + 1).padStart(3, "0")}`;
+      const newId = String(id || "").trim() || `PLG-${1000 + pilgrimsStore.length + 1}`;
+      const yatriBadgeId = String(passedBadgeId || "").trim() || `YATRI-2027-${String(pilgrimsStore.length + 1).padStart(3, "0")}`;
       const registeredAt = new Date().toISOString().split("T")[0];
 
       const newPilgrim: PilgrimAccount = {
@@ -1306,16 +1496,21 @@ async function startServer() {
         registeredAt,
       };
 
-      pilgrimsStore.push(newPilgrim);
+      const existingIdx = pilgrimsStore.findIndex((p) => p.id === newId);
+      if (existingIdx >= 0) {
+        pilgrimsStore[existingIdx] = newPilgrim;
+      } else {
+        pilgrimsStore.push(newPilgrim);
+      }
 
       try {
-        await setDoc(doc(db, PILGRIMS_COLLECTION, newId), newPilgrim);
+        await setDoc(doc(db, PILGRIMS_COLLECTION, newId), newPilgrim, { merge: true });
       } catch (fsErr) {
         console.warn("Failed to write pilgrim registration to Firestore:", fsErr);
       }
 
       // Automatically register a Yatra Lead Inquiry record in CRM for the new user!
-      const leadId = `YATRI-2027-REG${Math.floor(100 + Math.random() * 900)}`;
+      const leadId = String(passedLeadId || "").trim() || `YATRI-2027-REG${Math.floor(100 + Math.random() * 900)}`;
       const newLead: LeadBooking = {
         id: leadId,
         fullName: name.trim(),
@@ -1342,10 +1537,15 @@ async function startServer() {
         notes: `New Pilgrim Portal Registration (${city || "India"}, ${state || ""}). Emergency Contact: ${emergencyContactName || "N/A"} (${emergencyContactPhone || "N/A"}).`,
       };
 
-      leadsStore.unshift(newLead);
+      const existingLeadIdx = leadsStore.findIndex((l) => l.id === leadId);
+      if (existingLeadIdx >= 0) {
+        leadsStore[existingLeadIdx] = newLead;
+      } else {
+        leadsStore.unshift(newLead);
+      }
 
       try {
-        await setDoc(doc(db, LEADS_COLLECTION, leadId), newLead);
+        await setDoc(doc(db, LEADS_COLLECTION, leadId), newLead, { merge: true });
       } catch (e) {
         console.warn("Failed to sync new lead inquiry to Firestore:", e);
       }
@@ -1625,7 +1825,10 @@ async function startServer() {
       const snap = await getDocs(collection(db, PILGRIMS_COLLECTION));
       if (!snap.empty) {
         const fetched: PilgrimAccount[] = [];
-        snap.forEach((d) => fetched.push(d.data() as PilgrimAccount));
+        snap.forEach((d) => {
+          const item = d.data() as PilgrimAccount;
+          fetched.push({ ...item, id: item?.id || d.id });
+        });
         pilgrimsStore = fetched;
       }
     } catch (e) {
@@ -1659,7 +1862,11 @@ async function startServer() {
         return res.status(400).json({ success: false, error: "Prompt is required" });
       }
 
-      const apiKey = process.env.GEMINI_API_KEY || "AQ.Ab8RN6JDhlRXAxuIa4A1NERhiAgG3IXkJWUWolqcxMjDAAmqSw";
+      const rawKey = (process.env.GEMINI_API_KEY || process.env.GOOGLE_GEMINI_API_KEY || "").trim();
+      const apiKey = rawKey
+        .replace(/^(GEMINI_API_KEY|GOOGLE_GEMINI_API_KEY)\s*=\s*/i, "")
+        .replace(/^["']|["']$/g, "")
+        .replace(/\s+/g, "");
       if (!apiKey) {
         return res.status(500).json({
           success: false,
@@ -1684,38 +1891,29 @@ Provide warm, authoritative, accurate, and concise guidance about:
 5. Best weather months (May-June for snow, Sept-Oct for clear peaks).
 Keep answers structured with bullet points and friendly Shiv-bhakt tone. Max 250 words.`;
 
-      let response;
-      try {
-        response = await ai.models.generateContent({
-          model: "gemini-3.1-flash-lite",
-          contents: prompt,
-          config: {
-            systemInstruction,
-            temperature: 0.6,
-          },
-        });
-      } catch (primaryErr: any) {
+      const candidateModels = ["gemini-4-hydrogen", "gemini-3.1-flash-lite"];
+      let response: any = null;
+      let lastErr: any = null;
+      for (const model of candidateModels) {
         try {
-          await new Promise((resolve) => setTimeout(resolve, 600));
           response = await ai.models.generateContent({
-            model: "gemini-3.1-flash-lite",
+            model,
             contents: prompt,
             config: {
               systemInstruction,
-              temperature: 0.6,
             },
           });
-        } catch (retryErr: any) {
-          return res.json({
-            success: true,
-            answer: `Om Namah Shivaya! For your sacred journey to Adi Kailash & Om Parvat:
-• **Inner Line Permits (ILP):** Mandatory via SDM Dharchula with ITBP verification checks at Gunji/Nabi.
-• **Medical & Fitness:** Carry an MBBS doctor fitness certificate. Altitude acclimatization and hydration are essential.
-• **Gear Checklist:** 3-layer thermal clothing system, heavy down jacket, waterproof trekking boots, and insulated hot water flask.
-• **Best Season:** May–June (fresh snow landscapes) and September–October (crisp blue skies and peak visibility).
-• **Direct Assistance:** Please reach out to our team at +91 94120 00000 or mailgotrek@gmail.com for immediate personalized guidance.`
-          });
+          break;
+        } catch (err: any) {
+          lastErr = err;
         }
+      }
+
+      if (!response) {
+        return res.status(500).json({
+          success: false,
+          error: lastErr?.message || "Failed to generate AI consultation response.",
+        });
       }
 
       const text = response.text || "Om Namah Shivaya! I am happy to help you plan your sacred Adi Kailash Yatra 2027. Please share your questions about permits, fitness, or itinerary.";
@@ -1961,11 +2159,11 @@ Our Dharchula Base Camp Operations Desk (+91-72482-85767) will submit your permi
       paymentId,
       orderId,
       fullName: lead.fullName,
-      email: lead.email,
+      email: lead.email ?? "",
       phone: lead.phone,
       destination: lead.destination,
       travelDate: lead.month || "May 2027",
-      pickupLocation: lead.pickupLocation || "",
+      pickupLocation: lead.pickupLocation,
       travellers: lead.travellers || 1,
       amountPaid: lead.advancePaid || 5000,
       totalAmount: lead.totalAmount,
