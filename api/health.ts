@@ -8,9 +8,9 @@ export default function handler(req: any, res: any) {
   const geminiKeyFormat = !rawGemini
     ? "missing"
     : rawGemini.startsWith("AIza")
-    ? "valid_aiza_prefix"
+    ? "valid_aiza_key"
     : rawGemini.startsWith("AQ.")
-    ? "invalid_aq_token"
+    ? "valid_aq_auth_key"
     : "unexpected_prefix";
 
   return res.status(200).json({
